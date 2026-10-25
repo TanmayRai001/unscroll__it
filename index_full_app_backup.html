@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unscroll It — The Elegant Anti-Doomscrolling Sanctuary</title>
+  <meta name="description"
+    content="Break free from mindless scrolling with witty polite roasts, real-time life-toll calculators, time-based offline side quests, and nature vitality restoration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Standard Lottie Player CDN -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+  <!-- Ambient Audio Indicator / Backdrop Glow -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- App Header: Sticky Floating Glass Pill Navbar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 2v8"></path>
+            <path d="m4.93 10.93 4.24 4.24"></path>
+            <path d="M2 18h8"></path>
+            <circle cx="17" cy="17" r="5"></circle>
+            <path d="M12 17h.01"></path>
+          </svg>
+        </div>
+        <div class="logo-text-block">
+          <h1 class="logo-title">Unscroll<span class="logo-dot">.</span>it</h1>
+          <span class="logo-tagline">Mindful Focus OS</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" role="tablist" aria-label="Main Sanctuary Navigation">
+        <button class="nav-btn active" data-tab="tab-dashboard" id="btnNavDashboard" role="tab" aria-selected="true"
+          aria-controls="tab-dashboard">Sanctuary</button>
+        <button class="nav-btn" data-tab="tab-simulator" id="btnNavSimulator" role="tab" aria-selected="false"
+          aria-controls="tab-simulator">Doomscroll Simulator</button>
+        <button class="nav-btn" data-tab="tab-calculator" id="btnNavCalculator" role="tab" aria-selected="false"
+          aria-controls="tab-calculator">Life Toll Matrix</button>
+        <button class="nav-btn" data-tab="tab-quests" id="btnNavQuests" role="tab" aria-selected="false"
+          aria-controls="tab-quests">Side Quests</button>
+        <button class="nav-btn" data-tab="tab-sounds" id="btnNavSounds" role="tab" aria-selected="false"
+          aria-controls="tab-sounds">Sound Sanctuary</button>
+        <button class="nav-btn" data-tab="tab-cinema" id="btnNavCinema" role="tab" aria-selected="false"
+          aria-controls="tab-cinema" title="Open Attention Span Improver & Film Focus Gym">Attention Span Improver</button>
+        <button class="nav-btn" data-tab="tab-guide" id="btnNavGuide" role="tab" aria-selected="false"
+          aria-controls="tab-guide" style="display: none;">Architecture</button>
+      </nav>
+
+      <div class="header-controls">
+        <button class="soundscape-toggle" id="soundscapeBtn" title="Toggle Calming Forest & Rain Audio">
+          <span class="sound-icon"></span>
+          <span class="sound-label">Audio: Off</span>
+        </button>
+        <div class="streak-badge" id="headerStreakBadge">
+          <span class="streak-fire"></span>
+          <span class="streak-text"><strong id="headerSavedHours">0.0</strong>h</span>
+        </div>
+        <button class="btn-header-cta" id="btnHeaderCta" title="Spin Reality Check Slot">
+          <span>⚡</span>
+          <span>Reclaim Focus</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-container">
+
+    <!-- ==============================================
+         TAB 1: SANCTUARY DASHBOARD
+         ============================================== -->
+    <section class="tab-pane active" id="tab-dashboard">
+      <!-- Hero Banner (Authoritative SaaS Hero Stage) -->
+      <div class="hero-card fio-hero-stage">
+        <div class="hero-ambient-orb"></div>
+        <div class="hero-text-content">
+          <div class="status-pill">
+            <span class="live-dot"></span>
+            <span id="heroStatusText">POLITE REALITY CHECKS FOR THE ALGORITHMIC SOUL</span>
+          </div>
+          <h2 class="hero-heading">Content creation <span class="gradient-text">you’ll enjoy.</span></h2>
+          <p class="hero-desc">
+            A modern cognitive sanctuary engineered to break algorithmic dopamine loops, quantify your finite life toll, and restore deep, sustained creative stillness.
+          </p>
+          
+          <!-- Dual-Button CTA Group (Refero Solid White + Outline) -->
+          <div class="hero-cta-group">
+            <button class="btn-hero-solid" id="btnOpenRoaster"
+              title="Start Reality Check">
+              <span>Start Reality Check</span>
+              <span style="font-family: var(--font-mono); margin-left: 4px;">→</span>
+            </button>
+            <button class="btn-hero-outline" id="btnJumpToCinema"
+              title="Jump directly to Attention Span Improver film sanctuary">
+              <span>Explore Sanctuary</span>
+            </button>
+          </div>
+
+          <!-- Supporting Fast-Action Shortcuts -->
+          <div class="hero-quick-shortcuts">
+            <button class="hero-quick-btn" id="btnJumpToQuests">
+              <span>⚡</span>
+              <span>Find Offline Quest</span>
+            </button>
+            <span class="quick-divider">•</span>
+            <button class="hero-quick-btn" id="btnSimulateFeed">
+              <span>📱</span>
+              <span>Feed Simulator</span>
+            </button>
+            <span class="quick-divider">•</span><span class="quick-kpi-pill"><span></span>
+              <span>Conscious life reclaimed</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Featured Live Roast Card (Workstation Window) -->
+        <div class="hero-roast-box fio-workstation-window">
+          <!-- Window Header Titlebar -->
+          <div class="roast-window-bar">
+            <div class="window-dots">
+              <span class="dot-red"></span>
+              <span class="dot-amber"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span class="window-title">Reality Check Workstation • Lord Algernon</span>
+            <span class="window-timecode">00:00:15:00</span>
+          </div>
+
+          <div class="roast-header">
+            <div class="butler-avatar" id="heroButlerAvatar"></div>
+            <div>
+              <span class="roast-author" id="heroRoastAuthor">Lord Algernon of Sanity</span>
+              <span class="roast-role" id="heroRoastRole">Chief Etiquette Officer</span>
+            </div>
+            <div style="margin-left: auto; display: flex; gap: 0.4rem;">               <button class="btn-icon-only" id="btnCopyHeroRoast" title="Copy roast quote to clipboard"></button>               <button class="btn-icon-only" id="btnSpeakHeroRoast" title="Johnny Dynamite speaks this reality check"></button>
+              <button class="btn-icon-only" id="btnPlayJohnnyRadio" title="Play Johnny Dynamite Vintage Radio DJ broadcast station">📻</button>
+            </div>
+          </div>
+          <blockquote class="roast-quote" id="heroRoastText">
+            "I say, your thumb appears to have far outrun your ambition today. Did you genuinely plan on donating your
+            remaining youth to 15-second dancing teenagers, or did your willpower simply step out for tea?"
+          </blockquote>
+          <div class="roast-footer">
+            <span class="roast-tag" id="heroRoastTag">Severity: High Society Savage</span>
+            <button class="btn-text" id="btnRefreshRoast">Request Another Rebuke ↻</button>
+          </div>
+
+          <!-- Johnny Dynamite Cloned Voice Skin Control Bar -->
+          <div class="voice-skin-bar">
+            <div class="voice-skin-info">
+              <span class="voice-skin-badge">CLONED VOICE SKIN</span>
+              <span class="voice-skin-name" id="voiceSkinActiveName">Johnny Dynamite (Vintage Radio DJ • Baritone)</span>
+            </div>
+            <div class="voice-skin-controls">
+              <label class="voice-skin-label">Pitch:
+                <input type="range" id="voicePitchSlider" min="0.70" max="1.05" step="0.02" value="0.82" class="voice-slider">
+                <span id="voicePitchVal">0.82</span>
+              </label>
+              <label class="voice-skin-label">Speed:
+                <input type="range" id="voiceRateSlider" min="0.80" max="1.20" step="0.02" value="0.98" class="voice-slider">
+                <span id="voiceRateVal">0.98</span>
+              </label>
+              <button class="btn-sm btn-primary" id="btnTestVoiceSkin" title="Test Johnny Dynamite's cloned voice on this quote">
+                <span>▶</span> Test Voice Skin
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           16:9 DYNAMIC LOTTIE MOTION SHOWCASE (HERO SECTION)
+           ============================================== -->
+      <section class="hero-lottie-stage" aria-label="Cinematic Lottie Motion Showcase">
+        <div class="lottie-header-bar">
+          <div class="lottie-badge">
+            <span class="live-dot"></span>
+            <span class="lottie-title">16:9 IMMERSIVE LOTTIE MOTION CANVAS</span>
+          </div>
+          <div class="lottie-meta-group">
+            <span class="meta-pill">1920 × 1080</span>
+            <span class="meta-pill">60 FPS</span>
+            <span class="meta-pill">AUTOPLAY & LOOP</span>
+            <span class="meta-pill highlight">LOCAL ASSET: 16-9.json</span>
+          </div>
+        </div>
+
+        <div class="lottie-player-wrapper">
+          <lottie-player
+            id="heroLottiePlayer"
+            src="16-9.json?v=clean"
+            background="transparent"
+            speed="1"
+            style="width: 100%; height: 100%;"
+            loop
+            autoplay>
+          </lottie-player>
+          <div class="lottie-watermark-mask" aria-hidden="true"></div>
+        </div>
+
+        <div class="lottie-controls-strip">
+          <div class="lottie-status-info">
+            <span class="lottie-indicator-icon"></span>
+            <span class="lottie-status-text">Autonomous Loop Active • Scaled Responsively to Viewport</span>
+          </div>
+          <div class="lottie-actions">
+            <button class="btn-sm btn-outline lottie-ctrl-btn" id="btnToggleLottiePlay" title="Toggle Play / Pause">⏸ Pause</button>
+            <div class="lottie-speed-group">
+              <span class="speed-label">Speed:</span>
+              <button class="btn-sm btn-outline speed-btn" id="btnLottieSpeedSlow" title="0.5x Slow Motion">0.5x</button>
+              <button class="btn-sm btn-outline speed-btn active" id="btnLottieSpeedNormal" title="1.0x Normal Speed">1.0x</button>
+              <button class="btn-sm btn-outline speed-btn" id="btnLottieSpeedFast" title="1.5x Fast Forward">1.5x</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Frame.io Suite Category Ribbon -->
+      <nav class="fio-suite-ribbon" role="navigation" aria-label="Creative Focus Suites">
+        <span class="suite-ribbon-tag">SUITES</span>
+        <button class="suite-pill active" data-tab-target="tab-dashboard">✨ Sanctuary Overview</button>
+        <button class="suite-pill" data-tab-target="tab-simulator">📱 Doomscroll Chamber</button>
+        <button class="suite-pill" data-tab-target="tab-calculator">Life Toll Matrix</button>
+        <button class="suite-pill" data-tab-target="tab-quests">⚡ Offline Side Quests</button>
+        <button class="suite-pill" data-tab-target="tab-sounds">🎧 Sound Sanctuary</button>
+        <button class="suite-pill" data-tab-target="tab-cinema">🎬 Attention Span Gym</button>
+        <button class="suite-pill" data-tab-target="tab-guide">⚙️ Architecture & Setup</button>
+      </nav>
+
+      <!-- Quick Metrics Strip -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon-wrap bg-emerald">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div class="metric-data">
+            <span class="metric-label">Conscious Hours Reclaimed</span>
+            <div class="metric-value" id="dashReclaimedHours">4.5 <span class="metric-unit">hrs</span></div>
+            <span class="metric-subtext text-positive">+45 mins vs yesterday</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-wrap bg-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+          </div>
+          <div class="metric-data">
+            <span class="metric-label">Quests Completed</span>
+            <div class="metric-value" id="dashQuestsCount">7 <span class="metric-unit">done</span></div>
+            <span class="metric-subtext">3 offline crafts unlocked</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-wrap bg-amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4" />
+              <path d="M12 18v4" />
+              <path d="M4.93 4.93l2.83 2.83" />
+              <path d="M16.24 16.24l2.83 2.83" />
+              <path d="M2 12h4" />
+              <path d="M18 12h4" />
+              <path d="M4.93 19.07l2.83-2.83" />
+              <path d="M16.24 7.76l2.83-2.83" />
+            </svg>
+          </div>
+          <div class="metric-data">
+            <span class="metric-label">Sunsets Not Missed</span>
+            <div class="metric-value" id="dashSunsetsCount">12 <span class="metric-unit">witnessed</span></div>
+            <span class="metric-subtext text-positive">Zero pixels required</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-wrap bg-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </div>
+          <div class="metric-data">
+            <span class="metric-label">Dopamine Stability</span>
+            <div class="metric-value" id="dashDopamineIndex">88% <span class="metric-unit">natural</span></div>
+            <span class="metric-subtext text-positive">Calm & receptive state</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           REFERO / FRAMER BENTO GRID ("DEAD SIMPLE. SURPRISINGLY POWERFUL.")
+           ======================================================== -->
+      <section class="refero-bento-section" aria-label="Refero Bento Showcase">
+        <div class="refero-header-block">
+          <h3 class="refero-title-lg">Dead simple. <br><span class="gradient-text">Surprisingly powerful.</span></h3>
+          <p class="refero-desc-sub">
+            Everything you need to break the algorithmic loop, restore dopamine sensitivity, and retrain your focus.
+          </p>
+        </div>
+
+        <div class="refero-bento-grid">
+          <!-- Card 1: Top Wide Featured Card with Gradient Banner -->
+          <div class="refero-card refero-bento-col-12">
+            <div class="refero-card-banner">
+              <span class="refero-banner-tag">ACTIVE INTERVENTION</span>
+              <h4 class="refero-banner-title">Doomscroll Simulator & Feed Shield</h4>
+            </div>
+            <div class="refero-banner-body">
+              <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 650px; margin: 0;">
+                Experience simulated addictive micro-clips under controlled lab conditions. Exposes algorithmic dopamine loops with instant reality-check overlays before you get trapped.
+              </p>
+              <button class="btn-primary" id="btnBentoLaunchSim">
+                <span>Launch Simulator Chamber →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Typography / Acoustic Frequency Card -->
+          <div class="refero-card refero-bento-col-4">
+            <div class="refero-card-padded">
+              <div>
+                <div class="refero-glyph-aa">Aa</div>
+                <h4 style="font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">Sound Sanctuary</h4>
+                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+                  Zero harsh vibrations, zero buzzing, zero irritation. Pure soothing nature rain, temple chimes, and flowing stream acoustics.
+                </p>
+              </div>
+              <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #A78BFA;">432Hz Harmonic</span>
+                <button class="btn-sm btn-outline" id="btnBentoAcousticToggle">🎧 Audio Toggle</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: 6-Item Quick Quest Mini Grid -->
+          <div class="refero-card refero-bento-col-4">
+            <div class="refero-card-padded">
+              <div>
+                <span class="refero-eyebrow">MICRO MISSIONS</span>
+                <h4 style="font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.25rem;">Dopamine Side Quests</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Click any quest to complete & gain calm XP.</p>
+                <div class="refero-quest-grid">
+                  <div class="refero-quest-chip" id="bentoQuest1"><span>✨</span> Touch Grass</div>
+                  <div class="refero-quest-chip" id="bentoQuest2"><span>💧</span> Cold Water</div>
+                  <div class="refero-quest-chip" id="bentoQuest3"><span>☁️</span> Stare at Sky</div>
+                  <div class="refero-quest-chip" id="bentoQuest4"><span>📖</span> Read 2 Pages</div>
+                  <div class="refero-quest-chip" id="bentoQuest5"><span>💪</span> 15 Pushups</div>
+                  <div class="refero-quest-chip" id="bentoQuest6"><span>📞</span> Call Friend</div>
+                </div>
+              </div>
+              <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.78rem; color: var(--text-dim); display: flex; justify-content: space-between;">
+                <span>Progress:</span>
+                <strong id="bentoQuestCompletedCount" style="color: #A7F3D0;">0 / 6 done</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Calibration / Controls Panel -->
+          <div class="refero-card refero-bento-col-4">
+            <div class="refero-card-padded">
+              <div>
+                <span class="refero-eyebrow">CALIBRATION</span>
+                <h4 style="font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">Roast Severity Matrix</h4>
+                
+                <div style="margin-top: 1rem;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.35rem;">
+                    <span>Rebuke Intensity</span>
+                    <strong id="bentoRoastSeverityVal" style="color: #C084FC; font-family: var(--font-mono);">75%</strong>
+                  </div>
+                  <input type="range" id="bentoRoastSlider" min="10" max="100" value="75" class="voice-slider" style="width: 100%; cursor: pointer;">
+                </div>
+
+                <div style="margin-top: 1rem;">
+                  <span style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Tone Preset</span>
+                  <div class="refero-tone-group">
+                    <button class="refero-tone-btn" id="bentoToneGentle">Gentle</button>
+                    <button class="refero-tone-btn" id="bentoToneDryWit">Dry Wit</button>
+                    <button class="refero-tone-btn active" id="bentoToneSavage">Savage</button>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.78rem; color: var(--text-dim);">
+                Voice: <strong style="color: #DDD6FE;">Lord Algernon • Vintage DJ</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             REFERO INTERACTIVE DEEP-DIVE MODULES
+             ======================================================== -->
+
+        <!-- Module 1: Sound Sanctuary -->
+        <div class="refero-deepdive-row" id="referoSoundSection">
+          <div class="refero-deepdive-info">
+            <span class="refero-eyebrow">ACOUSTIC HEALING</span>
+            <h4 class="refero-section-title">Sound Sanctuary</h4>
+            <p class="refero-section-desc">
+              Zero harsh vibrations, zero buzzing, zero irritation. Layer organic chimes, rainfall, mountain streams, and soothing wildlife audio engineered to silence algorithmic brain fog.
+            </p>
+            <button class="btn-outline btn-sm" id="btnJumpToSoundsTab">Explore Acoustic Suite →</button>
+          </div>
+          <div class="refero-deepdive-preview">
+            <div class="refero-card" style="padding: 1.5rem;">
+              <div class="refero-sound-grid">
+                <div class="refero-sound-card" id="referoSoundChimes">
+                  <div class="refero-sound-icon"></div>
+                  <div class="refero-sound-title">Temple Chimes</div>
+                  <div class="refero-sound-status">● Ready</div>
+                </div>
+                <div class="refero-sound-card" id="referoSoundRain">
+                  <div class="refero-sound-icon">🌧️</div>
+                  <div class="refero-sound-title">Gentle Rain</div>
+                  <div class="refero-sound-status">Off</div>
+                </div>
+                <div class="refero-sound-card" id="referoSoundRiver">
+                  <div class="refero-sound-icon">🌊</div>
+                  <div class="refero-sound-title">Forest River</div>
+                  <div class="refero-sound-status">Off</div>
+                </div>
+                <div class="refero-sound-card" id="referoSoundCrickets">
+                  <div class="refero-sound-icon"></div>
+                  <div class="refero-sound-title">Night Crickets</div>
+                  <div class="refero-sound-status">Off</div>
+                </div>
+                <div class="refero-sound-card" id="referoSoundBirds">
+                  <div class="refero-sound-icon">🐦</div>
+                  <div class="refero-sound-title">Morning Birds</div>
+                  <div class="refero-sound-status">Off</div>
+                </div>
+                <div class="refero-sound-card" id="referoSoundBinaural">
+                  <div class="refero-sound-icon">✨</div>
+                  <div class="refero-sound-title">Binaural 432Hz</div>
+                  <div class="refero-sound-status">Off</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 2: Life Toll Matrix -->
+        <div class="refero-deepdive-row" id="referoMatrixSection">
+          <div class="refero-deepdive-info">
+            <span class="refero-eyebrow">FINITE REALITY</span>
+            <h4 class="refero-section-title">Life Toll Matrix</h4>
+            <p class="refero-section-desc">
+              Turn abstract screen hours into tangible lost life milestones. Measure the real cost of mindless swiping in lost books, unwritten songs, and missed conversations.
+            </p>
+            <button class="btn-outline btn-sm" id="btnJumpToCalcTab">Calculate Personal Life Toll →</button>
+          </div>
+          <div class="refero-deepdive-preview">
+            <div class="refero-card" style="padding: 1.5rem;">
+              <div class="refero-calc-slider-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">Assumed Daily Screen Time:</span>
+                  <strong style="color: #67E8F9; font-family: var(--font-mono); font-size: 1.1rem;"><span id="referoDailyHoursVal">3.5</span> hrs/day</strong>
+                </div>
+                <input type="range" id="referoDailyHoursSlider" min="1" max="10" step="0.5" value="3.5" class="voice-slider" style="width: 100%; cursor: pointer;">
+              </div>
+              <div class="refero-calc-metrics">
+                <div class="refero-metric-box">
+                  <div class="refero-metric-num" id="referoLifeLossVal" style="color: #F43F5E;">11.2</div>
+                  <div class="refero-metric-lbl">Years Lost</div>
+                </div>
+                <div class="refero-metric-box">
+                  <div class="refero-metric-num" id="referoBooksVal" style="color: #A78BFA;">182</div>
+                  <div class="refero-metric-lbl">Books Unread</div>
+                </div>
+                <div class="refero-metric-box">
+                  <div class="refero-metric-num" id="referoSunsetsVal" style="color: #FBBF24;">2,100</div>
+                  <div class="refero-metric-lbl">Sunsets Missed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 3: Attention Span Improver -->
+        <div class="refero-deepdive-row" id="referoGymSection">
+          <div class="refero-deepdive-info">
+            <span class="refero-eyebrow">COGNITIVE GYM</span>
+            <h4 class="refero-section-title">Attention Span Improver</h4>
+            <p class="refero-section-desc">
+              Retrain working memory with guided cinematic focus sessions, reading speed drills, and dopamine reset intervals.
+            </p>
+            <button class="btn-outline btn-sm" id="btnJumpToCinemaTab">Enter Film Focus Sanctuary →</button>
+          </div>
+          <div class="refero-deepdive-preview">
+            <div class="refero-card refero-dial-box">
+              <div class="refero-circular-dial">
+                <div class="refero-dial-digits" id="referoTimerDisplay">25:00</div>
+                <div class="refero-dial-tag" id="referoTimerStatus">DEEP WORK</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
+                <div style="font-size: 0.95rem; font-weight: 700; color: #FFFFFF;">Cinematic Focus Conditioning</div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); max-width: 260px; margin: 0; line-height: 1.5;">
+                  Run focused sessions without notifications or tab-switching.
+                </p>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
+                  <button class="btn-primary btn-sm" id="btnReferoTimerToggle">▶ Start Focus</button>
+                  <button class="btn-outline btn-sm" id="btnReferoTimerReset">↺ Reset</button>
+                </div>
+                <div style="font-size: 0.78rem; color: #A7F3D0; font-family: var(--font-mono); margin-top: 0.25rem;">
+                  Current Streak: 7 Days
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Attention Span Cinema Portal Gateway -->
+      <div class="card cinema-portal-card"
+        style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(16, 185, 129, 0.08)); border: 1px solid rgba(139, 92, 246, 0.35); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 1.15rem;">
+          <div
+            style="font-size: 2.2rem; background: rgba(139, 92, 246, 0.2); width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(139, 92, 246, 0.4); flex-shrink: 0;">
+            🎬</div>
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.25rem;">Attention Span
+              Improver & Focus Gym</h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; margin: 0;">Rebuild sustained narrative focus with calibrated
+              cinema workouts (15m to 180m+), direct streaming links, and Socratic life reflection pointers.</p>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnDashJumpCinema"
+          style="background: linear-gradient(135deg, #8B5CF6, #6D28D9); border-color: #8B5CF6; white-space: nowrap;">
+          <span>🍿</span> Enter Film Sanctuary →
+        </button>
+      </div>
+
+      <!-- Nature Vitality Preview & Side Quest Quick Launch -->
+      <div class="dashboard-split">
+        <!-- Interactive Canvas Teaser -->
+        <div class="card nature-teaser-card">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">🌿 Your Living Nature Sanctuary</h3>
+              <p class="card-subtitle">As your doomscrolling drops, your virtual grove blooms with life.</p>
+            </div>
+            <button class="btn-outline btn-sm" id="btnGoToNatureCalc">Detailed Nature Analysis →</button>
+          </div>
+          <div class="canvas-container">
+            <canvas id="natureCanvasDashboard" width="600" height="280"></canvas>
+            <div class="canvas-overlay-stats">
+              <span class="badge-vitality" id="badgeNatureStatus">Grove Health: 92% (Blooming)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rapid Side-Quest Suggestion -->
+        <div class="card quick-quest-card">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">✨ Recommended Side Quest</h3>
+              <p class="card-subtitle">Curated for your current energy & available time</p>
+            </div>
+            <span class="quest-pill-duration">20 Mins</span>
+          </div>
+          <div class="featured-quest-body" id="featuredQuestBox">
+            <div class="featured-quest-icon">🎵</div>
+            <h4 class="featured-quest-title" id="featuredQuestTitle">Acoustic Resonance Session</h4>
+            <p class="featured-quest-desc" id="featuredQuestDesc">
+              Put your phone in another room. Spend 15 minutes listening to a single instrumental album with eyes
+              closed, or try playing 3 gentle chord progressions.
+            </p>
+            <div class="featured-quest-meta">
+              <span class="quest-tag">Category: Sound & Music</span>
+              <span class="quest-tag">XP: +150 Calm</span>
+            </div>
+            <button class="btn-primary btn-block" id="btnAcceptFeaturedQuest">Accept This Quest Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 01 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 01</span>
+          <span class="milestone-label">THE INTERCEPTION THRESHOLD</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">Real-Time Reality Friction</span>
+        <h3 class="milestone-heading">From Algorithmic Hypnosis to Conscious Presence</h3>
+        <p class="milestone-sub">"The scroll is frictionless by design. Friction is where self-awareness returns."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 2: DOOMSCROLL SIMULATOR & POLITE ROASTER
+         ============================================== -->
+    <section class="tab-pane" id="tab-simulator">
+      <div class="section-intro">
+        <h2>The Doomscroll Reality Chamber</h2>
+        <p>Experience how Unscroll It intercepts scrolling in real-time. Scroll the simulated feed below to see our
+          polite verbal interventions, reality interrupts, and mindful cool-offs.</p>
+      </div>
+
+      <div class="simulator-layout">
+        <!-- Phone Simulator Mockup -->
+        <div class="phone-frame">
+          <div class="phone-speaker" id="phoneSpeakerInteractive" title="Listen to Johnny Dynamite - Vintage Radio DJ" role="button" tabindex="0"></div>
+          <div class="phone-screen">
+            <div class="sim-header">
+              <div class="sim-header-title">Doomgram / Shortz</div>
+              <div class="sim-counter">
+                Reels: <strong id="simReelCount">0</strong> | Scroll Speed: <strong id="simSpeedVal">0 px/s</strong>
+              </div>
+            </div>
+
+            <!-- Scrollable feed container -->
+            <div class="sim-feed" id="simFeed">
+              <!-- Cards generated dynamically -->
+            </div>
+
+            <!-- Interruption Overlay -->
+            <div class="sim-interruption-overlay" id="simOverlay">
+              <div class="overlay-glass">
+                <div class="overlay-avatar" id="overlayAvatar"></div>
+                <div class="overlay-badge" id="overlaySeverity">Polite Reality Check</div>
+                <h3 class="overlay-title" id="overlayTitle">Pardon The Sudden Intrusion</h3>
+                <p class="overlay-roast" id="overlayRoastText">
+                  "You have now consumed 6 consecutive 10-second videos of people slicing soap. Might I inquire if your
+                  aspirations for the day have formally expired?"
+                </p>
+                <div class="overlay-breathe-circle" id="breatheCircle">
+                  <span>Breathe...</span>
+                </div>
+                <div class="overlay-actions">
+                  <button class="btn-primary" id="btnOverlayAcceptQuest">Close Feed & Take Quest</button>
+                  <button class="btn-outline btn-sm" id="btnOverlayClearMind"
+                    style="color: var(--amber-gold); border-color: rgba(245, 158, 11, 0.4);">Strike 528Hz
+                    Mind-Clearing Bowl</button>
+                  <button class="btn-outline btn-sm" id="btnOverlayCinema"
+                    style="color: #C4B5FD; border-color: rgba(167, 139, 250, 0.5);">🎬 Go to Film Focus Gym</button>
+                  <button class="btn-secondary" id="btnOverlayResume">I Insist On Brainrot (Continue)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulator Configuration & Roast Generator -->
+        <div class="sim-controls-panel">
+          <div class="card">
+            <h3 class="card-title">🎭 Roasting Style & Reality Check Category</h3>
+            <p class="card-subtitle">Choose how you wish to be called out across 335+ unique roasts</p>
+
+            <div class="personality-selector">
+              <button class="personality-btn active" data-persona="all">
+                <span class="p-icon">🎲</span>
+                <span class="p-name">Chaos Shuffle (All 335+)</span>
+                <span class="p-desc">Random rotation across all roast styles</span>
+              </button>
+              <button class="personality-btn" data-persona="brainrot">
+                <span class="p-icon"></span>
+                <span class="p-name">Brain Rot & Attention</span>
+                <span class="p-desc">Subway Surfers, buffering thoughts, cooked focus</span>
+              </button>
+              <button class="personality-btn" data-persona="wasted_time">
+                <span class="p-icon">⏳</span>
+                <span class="p-name">Wasted Potential</span>
+                <span class="p-desc">Unlived dreams, gym reels, mortal clock ticking</span>
+              </button>
+              <button class="personality-btn" data-persona="tech_coder">
+                <span class="p-icon">💻</span>
+                <span class="p-name">Tech & Dev Life</span>
+                <span class="p-desc">While(true) loops, 404 social skills, lagging IRL</span>
+              </button>
+              <button class="personality-btn" data-persona="addiction">
+                <span class="p-icon">📱</span>
+                <span class="p-name">Addiction & Algorithm</span>
+                <span class="p-desc">Bio-battery for ad revenue, 1% battery terror</span>
+              </button>
+              <button class="personality-btn" data-persona="zombie">
+                <span class="p-icon"></span>
+                <span class="p-name">Zombie & Lethargy</span>
+                <span class="p-desc">Depressed shrimp posture, fossilizing in chair</span>
+              </button>
+              <button class="personality-btn" data-persona="academic_career">
+                <span class="p-icon">🎓</span>
+                <span class="p-name">Academic & Career</span>
+                <span class="p-desc">Exam tomorrow, catapults, thesis procrastination</span>
+              </button>
+              <button class="personality-btn" data-persona="midnight">
+                <span class="p-icon">🌙</span>
+                <span class="p-name">Midnight Doomscroll</span>
+                <span class="p-desc">2:43 AM raccoons, ruined tomorrow, blue light</span>
+              </button>
+              <button class="personality-btn" data-persona="victorian">
+                <span class="p-icon"></span>
+                <span class="p-name">Victorian Savage</span>
+                <span class="p-desc">Lord Algernon & Jeeves high-society disdain</span>
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label for="roastThresholdSelect">Intervention Threshold:</label>
+              <select id="roastThresholdSelect" class="form-select">
+                <option value="3">Ultra Sensitive (Every 3 Reels)</option>
+                <option value="5" selected>Standard Anti-Rot (Every 5 Reels)</option>
+                <option value="10">Generous Leniency (Every 10 Reels)</option>
+              </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label>
+                <input type="checkbox" id="simSpeechToggle" checked>
+                Enable Audio Speech Synthesis (Voice of conscience reads roasts aloud)
+              </label>
+            </div>
+
+            <div class="custom-roast-tester">
+              <h4>Direct Roast Dispatcher</h4>
+              <p>Need a wake-up call right this instant? Click below to generate an unadulterated reality check.</p>
+              <button class="btn-primary" id="btnGenerateInstantRoast">Generate New Reality Check</button>
+            </div>
+          </div>
+
+          <!-- The Grand Roast Treasury & Archive Card -->
+          <div class="card roast-treasury-card" style="margin-top: 1.5rem;">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">📖 The Grand Roast Treasury (335+ Archive)</h3>
+                <p class="card-subtitle">Browse, listen, and copy sharp anti-doomscrolling roasts to send to friends or
+                  keep as wallpapers</p>
+              </div>
+              <span class="badge-vitality" id="treasuryCountBadge">335+ Loaded</span>
+            </div>
+
+            <div class="treasury-display-box" id="treasuryDisplayBox">
+              <div class="treasury-header-row">
+                <span class="treasury-cat-badge" id="treasuryCatBadge">Brain Rot & Attention Span</span>
+                <span class="treasury-index-badge" id="treasuryIndexBadge">Roast #1 of 45</span>
+              </div>
+              <blockquote class="treasury-quote" id="treasuryQuoteText">
+                "Your attention span is fighting for its life right now."
+              </blockquote>
+              <div class="treasury-actions-row">
+                <div class="treasury-buttons-left">
+                  <button class="btn-primary btn-sm" id="btnTreasuryNext">Next Reality Check ↻</button>
+                  <button class="btn-outline btn-sm" id="btnTreasurySpeak">Read Aloud</button>
+                  <button class="btn-outline btn-sm" id="btnTreasuryCopy">Copy Roast 📋</button>
+                </div>
+                <span class="copy-feedback-toast" id="treasuryCopyToast" style="display: none;">Copied to
+                  clipboard!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 02 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 02</span>
+          <span class="milestone-label">MORTALITY MATRIX</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">The Irreversible Balance Sheet</span>
+        <h3 class="milestone-heading">The Uncompromising Math of Stolen Decades</h3>
+        <p class="milestone-sub">"3.5 hours daily across 40 years is 5.8 full calendar years spent staring at 6-inch glass."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 3: LIFE TOLL & NATURE VISUALIZER MATRIX
+         ============================================== -->
+    <section class="tab-pane" id="tab-calculator">
+      <div class="section-intro">
+        <h2>The Real-World Life Toll Matrix</h2>
+        <p>Algorithmic video feeds trick your brain by breaking hours into 30-second bites. Here is the mathematically
+          unforgiving reality of what doomscrolling steals from your mortal lifespan.</p>
+      </div>
+
+      <div class="calculator-grid">
+        <!-- Interactive Inputs & Slider Card -->
+        <div class="card calc-input-card">
+          <h3 class="card-title">⚙️ Your Scrolling Fingerprints</h3>
+          <p class="card-subtitle">Adjust your average daily short-form content consumption</p>
+
+          <div class="slider-control-group">
+            <div class="slider-header">
+              <span>Daily Reel / Short Consumption:</span>
+              <span class="slider-value-display"><strong id="calcReelsDisplay">90</strong> reels/day</span>
+            </div>
+            <input type="range" id="reelsSlider" min="10" max="300" step="5" value="90" class="custom-slider">
+            <div class="slider-labels">
+              <span>Casual (10)</span>
+              <span>Average (90)</span>
+              <span>Chronic (180)</span>
+              <span>Zombified (300+)</span>
+            </div>
+          </div>
+
+          <div class="slider-control-group">
+            <div class="slider-header">
+              <span>Average Seconds Per Reel:</span>
+              <span class="slider-value-display"><strong id="calcSecsDisplay">35</strong> seconds</span>
+            </div>
+            <input type="range" id="secsSlider" min="15" max="60" step="5" value="35" class="custom-slider">
+            <div class="slider-labels">
+              <span>Quick Skim (15s)</span>
+              <span>Standard (35s)</span>
+              <span>Long Short (60s)</span>
+            </div>
+          </div>
+
+          <div class="slider-control-group">
+            <div class="slider-header">
+              <span>Years of Active Smartphone Ownership:</span>
+              <span class="slider-value-display"><strong id="calcYearsDisplay">8</strong> years ahead</span>
+            </div>
+            <input type="range" id="yearsSlider" min="1" max="25" step="1" value="8" class="custom-slider">
+          </div>
+
+          <div class="calc-quick-summary">
+            <div class="quick-stat">
+              <span class="qs-label">Daily Screen Toll</span>
+              <span class="qs-val" id="qsDailyHours">52.5 mins</span>
+            </div>
+            <div class="quick-stat">
+              <span class="qs-label">Reels Swiped Per Year</span>
+              <span class="qs-val" id="qsYearlyReels">32,850</span>
+            </div>
+            <div class="quick-stat">
+              <span class="qs-label">Waking Life Forfeited</span>
+              <span class="qs-val highlight-danger" id="qsWakingLife">6.3 Months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Toll Eye-Openers -->
+        <div class="card calc-results-card">
+          <h3 class="card-title">The Ledger of Things Forfeited</h3>
+          <p class="card-subtitle">Over your projected timeline, that time equates to:</p>
+
+          <div class="toll-tiles-grid">
+            <div class="toll-tile">
+              <div class="toll-tile-icon">📚</div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollBooksCount">112</span>
+                <span class="toll-desc">Masterpiece Books Unread</span>
+              </div>
+            </div>
+
+            <div class="toll-tile">
+              <div class="toll-tile-icon">🏃</div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollThumbMiles">416</span>
+                <span class="toll-desc">Miles Scrolled by Your Thumb (NYC to Boston & back)</span>
+              </div>
+            </div>
+
+            <div class="toll-tile">
+              <div class="toll-tile-icon">🎸</div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollInstruments">3</span>
+                <span class="toll-desc">Musical Instruments You Could Master from Scratch</span>
+              </div>
+            </div>
+
+            <div class="toll-tile">
+              <div class="toll-tile-icon">🌅</div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollSunsets">2,920</span>
+                <span class="toll-desc">Sunsets & Twilight Skies Ignored</span>
+              </div>
+            </div>
+
+            <div class="toll-tile">
+              <div class="toll-tile-icon">☕</div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollCoffees">1,270</span>
+                <span class="toll-desc">Unrushed Coffee Chats With Friends You "Don't Have Time" For</span>
+              </div>
+            </div>
+
+            <div class="toll-tile">
+              <div class="toll-tile-icon"></div>
+              <div class="toll-tile-data">
+                <span class="toll-number" id="tollAttentionLoss">38%</span>
+                <span class="toll-desc">Deep Focus Span Degradation Factor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nature Vitality vs Glitch Ecosystem Visualizer -->
+      <div class="card nature-deep-card">
+        <div class="nature-viz-header">
+          <div>
+            <h3 class="card-title">🌿 The Nature vs Silicon Equilibrium</h3>
+            <p class="card-subtitle">
+              Drag the slider below to witness how your internal mental landscape mirrors nature. High doomscrolling
+              corrupts the flora with digital noise; uncurling your mind causes wildflowers, fireflies, and ancient
+              trees to flourish.
+            </p>
+          </div>
+          <div class="nature-controls">
+            <button class="btn-outline btn-sm" id="btnToggleWeather">Toggle Rain / Sunlight</button>
+            <button class="btn-outline btn-sm" id="btnSpawnButterflies">Release Butterflies</button>
+          </div>
+        </div>
+
+        <div class="nature-canvas-wrapper">
+          <canvas id="natureCanvasDetailed" width="1000" height="380"></canvas>
+          <div class="nature-canvas-legend">
+            <span class="legend-item"><span class="legend-color color-bloom"></span> Lush Organic Growth (High Reclaimed
+              Time)</span>
+            <span class="legend-item"><span class="legend-color color-glitch"></span> Algorithmic Decay & Chromatic
+              Aberration (High Screen Time)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 03 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 03</span>
+          <span class="milestone-label">OFFLINE EXPEDITIONS</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">Sensory World Reconnection</span>
+        <h3 class="milestone-heading">Trading Virtual Dopamine for Physical Reality</h3>
+        <p class="milestone-sub">"Every micro-adventure leaves a visceral memory that an infinite scroll can never match."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 4: SIDE QUESTS ENGINE & MINI PLAYGROUND
+         ============================================== -->
+    <section class="tab-pane" id="tab-quests">
+      <div class="section-intro">
+        <h2>Offline Side Quest Dispatcher</h2>
+        <p>When the itch to scroll strikes, replace the cheap dopamine with meaningful micro-adventures tailored to your
+          exact free time.</p>
+      </div>
+
+      <!-- Filters Strip -->
+      <div class="quest-filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">Free Time Available:</span>
+          <div class="time-filter-buttons" id="timeFilterButtons">
+            <button class="time-btn" data-time="5">5 Mins</button>
+            <button class="time-btn" data-time="15">15 Mins</button>
+            <button class="time-btn" data-time="30">30 Mins</button>
+            <button class="time-btn active" data-time="60">1 Hour</button>
+            <button class="time-btn" data-time="120">2+ Hours</button>
+            <button class="time-btn" data-time="all">Any Time</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Theme / Category:</span>
+          <div class="category-filter-buttons" id="categoryFilterButtons">
+            <button class="cat-btn active" data-cat="all">All Quests</button>
+            <button class="cat-btn" data-cat="music">🎵 Music & Sound</button>
+            <button class="cat-btn" data-cat="nature">🍃 Nature & Outside</button>
+            <button class="cat-btn" data-cat="creative">🎨 Craft & Art</button>
+            <button class="cat-btn" data-cat="mind">Mind & Philosophy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Quest Tracker (If any accepted) -->
+      <div class="active-quest-banner" id="activeQuestBanner" style="display: none;">
+        <div class="active-quest-info">
+          <span class="pulsing-tag">Active Mission</span>
+          <h4 id="activeQuestName">Learning a Japanese Folk Melody</h4>
+          <p id="activeQuestPrompt">Step away from screens. Focus on chord rhythm or tone.</p>
+        </div>
+        <div class="active-timer-group">
+          <div class="timer-digits" id="questTimerDigits">45:00</div>
+          <div class="timer-controls">
+            <button class="btn-primary btn-sm" id="btnCompleteQuest">Complete Quest (+XP)</button>
+            <button class="btn-outline btn-sm" id="btnCancelQuest">Abandon</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quests Grid -->
+      <div class="quests-grid" id="questsGridContainer">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- In-App Interactive Audio Toy: "Bamboo Pentatonic Chimes" -->
+      <div class="card audio-toy-card">
+        <div class="card-header-flex">
+          <div>
+            <h3 class="card-title">🎹 Instant Micro-Quest: The Zen Pentatonic Instrument</h3>
+            <p class="card-subtitle">Got 5 minutes? Create a soothing melody right now. Every note in the Kyoto
+              Pentatonic scale harmonizes naturally.</p>
+          </div>
+          <span class="badge-vitality">Zero Music Theory Needed</span>
+        </div>
+
+        <div class="instrument-keys" id="instrumentKeys">
+          <button class="chime-key" data-note="C4" data-freq="261.63"><span>C</span><small>Earth</small></button>
+          <button class="chime-key" data-note="D4" data-freq="293.66"><span>D</span><small>Wind</small></button>
+          <button class="chime-key" data-note="E4" data-freq="329.63"><span>E</span><small>Water</small></button>
+          <button class="chime-key" data-note="G4" data-freq="392.00"><span>G</span><small>Fire</small></button>
+          <button class="chime-key" data-note="A4" data-freq="440.00"><span>A</span><small>Sky</small></button>
+          <button class="chime-key" data-note="C5" data-freq="523.25"><span>C'</span><small>Spirit</small></button>
+          <button class="chime-key" data-note="D5" data-freq="587.33"><span>D'</span><small>Forest</small></button>
+          <button class="chime-key" data-note="E5" data-freq="659.25"><span>E'</span><small>Bloom</small></button>
+        </div>
+        <p class="instrument-hint">Click notes or press keys 1 through 8 on your keyboard. Synthesized in real time
+          using the browser's Web Audio API.</p>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 04 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 04</span>
+          <span class="milestone-label">ACOUSTIC SANCTUARY</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">Psychoacoustic Restoration</span>
+        <h3 class="milestone-heading">Procedural Resonance for the Overstimulated Mind</h3>
+        <p class="milestone-sub">"Binaural alpha waves and living forest soundscapes to silence mental chatter."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 5: SOUND SANCTUARY & MIND CLEARING DECK
+         ============================================== -->
+    <section class="tab-pane" id="tab-sounds">
+      <div class="section-intro">
+        <h2>The Sound Sanctuary & Mind-Clearing Deck</h2>
+        <p>Organic procedural acoustic environments and psychoacoustic healing frequencies synthesized in real-time to
+          dissolve screen cravings, quiet mental chatter, and restore calm focus.</p>
+      </div>
+
+      <!-- Quick Atmosphere Presets Grid (100% Organic Nature & Chimes) -->
+      <div class="sound-presets-header">
+        <h3 class="card-title">✨ Organic Sanctuary Presets</h3>
+        <p class="card-subtitle">Zero electronic tones, zero vibrations — pure restorative nature, weather, chimes & soothing animals</p>
+      </div>
+
+      <div class="sound-presets-grid" id="soundPresetsGrid">
+        <!-- Preset 1: Emerald Rainforest & Songbirds -->
+        <div class="preset-card active-preset" data-preset="emerald_rain">
+          <div class="preset-icon">🌧️</div>
+          <div class="preset-info">
+            <h4 class="preset-title">Emerald Rainforest & Songbirds</h4>
+            <p class="preset-desc">Gentle pine canopy rainfall and leaf patter accompanied by soft woodland bird calls.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Rain Canopy</span>
+              <span class="preset-tag">Forest Songbirds</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+
+        <!-- Preset 2: Ocean Shore & Mountain Wind -->
+        <div class="preset-card" data-preset="ocean_breeze">
+          <div class="preset-icon">🌊</div>
+          <div class="preset-info">
+            <h4 class="preset-title">Ocean Shore Waves & Mountain Wind</h4>
+            <p class="preset-desc">Rhythmic coastal waves rolling onto smooth shore pebbles with a cool pine mountain breeze.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Ocean Waves</span>
+              <span class="preset-tag">Pine Breeze</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+
+        <!-- Preset 3: Crystal Wind Chimes & Babbling Brook -->
+        <div class="preset-card" data-preset="crystal_brook">
+          <div class="preset-icon">🎐</div>
+          <div class="preset-info">
+            <h4 class="preset-title">Crystal Wind Chimes & Babbling Brook</h4>
+            <p class="preset-desc">High pentatonic crystal glass chimes shimmering gently over a trickling forest stream.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Crystal Chimes</span>
+              <span class="preset-tag">Babbling Brook</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+
+        <!-- Preset 4: Kyoto Bamboo Bells & Water Garden -->
+        <div class="preset-card" data-preset="kyoto_garden">
+          <div class="preset-icon">🎋</div>
+          <div class="preset-info">
+            <h4 class="preset-title">Kyoto Bamboo Bells & Water Garden</h4>
+            <p class="preset-desc">Traditional resonant Japanese Shishi-Odoshi bamboo water clack and gentle rain on foliage.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Bamboo Bells</span>
+              <span class="preset-tag">Gentle Rain</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+
+        <!-- Preset 5: Midnight Meadow & Summer Crickets -->
+        <div class="preset-card" data-preset="summer_meadow">
+          <div class="preset-icon"></div>
+          <div class="preset-info">
+            <h4 class="preset-title">Midnight Meadow & Summer Crickets</h4>
+            <p class="preset-desc">Warm rhythmic evening meadow crickets under starry skies with a whispering mountain breeze.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Summer Crickets</span>
+              <span class="preset-tag">Night Breeze</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+
+        <!-- Preset 6: Tibetan Singing Bowl & Forest Stream -->
+        <div class="preset-card" data-preset="temple_sanctuary">
+          <div class="preset-icon"></div>
+          <div class="preset-info">
+            <h4 class="preset-title">Tibetan Singing Bowl & Forest Stream</h4>
+            <p class="preset-desc">Grounding acoustic bronze singing bowl resonance accompanied by clear flowing alpine water.</p>
+            <div class="preset-tags">
+              <span class="preset-tag">Acoustic Bowl</span>
+              <span class="preset-tag">Forest Stream</span>
+            </div>
+          </div>
+          <button class="btn-preset-play" title="Play preset">▶</button>
+        </div>
+      </div>
+
+      <!-- Acoustic Singing Bowl Chamber & Breath Pacer (Zero Electronic Hz Tones) -->
+      <div class="card mind-clearing-card">
+        <div class="mind-clearing-grid">
+          <div class="mind-clearing-left">
+            <span class="badge badge-accent">Organic Nervous System Grounding</span>
+            <h3>Acoustic Tibetan Singing Bowl & Breath Pacer</h3>
+            <p>
+              When digital fatigue sets in from screen micro-content, pure acoustic bronze resonance, crystal chimes, and mindful breath pacing reset your nervous system — with zero electronic hums, zero harsh frequencies, and zero artificial vibrations.
+            </p>
+
+            <!-- Organic Nature Quick Actions -->
+            <div class="solfeggio-selector acoustic-nature-actions">
+              <button class="solfeggio-btn active" id="btnQuickBowl" title="Strike Tibetan Bowl">
+                <strong>Tibetan Bowl</strong>
+                <small>Warm Bronze Acoustic Strike</small>
+              </button>
+              <button class="solfeggio-btn" id="btnQuickChime" title="Strum Crystal Chimes">
+                <strong>🎐 Crystal Chimes</strong>
+                <small>High Glass Pentatonic Strum</small>
+              </button>
+              <button class="solfeggio-btn" id="btnQuickBird" title="Trigger Songbird Call">
+                <strong>🐦 Woodland Birds</strong>
+                <small>Gentle Forest Warbler Chirp</small>
+              </button>
+              <button class="solfeggio-btn" id="btnQuickOcean" title="Trigger Ocean Surf">
+                <strong>🌊 Ocean Wave</strong>
+                <small>Peaceful Coastal Shore Tide</small>
+              </button>
+            </div>
+
+            <!-- Big Strike Bowl Button -->
+            <div class="bowl-action-group">
+              <button class="btn-primary btn-bowl" id="btnStrikeBowl">
+                <span class="bowl-icon"></span>
+                <span class="bowl-text">
+                  <strong>Strike Acoustic Singing Bowl</strong>
+                  <small id="bowlCurrentFreqLabel">Authentic Acoustic Bronze Decay</small>
+                </span>
+              </button>
+              <button class="btn-secondary" id="btnChimeBreezeQuick">
+                <span>🎐</span>
+                <span>Strum Crystal Chimes</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Mind-Clearing Breathing Halo -->
+          <div class="mind-clearing-right">
+            <div class="breathing-halo-container">
+              <div class="breathing-halo-ring" id="breathingHaloRing">
+                <div class="halo-inner">
+                  <span class="halo-prompt" id="haloBreathPrompt">Breathe In</span>
+                  <span class="halo-timer" id="haloBreathTimer">4s</span>
+                </div>
+              </div>
+              <p class="halo-caption">Inhale clarity • Hold stillness • Exhale digital fog</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Time Audio Visualizer & Master Control Strip -->
+      <div class="card visualizer-master-card">
+        <div class="master-deck-header">
+          <div class="master-status-group">
+            <div class="audio-pulse-indicator" id="audioPulseIndicator"></div>
+            <div>
+              <h4 class="master-title" id="masterStatusTitle">Sanctuary Audio Active</h4>
+              <span class="master-subtitle" id="masterPlayingPresetName">Emerald Rainforest & Songbirds</span>
+            </div>
+          </div>
+
+          <div class="master-controls-cluster">
+            <!-- Master Volume -->
+            <div class="master-vol-group">
+              <span class="vol-label">Master:</span>
+              <input type="range" id="masterVolumeSlider" min="0" max="100" value="80" class="custom-slider vol-slider">
+              <span class="vol-num" id="masterVolumeNum">80%</span>
+            </div>
+
+            <!-- Master Toggle Button -->
+            <button class="btn-primary" id="btnMasterAudioToggle">
+              <span id="masterToggleIcon">⏸</span>
+              <span id="masterToggleText">Pause Sanctuary</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-time Canvas Waveform / Aurora Visualizer -->
+        <div class="sound-visualizer-wrap">
+          <canvas id="soundVisualizerCanvas" width="1000" height="120"></canvas>
+        </div>
+      </div>
+
+      <!-- Multi-Track Acoustic Mixer Console (8 Nature, Weather & Animal Channels) -->
+      <div class="card mixer-card">
+        <div class="card-header-flex">
+          <div>
+            <h3 class="card-title">🎛️ 100% Organic Nature & Animal Mixer</h3>
+            <p class="card-subtitle">Blend and fine-tune your personalized restorative soundscape in real-time</p>
+          </div>
+          <button class="btn-outline btn-sm" id="btnResetMixer">Reset Default Mix</button>
+        </div>
+
+        <div class="mixer-channels-grid">
+          <!-- Channel 1: Rain Canopy -->
+          <div class="mixer-channel" data-track="rain">
+            <div class="channel-header">
+              <span class="channel-icon">🌧️</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Gentle Rain Canopy</span>
+                <span class="channel-detail">Pine needle patter & water drops</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackRain" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackRain" min="0" max="100" value="65" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackRain">65%</span>
+                <button class="btn-text-micro" id="btnTestRain">Rain Gust 🌧️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 2: Ocean Shore Waves -->
+          <div class="mixer-channel" data-track="ocean">
+            <div class="channel-header">
+              <span class="channel-icon">🌊</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Ocean Shore Waves</span>
+                <span class="channel-detail">Peaceful coastal surf & pebble wash</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackOcean">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackOcean" min="0" max="100" value="65" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackOcean">65%</span>
+                <button class="btn-text-micro" id="btnTestOcean">Wave Surge 🌊</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 3: Mountain Pine Breeze -->
+          <div class="mixer-channel" data-track="breeze">
+            <div class="channel-header">
+              <span class="channel-icon">🍃</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Mountain Pine Breeze</span>
+                <span class="channel-detail">Whispering wind through trees & leaves</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackBreeze">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackBreeze" min="0" max="100" value="55" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackBreeze">55%</span>
+                <button class="btn-text-micro" id="btnTestBreeze">Breeze Gust 🍃</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 4: Babbling Forest Brook -->
+          <div class="mixer-channel" data-track="stream">
+            <div class="channel-header">
+              <span class="channel-icon">💧</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Babbling Forest Brook</span>
+                <span class="channel-detail">Clear mountain water over river stones</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackStream">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackStream" min="0" max="100" value="60" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackStream">60%</span>
+                <button class="btn-text-micro" id="btnTestStream">Brook Splash 💧</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 5: Crystal Glass Wind Chimes -->
+          <div class="mixer-channel" data-track="crystal">
+            <div class="channel-header">
+              <span class="channel-icon">🎐</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Crystal Glass Wind Chimes</span>
+                <span class="channel-detail">High pentatonic glass breeze shimmer</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackCrystal">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackCrystal" min="0" max="100" value="50" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackCrystal">50%</span>
+                <button class="btn-text-micro" id="btnTestCrystal">Chime Breeze 🎐</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 6: Kyoto Bamboo Bells -->
+          <div class="mixer-channel" data-track="bamboo">
+            <div class="channel-header">
+              <span class="channel-icon">🎋</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Kyoto Bamboo Shishi-Odoshi</span>
+                <span class="channel-detail">Zen garden water clack & wooden bells</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackBamboo">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackBamboo" min="0" max="100" value="55" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackBamboo">55%</span>
+                <button class="btn-text-micro" id="btnTestBamboo">Clack Now 🎋</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 7: Woodland Forest Songbirds -->
+          <div class="mixer-channel" data-track="birds">
+            <div class="channel-header">
+              <span class="channel-icon">🐦</span>
+              <div class="channel-title-group">
+                <span class="channel-name">Woodland Forest Songbirds</span>
+                <span class="channel-detail">Gentle morning warblers & robin calls</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackBirds" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackBirds" min="0" max="100" value="65" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackBirds">65%</span>
+                <button class="btn-text-micro" id="btnTestBirds">Bird Call 🐦</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel 8: Midnight Summer Crickets -->
+          <div class="mixer-channel" data-track="crickets">
+            <div class="channel-header">
+              <span class="channel-icon"></span>
+              <div class="channel-title-group">
+                <span class="channel-name">Midnight Summer Crickets</span>
+                <span class="channel-detail">Warm evening meadow stridulation</span>
+              </div>
+              <label class="channel-switch">
+                <input type="checkbox" id="chkTrackCrickets">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <div class="channel-controls">
+              <input type="range" id="volTrackCrickets" min="0" max="100" value="60" class="custom-slider">
+              <div class="channel-sub-actions">
+                <span class="chan-vol-val" id="valTrackCrickets">60%</span>
+                <button class="btn-text-micro" id="btnTestCrickets">Cricket Chirp</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 05 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 05</span>
+          <span class="milestone-label">DEEP CINEMA GYM</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">Cognitive Neuropathy Cure</span>
+        <h3 class="milestone-heading">Rebuilding Sustained 120-Minute Narrative Immersion</h3>
+        <p class="milestone-sub">"Reels fragment thoughts into 15-second shards. Cinema stitches the attention span back together."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 6: ATTENTION SPAN IMPROVER (DEEP CINEMA THERAPY)
+         ============================================== -->
+    <section class="tab-pane" id="tab-cinema">
+      <div class="section-intro">
+        <div class="cinema-section-badge">🎬 Cognitive Neuropathy Antidote</div>
+        <h2>Attention Span Improver: Deep Cinema Therapy</h2>
+        <p>Short-form reels train your brain to drop thoughts every 15 seconds. High-craft cinema reverses the damage:
+          it rebuilds sustained 120-minute narrative immersion, deep working memory, and phone-free stillness.</p>
+      </div>
+
+      <!-- Active Cinema Focus Session Bar (if user launched a movie session) -->
+      <div class="cinema-session-banner" id="cinemaSessionBanner" style="display: none;">
+        <div class="session-banner-content">
+          <div class="session-pulsing-reel">🎞️</div>
+          <div>
+            <span class="session-status-tag">Phone-Free Cinema Session Active</span>
+            <h4 class="session-movie-title" id="sessionMovieTitle">Interstellar (2014)</h4>
+            <p class="session-prompt">Dock your phone. Focus entirely on the screen. Reclaiming deep attention...</p>
+          </div>
+          <div class="session-timer-box">
+            <span class="session-timer-digits" id="sessionTimerDigits">169:00</span>
+            <div class="session-timer-actions">
+              <button class="btn-primary btn-sm" id="btnFinishSessionEarly">Finish & Log Watch ✓</button>
+              <button class="btn-outline btn-sm" id="btnCancelSession">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attention Check-In & Stats Overview Strip -->
+      <div class="cinema-stats-strip">
+        <div class="cinema-stat-item">
+          <div class="stat-icon-wrap bg-purple">🎬</div>
+          <div>
+            <span class="stat-sub">Films Completed Phone-Free</span>
+            <strong class="stat-main" id="cinemaFilmsCount">2</strong>
+          </div>
+        </div>
+        <div class="cinema-stat-item">
+          <div class="stat-icon-wrap bg-emerald">⏱️</div>
+          <div>
+            <span class="stat-sub">Sustained Cinema Focus</span>
+            <strong class="stat-main" id="cinemaTotalHours">4.9 <span class="stat-unit">hrs</span></strong>
+          </div>
+        </div>
+        <div class="cinema-stat-item">
+          <div class="stat-icon-wrap bg-amber"></div>
+          <div>
+            <span class="stat-sub">Focus Stamina Level</span>
+            <strong class="stat-main" id="cinemaFocusRank">Level 2: Deep Immersion</strong>
+          </div>
+        </div>
+        <div class="cinema-stat-item cinema-quick-log-btn-wrap">
+          <button class="btn-primary" id="btnOpenCinemaCheckin">
+            <span class="btn-icon">✍️</span>
+            Check In What You Watched
+          </button>
+        </div>
+      </div>
+
+      <!-- Cinema Section Quick Jump Bar -->
+      <nav class="cinema-quick-jump-bar" role="navigation" aria-label="Attention Span Sections">
+        <span class="jump-bar-label">⚡ Frame.io Studio:</span>
+        <button class="jump-pill jump-pill-highlight" data-jump="fioWorkspaceWrapper">🎞️ Review Workstation</button>
+        <button class="jump-pill" data-jump="cinemaTasteStudio">🎨 Taste Studio</button>
+        <button class="jump-pill" data-jump="cinemaRuntimeFilters">⏱️ Focus Workouts</button>
+        <button class="jump-pill" data-jump="cinemaGrid">🎬 Project Assets (<span
+            id="cinemaNavCount">34</span>)</button>
+        <button class="jump-pill" data-jump="cinemaJournalList">📖 Socratic Journal</button>
+        <button class="jump-pill" id="btnQuickSurpriseMovie">🎲 Surprise Asset</button>
+      </nav>
+
+      <!-- ==============================================
+           FRAME.IO PRO REVIEW WORKSPACE & VIDEO PLAYER
+           ============================================== -->
+      <div class="fio-workspace-wrapper" id="fioWorkspaceWrapper">
+        <!-- Frame.io Studio Top Bar -->
+        <header class="fio-top-bar">
+          <div class="fio-breadcrumbs">
+            <div class="fio-workspace-badge">
+              <span class="fio-logo-mark">fio</span>
+              <span class="fio-workspace-name">Focus Studio</span>
+            </div>
+            <span class="fio-breadcrumb-slash">/</span>
+            <span class="fio-project-name">Attention Span Gym</span>
+            <span class="fio-breadcrumb-slash">/</span>
+            <span class="fio-asset-name" id="fioHeaderAssetName">Interstellar (2014)</span>
+          </div>
+
+          <div class="fio-header-actions">
+            <!-- Version Tag Dropdown -->
+            <div class="fio-version-pill" id="fioVersionPill" title="Select cut version">
+              <span class="fio-version-tag" id="fioVersionText">v2.4 Final Cut</span>
+              <span class="fio-caret">▾</span>
+            </div>
+
+            <!-- Review Status Pill -->
+            <button class="fio-status-chip in-review" id="fioStatusChip" title="Click to toggle Review Status">
+              <span class="fio-status-dot"></span>
+              <span id="fioStatusText">In Review</span>
+            </button>
+
+            <!-- Quick Action Buttons -->
+            <button class="fio-btn-icon" id="btnFioAddMarkerTop" title="Place marker at current playhead (M)">
+              <span>📍</span> Marker
+            </button>             <button class="fio-btn-icon" id="btnFioShareLink" title="Share Frame.io review link">               Share
+            </button>
+            <button class="fio-btn-primary" id="btnFioCheckinWatch" title="Log and bank phone-free focus minutes">
+              <span>✓</span> Log Watch
+            </button>
+          </div>
+        </header>
+
+        <!-- The Frame.io Review Player & Annotation Split Workstation -->
+        <div class="fio-workstation-layout" id="fioWorkstationLayout">
+
+          <!-- LEFT / MAIN MONITOR: Pro Video Review Stage & Scrubbing Timeline -->
+          <div class="fio-player-stage">
+
+            <!-- Video Canvas Screen with HUD Overlays -->
+            <div class="fio-canvas-container" id="fioCanvasContainer">
+              <!-- Top Left HUD -->
+              <div class="fio-hud-overlay top-left">
+                <span class="fio-hud-badge">PRO RES 422 HQ</span>
+                <span class="fio-hud-meta" id="fioResolutionMeta">4K UHD • 23.976 fps • Rec.709</span>
+              </div>
+              <!-- Top Right HUD -->
+              <div class="fio-hud-overlay top-right">
+                <span class="fio-hud-status" id="fioPlayerStateTag">READY</span>
+                <span class="fio-hud-focus-pill" id="fioFocusAntidoteTag">Neuro-Antidote</span>
+              </div>
+
+              <!-- Visual Screen View -->
+              <div class="fio-screen-view" id="fioScreenView">
+                <!-- Film Ambient Stage Backdrop -->
+                <div class="fio-film-backdrop" id="fioFilmBackdrop">
+                  <div class="fio-film-center-info">                     <div class="fio-big-film-icon" id="fioBigFilmIcon"></div>
+                    <div class="fio-film-eyebrow" id="fioBigFilmEyebrow">FEATURE MASTERWORK • 169 MINS</div>
+                    <h2 class="fio-big-film-title" id="fioBigFilmTitle">Interstellar</h2>
+                    <div class="fio-big-film-meta" id="fioBigFilmMeta">2014 • Directed by Christopher Nolan • ⭐ 8.7/10
+                    </div>
+                    <div class="fio-big-film-antidote" id="fioBigFilmAntidote">
+                      "Rebuilds the capacity to contemplate astronomical scale, high-stakes relativity, and long
+                      emotional arcs without reaching for 15-second algorithmic junk."
+                    </div>
+                    <div class="fio-screen-launch-cta">
+                      <a href="https://www.paramountplus.com" target="_blank" rel="noopener"
+                        class="fio-btn-launch-stream" id="btnFioLaunchStream">
+                        <span class="cta-play-icon">▶</span>
+                        <span>Watch Master Stream</span>
+                        <span class="cta-external-arrow">↗</span>
+                      </a>
+                      <button class="fio-btn-start-focus" id="btnFioStartFocusSession">
+                        <span>🍿</span> Phone-Free Session
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Video Iframe Embed (if trailer / short available) -->
+                <div class="fio-video-embed" id="fioVideoEmbed" style="display: none;">
+                  <iframe id="fioIframe" src="" title="Film Player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              </div>
+
+              <!-- Big Center Play Overlay Button -->
+              <button class="fio-center-play-btn" id="btnFioCenterPlay" aria-label="Toggle Playback">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34" id="fioCenterPlayIcon">
+                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Scrubber Timeline & Marker Track -->
+            <div class="fio-scrubber-module">
+              <div class="fio-timeline-track-wrap" id="fioTimelineTrackWrap" title="Click or drag to scrub playhead">
+                <!-- Marker Pins Strip -->
+                <div class="fio-markers-layer" id="fioMarkersLayer">
+                  <!-- Injected dynamically based on active film -->
+                </div>
+                <!-- Track & Progress Bar -->
+                <div class="fio-timeline-track">
+                  <div class="fio-buffer-bar" id="fioBufferBar" style="width: 100%;"></div>
+                  <div class="fio-progress-bar" id="fioProgressBar" style="width: 0%;"></div>
+                </div>
+                <!-- Draggable Playhead Needle -->
+                <div class="fio-playhead" id="fioPlayhead" style="left: 0%;">
+                  <div class="fio-playhead-cap"></div>
+                  <div class="fio-playhead-needle"></div>
+                  <div class="fio-playhead-tooltip" id="fioPlayheadTooltip">00:00:00:00</div>
+                </div>
+              </div>
+
+              <!-- Frame.io Precision Transport Controls -->
+              <div class="fio-transport-bar">
+                <div class="fio-transport-left">
+                  <button class="fio-transport-btn" id="btnFioPrevMarker" title="Jump to Previous Marker (J)">
+                    ⏮
+                  </button>
+                  <button class="fio-transport-btn" id="btnFioStepBack" title="Step Back 5s / Frame (←)">
+                    ◀ 5s
+                  </button>
+                  <button class="fio-play-btn" id="btnFioPlayPause" title="Play / Pause (Space)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" id="fioPlayIcon">
+                      <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                    </svg>
+                  </button>
+                  <button class="fio-transport-btn" id="btnFioStepForward" title="Step Forward 5s / Frame (→)">
+                    5s ▶
+                  </button>
+                  <button class="fio-transport-btn" id="btnFioNextMarker" title="Jump to Next Marker (L)">
+                    ⏭
+                  </button>
+
+                  <!-- SMPTE Frame-Accurate Timecode Display -->
+                  <div class="fio-timecode-box" id="fioTimecodeBox" title="Click to copy SMPTE timecode">
+                    <span class="fio-tc-current" id="fioTcCurrent">00:00:00:00</span>
+                    <span class="fio-tc-sep">/</span>
+                    <span class="fio-tc-total" id="fioTcTotal">02:49:00:00</span>
+                  </div>
+                  <span class="fio-fps-badge">24 FPS</span>
+                </div>
+
+                <div class="fio-transport-right">
+                  <!-- Playback Speed -->
+                  <button class="fio-speed-btn" id="btnFioSpeed" title="Cycle playback speed">1.0x</button>
+
+                  <!-- Audio Mute / Chime Toggle -->                   <button class="fio-transport-btn" id="btnFioAudio" title="Toggle audio feedback"></button>
+
+                  <!-- Add Marker Pin -->
+                  <button class="fio-transport-btn fio-btn-add-pin" id="btnFioAddMarker"
+                    title="Place marker at current timecode (M)">
+                    📍 +Marker
+                  </button>
+
+                  <!-- Fullscreen Theater Toggle -->
+                  <button class="fio-transport-btn" id="btnFioFullscreen" title="Toggle Theater View (F)">⛶</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT / SIDEBAR: Frame.io Timecoded Review & Socratic Annotations Drawer -->
+          <aside class="fio-annotations-panel" id="fioAnnotationsPanel">
+            <div class="fio-panel-header">
+              <div class="fio-panel-title-group">
+                <span class="fio-panel-icon">💬</span>
+                <h4 class="fio-panel-title">Timecoded Review</h4>
+                <span class="fio-comment-count" id="fioCommentCount">4</span>
+              </div>
+              <div class="fio-panel-filter-tabs">
+                <button class="fio-filter-tab active" data-filter="all">All</button>
+                <button class="fio-filter-tab" data-filter="socratic">Socratic</button>
+                <button class="fio-filter-tab" data-filter="director">Director</button>
+                <button class="fio-filter-tab" data-filter="user">Notes</button>
+              </div>
+            </div>
+
+            <!-- Add New Timecoded Comment Input Box -->
+            <div class="fio-new-comment-box">
+              <div class="fio-comment-time-stamp">
+                <span class="fio-stamp-pill" id="fioActiveStampPill">00:00:00:00</span>
+                <span class="fio-stamp-hint">Frame-accurate note</span>
+              </div>
+              <textarea id="fioNewCommentText" class="fio-comment-input" rows="2"
+                placeholder="Leave focus note or reflection at this frame..."></textarea>
+              <div class="fio-comment-box-footer">
+                <select id="fioCommentCategory" class="fio-comment-select">
+                  <option value="socratic">💭 Socratic Reflection</option>
+                  <option value="director">🎬 Director Craft</option>
+                  <option value="focus">🎯 Focus Checkpoint</option>
+                  <option value="user">✍️ Personal Note</option>
+                </select>
+                <button class="fio-btn-post" id="btnFioPostComment">Post Note</button>
+              </div>
+            </div>
+
+            <!-- Scrollable List of Timecoded Comments -->
+            <div class="fio-comments-feed" id="fioCommentsFeed">
+              <!-- Rendered dynamically -->
+            </div>
+          </aside>
+
+        </div>
+      </div>
+
+      <!-- Frequent Movie Check-In Butler Prompt with Inline Quick Watch Input -->
+      <div class="cinema-checkin-prompt-card" id="cinemaCheckinPromptCard">
+        <div class="prompt-butler-avatar"></div>
+        <div class="prompt-text-wrap">
+          <div class="prompt-header-row">
+            <h4>Lord Algernon's Cinema Inquest: What Did You Watch Lately?</h4>
+            <span class="prompt-frequency-badge" id="checkinStatusBadge">Frequent Check-in: Active</span>
+          </div>
+          <p>
+            "To accurately prescribe films that expand your focus rather than cater to algorithmic decay, tell me what
+            you have been watching. What movie have you engaged with lately?"
+          </p>
+
+          <!-- Inline Quick Check-in Inputs -->
+          <div class="inline-checkin-form">
+            <div class="inline-checkin-row">
+              <input type="text" id="inlineCheckinTitle" class="form-input"
+                placeholder="Type a movie or short you watched (e.g. Inception, Zima Blue, Whiplash)...">
+              <select id="inlineCheckinFocus" class="form-select inline-select">
+                <option value="100% Phone-Free">100% Phone-Free</option>
+                <option value="1-2 Brief Glances">📱 1-2 Brief Glances</option>
+                <option value="Phone Distracted">⚠️ Distracted by Phone</option>
+              </select>
+              <select id="inlineCheckinRating" class="form-select inline-select-sm">
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4" selected>⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+              </select>
+              <button class="btn-primary btn-sm" id="btnSubmitInlineCheckin">
+                <span>✓</span> Log & Learn My Taste
+              </button>
+            </div>
+            <div class="inline-checkin-row" style="margin-top: 0.5rem;">
+              <input type="text" id="inlineCheckinPointer" class="form-input"
+                placeholder="🌟 Single golden life pointer (character / storyline takeaway for your daily life)...">
+            </div>
+          </div>
+
+          <div class="prompt-btn-row" style="margin-top: 0.85rem;">
+            <button class="btn-secondary btn-sm" id="btnPromptLogWatch">
+              <span>✍️</span> Detailed Check-In & Notes
+            </button>
+            <button class="btn-secondary btn-sm" id="btnPromptSurpriseMovie">
+              <span>🎲</span> Surprise My Attention Span
+            </button>
+            <button class="btn-text btn-sm" id="btnDismissPrompt" style="color: #94A3B8;">
+              Remind me later
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE CINEMA TASTE STUDIO & INPUT SUITE -->
+      <div class="card cinema-filter-card" id="cinemaTasteStudio">
+        <div class="filter-header-flex">
+          <div>
+            <div class="taste-badge">🎨 Interactive Taste Profiler</div>
+            <h3 class="card-title">Input Your Movie Taste & Attention Span Profile</h3>
+            <p class="card-subtitle">Type your favorite genres, movies you love, and creators you admire. The system
+              will adapt recommendations directly to your input.</p>
+          </div>
+          <div class="search-input-wrap">
+            <input type="text" id="cinemaSearchInput" class="form-input"
+              placeholder="Search catalog title, director, keyword...">
+          </div>
+        </div>
+
+        <!-- 1. Custom Genre Input & Tagging System -->
+        <div class="taste-input-block">
+          <label class="taste-block-title">
+            <span class="taste-step-num">1</span>
+            <strong>YOUR FAVORITE GENRES & SUBGENRES</strong>
+            <span class="taste-hint">(Type any custom genre and press Enter, or click presets below)</span>
+          </label>
+          <div class="tag-input-row">
+            <input type="text" id="inputCustomGenre" class="form-input"
+              placeholder="e.g. Sci-Fi, Psychological Thriller, Cyberpunk, Anime, Dark Mystery, Crime...">
+            <button class="btn-primary" id="btnAddCustomGenre">+ Add Genre</button>
+          </div>
+          <div class="active-tags-container" id="activeGenreTags">
+            <!-- Rendered dynamically -->
+          </div>
+          <div class="quick-preset-chips">
+            <span class="preset-label">Tap to add:</span>
+            <button class="preset-chip" data-genre="Sci-Fi">+ Sci-Fi</button>
+            <button class="preset-chip" data-genre="Psychological Thriller">+ Psychological Thriller</button>
+            <button class="preset-chip" data-genre="Studio Ghibli">+ Studio Ghibli</button>
+            <button class="preset-chip" data-genre="Cyberpunk">+ Cyberpunk</button>
+            <button class="preset-chip" data-genre="Neo-Noir">+ Neo-Noir</button>
+            <button class="preset-chip" data-genre="Dark Mystery">+ Dark Mystery</button>
+            <button class="preset-chip" data-genre="Philosophy">+ Philosophy</button>
+            <button class="preset-chip" data-genre="Historical Epic">+ Historical Epic</button>
+            <button class="preset-chip" data-genre="Mind-Bender">+ Mind-Bender</button>
+            <button class="preset-chip" data-genre="Poetic Slow Burn">+ Poetic Slow Burn</button>
+            <button class="preset-chip" data-genre="Crime / Heist">+ Crime / Heist</button>
+          </div>
+        </div>
+
+        <!-- 2. Movies You Love / Held Your Attention -->
+        <div class="taste-input-block">
+          <label class="taste-block-title">
+            <span class="taste-step-num">2</span>
+            <strong>MOVIES THAT HELD YOUR ATTENTION</strong>
+            <span class="taste-hint">(Films you stayed glued to from start to finish)</span>
+          </label>
+          <div class="tag-input-row">
+            <input type="text" id="inputFavMovie" class="form-input"
+              placeholder="e.g. Inception, Interstellar, Fight Club, Spirited Away, Shutter Island, Se7en...">
+            <button class="btn-primary" id="btnAddFavMovie">+ Add Film</button>
+          </div>
+          <div class="active-tags-container" id="activeFavMovieTags">
+            <!-- Rendered dynamically -->
+          </div>
+          <div class="quick-preset-chips">
+            <span class="preset-label">Popular examples:</span>
+            <button class="preset-chip" data-movie="Inception">+ Inception</button>
+            <button class="preset-chip" data-movie="Interstellar">+ Interstellar</button>
+            <button class="preset-chip" data-movie="Fight Club">+ Fight Club</button>
+            <button class="preset-chip" data-movie="Spirited Away">+ Spirited Away</button>
+            <button class="preset-chip" data-movie="Shutter Island">+ Shutter Island</button>
+            <button class="preset-chip" data-movie="Dune">+ Dune</button>
+            <button class="preset-chip" data-movie="Whiplash">+ Whiplash</button>
+            <button class="preset-chip" data-movie="The Matrix">+ The Matrix</button>
+            <button class="preset-chip" data-movie="12 Angry Men">+ 12 Angry Men</button>
+          </div>
+        </div>
+
+        <!-- 3. Open Focus Gym Runtime & Neural Mood Preferences -->
+        <div class="taste-preferences-grid">
+          <div class="filter-section-group" style="grid-column: 1 / -1;">
+            <span class="filter-group-label">⏱️ FOCUS GYM RUNTIME WORKOUT (15m to 180m+):</span>
+            <div class="filter-pills-row" id="cinemaRuntimeFilters">
+              <button class="filter-pill active" data-runtime="all">All Runtimes</button>
+              <button class="filter-pill" data-runtime="15">⚡ 15m Micro-Focus (8–20m)</button>
+              <button class="filter-pill" data-runtime="30">🎯 30m Short Masterpiece (20–40m)</button>
+              <button class="filter-pill" data-runtime="60">⏱️ 45–60m Mid-Length Gem (45–75m)</button>
+              <button class="filter-pill" data-runtime="90">🎬 90–120m Feature Film</button>
+              <button class="filter-pill" data-runtime="150">150m+ Zen Monk Epic</button>
+            </div>
+          </div>
+
+          <div class="filter-section-group">
+            <span class="filter-group-label">ATTENTION SPAN TRAINING LEVEL:</span>
+            <div class="filter-pills-row" id="cinemaLevelFilters">
+              <button class="filter-pill active" data-level="all">All Difficulties</button>
+              <button class="filter-pill" data-level="level1">Level 1: Brisk Hooks (8–105m)</button>
+              <button class="filter-pill" data-level="level2">Level 2: Deep Immersion (110–135m)</button>
+              <button class="filter-pill" data-level="level3">Level 3: Zen Focus Monk (140–180m+)</button>
+            </div>
+          </div>
+
+          <div class="filter-section-group">
+            <span class="filter-group-label">CURRENT NEURAL MOOD:</span>
+            <div class="filter-pills-row" id="cinemaMoodFilters">
+              <button class="filter-pill active" data-mood="all">Any Mood</button>
+              <button class="filter-pill" data-mood="mind_bender">🌀 Mind-Bending Puzzle</button>
+              <button class="filter-pill" data-mood="calm_zen">🍵 Quiet Serenity & Nature</button>
+              <button class="filter-pill" data-mood="adrenaline">Pulse-Pounding Focus</button>
+              <button class="filter-pill" data-mood="philosophical">📖 Deep Philosophical Wonder</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Save & Recalibrate Action -->
+        <div class="taste-actions-bar">
+          <button class="btn-primary btn-lg" id="btnSaveTasteProfile">
+            <span class="btn-icon">🎯</span>
+            Save My Taste Profile & Calibrate Recommendations
+          </button>
+          <button class="btn-text btn-sm" id="btnResetTasteProfile" style="color: #94A3B8;">
+            ↻ Reset Profile to Defaults
+          </button>
+        </div>
+
+        <!-- Active Calibrated Profile Summary Banner -->
+        <div class="active-taste-summary-banner" id="activeTasteSummaryBanner">
+          <div class="summary-banner-icon">✨</div>
+          <div class="summary-banner-text">
+            <strong>Personalized Recommendations Calibrated:</strong>
+            <span id="tasteSummaryDetails">Matching films against your saved genres, beloved movies, and focus workout
+              preferences.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Cinema Grid -->
+      <div class="cinema-catalog-header">
+        <div class="catalog-count-badge">
+          Showing <span id="cinemaMatchCount">0</span> Hand-Selected Films For Your Taste
+        </div>
+        <div class="catalog-sort-wrap">
+          <button class="btn-outline btn-sm" id="btnShuffleCinema">🎲 Shuffle Selection</button>
+        </div>
+      </div>
+
+      <div class="cinema-grid" id="cinemaGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Watched Cinema Journal & Focus Log -->
+      <div class="card cinema-journal-card" style="margin-top: 2.5rem;">
+        <div class="journal-header-row">
+          <div>
+            <h3 class="card-title">📜 Your Watched Cinema Journal & Focus Log</h3>
+            <p class="card-subtitle">Keep track of every feature film you've conquered without succumbing to short-form
+              urges.</p>
+          </div>
+          <button class="btn-secondary btn-sm" id="btnLogNewWatchInJournal">+ Log Another Film</button>
+        </div>
+
+        <div class="cinema-journal-list" id="cinemaJournalList">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Journey Milestone 06 -->
+    <div class="journey-milestone">
+      <div class="journey-milestone-track">
+        <div class="milestone-line"></div>
+        <div class="milestone-node">
+          <span class="milestone-num">PHASE // 06</span>
+          <span class="milestone-label">OMNI-PLATFORM ARCHITECTURE</span>
+        </div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="milestone-banner">
+        <span class="milestone-tag">Native Interception Blueprint</span>
+        <h3 class="milestone-heading">Deploying Unscroll It to Every Device You Touch</h3>
+        <p class="milestone-sub">"Integrate web hooks, Chrome extension content scripts, and native mobile services."</p>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         TAB 6: STEP-BY-STEP ARCHITECTURE & SETUP GUIDE
+         ============================================== -->
+        <section class="tab-pane" id="tab-guide">
+      <div class="section-intro">
+        <h2>Architecture & Setup: Cross-Platform Interception Engine</h2>
+        <p>A complete technical blueprint integrating Chrome Extensions, Android AccessibilityServices, and iOS Screen Time APIs into a unified 3D anti-doomscroll defense system.</p>
+      </div>
+
+      <!-- 3D Architecture Telemetry Status Deck -->
+      <div class="guide-telemetry-deck">
+        <div class="guide-metric-card">
+          <div class="metric-hdr">
+            <span class="metric-icon"></span>
+            <span class="metric-tag">ACTIVE ENGINE</span>
+          </div>
+          <div class="metric-val">Manifest V3 + Hooks</div>
+          <div class="metric-sub">Zero-latency vertical swipe interception</div>
+        </div>
+        <div class="guide-metric-card">
+          <div class="metric-hdr">
+            <span class="metric-icon">📱</span>
+            <span class="metric-tag">TARGET MATRIX</span>
+          </div>
+          <div class="metric-val">3 Surface Platforms</div>
+          <div class="metric-sub">Chrome Extension • Android • iOS 16+</div>
+        </div>
+        <div class="guide-metric-card">
+          <div class="metric-hdr">
+            <span class="metric-icon">⚡</span>
+            <span class="metric-tag">TRAP LATENCY</span>
+          </div>
+          <div class="metric-val">&lt; 12ms Gesture Event</div>
+          <div class="metric-sub">Traps the 5th swipe before dopamine hijack</div>
+        </div>
+        <div class="guide-metric-card">
+          <div class="metric-hdr">
+            <span class="metric-icon"></span>
+            <span class="metric-tag">PRIVACY SHIELD</span>
+          </div>
+          <div class="metric-val">100% Local Sandboxed</div>
+          <div class="metric-sub">Zero tracking pixels, zero external data cloud egress</div>
+        </div>
+      </div>
+
+      <!-- 2-Column Responsive 3D Isometric Architecture Grid -->
+      <div class="guide-steps-container">
+        <!-- Step 1: Strategy -->
+        <div class="guide-step-card">
+          <div class="step-card-header">
+            <div class="step-badge">Phase 1</div>
+            <span class="step-platform-tag">System Architecture</span>
+          </div>
+          <div class="step-body">
+            <h3>1. The Cross-Platform Strategy</h3>
+            <p>Stopping modern algorithmic short-form addiction requires a coordinated two-pronged defense architecture:</p>
+            <ul class="step-checklist">
+              <li><strong>The Detection Agent (Interception Layer):</strong> Runs on Android, iOS, or Chromium browsers to identify vertical swipe pager transitions inside Instagram Reels, YouTube Shorts, and TikTok.</li>
+              <li><strong>The Sanctuary Hub (Unscroll It Console):</strong> The offline reality ground with Johnny Dynamite audio reality checks, Solfeggio soundscape, and real-world Side Quests.</li>
+              <li><strong>Zero-Latency Local Bridge:</strong> Communicates via chrome.runtime messaging or URL schema intents without cloud dependencies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 2: Chrome Extension -->
+        <div class="guide-step-card">
+          <div class="step-card-header">
+            <div class="step-badge">Phase 2</div>
+            <span class="step-platform-tag">Desktop & Browser</span>
+          </div>
+          <div class="step-body">
+            <h3>2. Chrome & Desktop Extension (Manifest V3)</h3>
+            <p>Lightweight content script sniffing vertical video routes on Instagram Web, YouTube Shorts, and TikTok:</p>
+            <div class="terminal-box">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="terminal-filename">content.js • Manifest V3</span>
+                <button class="terminal-copy-btn" id="btnCopyExtensionCode" title="Copy code snippet">📋 Copy</button>
+              </div>
+              <pre class="terminal-code"><code>// Manifest V3 content script: content.js
+let reelCount = 0;
+window.addEventListener('scroll', () => {
+  if (location.href.includes('/reels/') || 
+      location.href.includes('/shorts/')) {
+    reelCount++;
+    if (reelCount >= 5) {
+      // Trigger Unscroll It reality check modal
+      injectUnscrollItModal();
+    }
+  }
+});</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Android -->
+        <div class="guide-step-card">
+          <div class="step-card-header">
+            <div class="step-badge">Phase 3</div>
+            <span class="step-platform-tag">Native Android</span>
+          </div>
+          <div class="step-body">
+            <h3>3. Android AccessibilityService & Gesture Trap</h3>
+            <p>Utilizes Android's native <code>AccessibilityService</code> (used by OneSec & Freedom) for system-level intervention:</p>
+            <ul class="step-checklist">
+              <li><strong>Package Sniffer:</strong> Actively listens for <code>com.instagram.android</code>, <code>com.google.android.youtube</code>, and <code>com.zhiliaoapp.musically</code>.</li>
+              <li><strong>Pager Node Filter:</strong> Detects <code>AccessibilityEvent.TYPE_VIEW_SCROLLED</code> on vertical ViewPagers.</li>
+              <li><strong>Session Quota:</strong> Accumulates vertical swipe gesture events in protected SharedPreferences.</li>
+              <li><strong>System Alert Window:</strong> Draws full-screen Johnny Dynamite reality check overlay with redirect to offline Side Quests.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 4: iOS -->
+        <div class="guide-step-card">
+          <div class="step-card-header">
+            <div class="step-badge">Phase 4</div>
+            <span class="step-platform-tag">Native iOS 16+</span>
+          </div>
+          <div class="step-body">
+            <h3>4. iOS Screen Time API & DeviceActivity Shield</h3>
+            <p>Leverages Apple's native <strong>Screen Time & DeviceActivity Framework</strong> on iOS 16+:</p>
+            <ul class="step-checklist">
+              <li><strong>DeviceActivityFramework:</strong> Monitors threshold intervals within Apple's privacy-safe sandbox.</li>
+              <li><strong>DeviceActivityMonitor:</strong> Fires background extension delegate after continuous app usage.</li>
+              <li><strong>ShieldConfigurationExtension:</strong> Swaps the vertical video screen with a custom Unscroll It Shield displaying the reality check and mindful alternative.</li>
+              <li><strong>FamilyControls Entitlement:</strong> Secures configuration against impulsive bypass attempts.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Interactive Blueprint Verification Terminal -->
+      <div class="guide-console-card">
+        <div class="console-card-header">
+          <div class="console-title">
+            <span class="console-icon">💻</span>
+            <div>
+              <h4>Live Architecture Verification & Interception Test</h4>
+              <p>Simulate how native content scripts and AccessibilityServices handshake with Unscroll It</p>
+            </div>
+          </div>
+          <div class="console-actions">
+            <button class="btn-primary" id="btnTestExtensionInterception" style="padding: 0.65rem 1.35rem; font-size: 0.88rem;">
+              <span>⚡</span> Simulate 5-Swipe Trap
+            </button>
+          </div>
+        </div>
+        <div class="console-status-strip">
+          <div class="status-pill active"><span class="dot"></span> Interception Service: Ready</div>
+          <div class="status-pill active"><span class="dot"></span> Local Storage Bridge: Connected</div>
+          <div class="status-pill active"><span class="dot"></span> Johnny Dynamite Voice: Armed</div>
+          <div class="status-pill active"><span class="dot"></span> Sanctuary Shield: Armed</div>
+        </div>
+        <div class="console-diag-log" id="telemetryDiagLog">[Ready] Standby. Click 'Simulate 5-Swipe Trap' to verify gesture interception pipeline.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Reality Check Slot Modal Dialog (Universal) -->
+  <div class="modal-backdrop" id="universalModal" style="display: none;">
+    <div class="modal-card slot-modal-card">
+      <button class="modal-close" id="btnModalClose">&times;</button>
+      <div class="modal-avatar" id="modalAvatar">🎰</div>
+      <span class="modal-badge" id="modalBadge">Reality Check Slot • Round 1</span>
+      <h3 class="modal-title" id="modalTitle">Reality Check Slot</h3>
+      <p class="modal-body-text" id="modalBodyText">
+        "I hate to interrupt your descent into the digital abyss, but your thumb has just scrolled the equivalent of the
+        Eiffel Tower's height in cat videos. Shall we pretend you have a future to attend to?"
+      </p>
+      <div class="modal-stats-pill" id="modalStatsPill">
+        Potential life reclaimed right now: <strong>45 minutes</strong>
+      </div>
+
+      <!-- Stage 1: Initial Choices ("I don't care" & "I understand") -->
+      <div class="modal-stage" id="modalStage1">
+        <div class="modal-footer-btns">
+          <button class="btn-secondary btn-dont-care" id="btnModalDontCare">
+            <span class="btn-icon"></span>
+            I don't care
+          </button>
+          <button class="btn-primary btn-understand" id="btnModalUnderstand">
+            <span class="btn-icon">💡</span>
+            I understand
+          </button>
+        </div>
+        <p class="stage-hint-text">Choose your stance: dismiss the reality check or acknowledge consciousness.</p>
+      </div>
+
+      <!-- Stage 2: Action Paths ("Challenge me" & "Relax Resort") -->
+      <div class="modal-stage" id="modalStage2" style="display: none;">
+        <div class="stage-transition-header">
+          <span class="stage-check-icon">✓</span>
+          <span class="stage-guide-text">Consciousness acknowledged! Where would you like to direct your energy?</span>
+        </div>
+        <div class="modal-footer-btns">
+          <button class="btn-primary btn-challenge" id="btnModalChallenge">
+            <span class="btn-icon">⚡</span>
+            Challenge me
+          </button>
+          <button class="btn-secondary btn-relax-resort" id="btnModalRelaxResort">
+            <span class="btn-icon">🎧</span>
+            Relax Resort
+          </button>
+          <button class="btn-secondary btn-cinema-choice" id="btnModalCinema"
+            style="background: rgba(139, 92, 246, 0.25); border-color: rgba(139, 92, 246, 0.6); color: #E9D5FF;">
+            <span class="btn-icon">🎬</span>
+            Film Focus Gym
+          </button>
+        </div>
+        <div class="stage-back-row">
+          <button class="btn-text-subtle" id="btnModalRollAgain">
+            <span>🎰</span> Spin another punchline instead
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cinema Check-In & Movie Logging Modal -->
+  <div class="modal-backdrop" id="cinemaCheckinModal" style="display: none;">
+    <div class="modal-card cinema-modal-card">
+      <button class="modal-close" id="btnCinemaCheckinClose">&times;</button>
+      <div class="modal-avatar">🎬</div>
+      <span class="modal-badge">Attention Span Improver • Check-In</span>
+      <h3 class="modal-title">What Movie Did You Watch?</h3>
+      <p class="modal-body-text" style="font-style: normal; font-size: 0.95rem; margin-bottom: 1.25rem;">
+        Log your recent cinema experience to calibrate your recommendations and bank phone-free focus minutes into your
+        Attention Span Journal!
+      </p>
+
+      <form id="cinemaCheckinForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="checkinMovieTitle">Movie Title:</label>
+          <input type="text" id="checkinMovieTitle" class="form-input"
+            placeholder="e.g. Arrival, Interstellar, Spirited Away..." required>
+          <div class="quick-suggest-chips" id="quickSuggestChips">
+            <span class="suggest-chip" data-title="Arrival" data-runtime="116">Arrival (116m)</span>
+            <span class="suggest-chip" data-title="Whiplash" data-runtime="107">Whiplash (107m)</span>
+            <span class="suggest-chip" data-title="Spirited Away" data-runtime="125">Spirited Away (125m)</span>
+            <span class="suggest-chip" data-title="12 Angry Men" data-runtime="96">12 Angry Men (96m)</span>
+            <span class="suggest-chip" data-title="Interstellar" data-runtime="169">Interstellar (169m)</span>
+            <span class="suggest-chip" data-title="Perfect Days" data-runtime="124">Perfect Days (124m)</span>
+          </div>
+        </div>
+
+        <div class="form-row" style="display: flex; gap: 1rem;">
+          <div class="form-group" style="flex: 1;">
+            <label for="checkinRuntime">Approximate Runtime (minutes):</label>
+            <input type="number" id="checkinRuntime" class="form-input" min="30" max="300" value="120" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="checkinRating">Your Rating:</label>
+            <select id="checkinRating" class="form-select">
+              <option value="5">⭐⭐⭐⭐⭐ (Masterpiece)</option>
+              <option value="4" selected>⭐⭐⭐⭐ (Great focus)</option>
+              <option value="3">⭐⭐⭐ (Enjoyable)</option>
+              <option value="2">⭐⭐ (Pacing struggled)</option>
+              <option value="1">⭐ (Abandoned)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Phone-Free Focus Honesty Check:</label>
+          <div class="focus-rating-options">
+            <label class="focus-radio-card active">
+              <input type="radio" name="phoneFreeRating" value="100% Phone-Free" checked>
+              <span class="radio-label">100% Phone-Free Monk</span>
+              <span class="radio-desc">Zero glances at phone during the entire film</span>
+            </label>
+            <label class="focus-radio-card">
+              <input type="radio" name="phoneFreeRating" value="1-2 Brief Glances">
+              <span class="radio-label">📱 1–2 Brief Glances</span>
+              <span class="radio-desc">Checked urgent message, but stayed in the narrative</span>
+            </label>
+            <label class="focus-radio-card">
+              <input type="radio" name="phoneFreeRating" value="Phone Distracted">
+              <span class="radio-label">⚠️ Distracted by Phone</span>
+              <span class="radio-desc">Fell into social media / struggled to hold focus</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="checkinLifePointer">🌟 Golden Life Benefit Pointer (Character / Storyline Takeaway):</label>
+          <input type="text" id="checkinLifePointer" class="form-input"
+            placeholder="e.g. Mastered single-minded patience; saw that true peace comes from simple presence.">
+        </div>
+
+        <div class="form-group">
+          <label for="checkinNotes">Socratic Reflection & Focus Notes (Optional):</label>
+          <textarea id="checkinNotes" class="form-textarea" rows="2"
+            placeholder="e.g. How did the pacing shift? What visual craft hooked your attention?"></textarea>
+        </div>
+
+        <div class="modal-footer-btns" style="margin-top: 1.5rem;">
+          <button type="button" class="btn-primary btn-block" id="btnSubmitCinemaCheckin">
+            <span class="btn-icon">💾</span>
+            Record Watch & Bank Focus Hours
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cinema Watch & Streaming Player Modal -->
+  <div class="modal-backdrop" id="cinemaWatchModal" style="display: none;" role="dialog" aria-modal="true"
+    aria-labelledby="watchModalTitle">
+    <div class="modal-card cinema-watch-modal-card">
+      <button class="modal-close" id="btnCinemaWatchClose" aria-label="Close Watch Modal">&times;</button>
+      <div class="watch-modal-header">
+        <div class="modal-avatar" id="watchModalAvatar">🎬</div>
+        <div>
+          <span class="modal-badge" id="watchModalBadge">Focus Gym • Instant Access</span>
+          <h3 class="modal-title" id="watchModalTitle">Movie Title</h3>
+          <div class="watch-modal-meta" id="watchModalMeta">120 mins • Directed by Director • ⭐ 8.5/10</div>
+        </div>
+      </div>
+
+      <!-- Embedded Video Player (shown for YouTube shorts/essays) -->
+      <div class="watch-video-embed-wrap" id="watchVideoEmbedWrap" style="display: none;">
+        <iframe id="watchVideoIframe" src="" title="Film Player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+      <!-- Neurological Antidote Summary -->
+      <div class="watch-antidote-box" id="watchAntidoteBox">
+        <span class="antidote-label">Neurological Focus Antidote:</span>
+        <p class="antidote-text" id="watchAntidoteText"></p>
+      </div>
+
+      <!-- Streaming Access Links -->
+      <div class="watch-streaming-actions">
+        <label class="watch-streaming-label">Direct Watch & Live Streaming Options:</label>
+        <div class="watch-streaming-btn-grid" id="watchStreamingBtnGrid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Footer Quick Actions -->
+      <div class="watch-modal-footer">
+        <button class="btn-primary" id="btnWatchStartSession">
+          <span>🍿</span> Start Phone-Free Focus Session
+        </button>
+        <button class="btn-secondary" id="btnWatchOpenCheckin">
+          <span>✓</span> I Already Watched This
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="appToast" class="app-floating-toast" style="display: none;"></div>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>Unscroll It &copy; 2026 — Built with uncompromising respect for your finite, irreplaceable human attention.</p>
+      <div class="footer-links">
+        <span>No Trackers</span>
+        <span>Local Privacy Only</span>
+        <span>100% Offline Capable</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating 3D Dynamic Island Navigator (Bottom Raycast/macOS Dock) -->
+  <aside class="floating-3d-dock" id="floating3dDock" aria-label="Sanctuary Voyage Navigator">
+    <div class="dock-glow"></div>
+    <div class="dock-inner">
+      <button class="dock-btn active" data-target="tab-dashboard" title="Sanctuary Hub">
+        <span class="dock-icon">🏛️</span>
+        <span class="dock-label">Sanctuary</span>
+      </button>
+      <button class="dock-btn" data-target="tab-simulator" title="Feed Simulator">
+        <span class="dock-icon">📱</span>
+        <span class="dock-label">Simulator</span>
+      </button>
+      <button class="dock-btn" data-target="tab-calculator" title="Life Toll Matrix">
+        <span class="dock-icon">⏳</span>
+        <span class="dock-label">Life Toll</span>
+      </button>
+      <button class="dock-btn" data-target="tab-quests" title="Side Quests">
+        <span class="dock-icon">⚡</span>
+        <span class="dock-label">Quests</span>
+      </button>
+      <button class="dock-btn" data-target="tab-sounds" title="Sound Sanctuary">
+        <span class="dock-icon">🎧</span>
+        <span class="dock-label">Acoustics</span>
+      </button>
+      <button class="dock-btn" data-target="tab-cinema" title="Film Focus Gym">
+        <span class="dock-icon">🎬</span>
+        <span class="dock-label">Film Gym</span>
+      </button>
+      <button class="dock-btn" data-target="tab-guide" title="System Blueprint">
+        <span class="dock-icon"></span>
+        <span class="dock-label">Blueprint</span>
+      </button>
+    </div>
+    <div class="dock-scroll-indicator">
+      <div class="dock-scroll-bar" id="dockScrollBar"></div>
+    </div>
+  </aside>
+
+  <script src="app.js?v=clean"></script>
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+/* ==========================================================================
+   FILM DISCOVERY SANCTUARY — page styles for cinema.html
+   Extends The Overgrown Bastion system (bastion.css). ZERO GRADIENTS.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PAGE LAYOUT
+   -------------------------------------------------------------------------- */
+.discovery-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding-top: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .discovery-layout { grid-template-columns: 1fr; }
+}
+
+.taste-panel {
+  position: sticky;
+  top: 6rem;
+}
+
+@media (max-width: 1000px) {
+  .taste-panel { position: static; }
+}
+
+.field-block { margin-bottom: 1.4rem; }
+.field-block:last-child { margin-bottom: 0; }
+
+.field-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone-pebble);
+  margin-bottom: 0.55rem;
+}
+
+.field-label .hint {
+  color: var(--moss-lichen);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* Recessed stone input fields */
+.stone-input {
+  width: 100%;
+  background: var(--stone-abyss);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 9px;
+  color: var(--vellum-cream);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.85rem;
+  box-shadow: inset 0 2px 0 rgba(15, 20, 18, 0.8);
+  transition: border-color 0.2s ease;
+}
+
+.stone-input::placeholder { color: var(--stone-pebble); }
+.stone-input:focus { outline: none; border-color: var(--brass-burnished); }
+
+.stone-input.num { width: 5.2rem; font-family: var(--font-mono); text-align: center; }
+
+.year-row { display: flex; align-items: center; gap: 0.6rem; }
+.year-row .dash { color: var(--stone-pebble); font-family: var(--font-mono); }
+
+/* --------------------------------------------------------------------------
+   CHIPS (genres, tropes, languages, seeds)
+   -------------------------------------------------------------------------- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--vellum-aged);
+  background: var(--stone-granite);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s var(--trans-stone);
+  user-select: none;
+}
+
+.chip:hover {
+  background: var(--moss-peat);
+  border-color: var(--moss-fern);
+  color: var(--bloom-hawthorn);
+  transform: translateY(-1px);
+}
+
+.chip:active { transform: translateY(1px); }
+
+.chip.active {
+  background: var(--moss-velvet);
+  color: var(--moss-dew);
+  border-color: var(--brass-gleam);
+  box-shadow: inset 0 1px 0 var(--glass-specular), 0 2px 0 -1px var(--stone-abyss);
+}
+
+.chip.excluded-active {
+  background: var(--moss-shadow);
+  color: var(--bloom-briar);
+  border-color: var(--bloom-briar);
+}
+
+.chip .x {
+  margin-left: 0.4rem;
+  color: var(--stone-pebble);
+}
+
+.chip:hover .x { color: var(--bloom-briar); }
+
+.chip.seed-chip {
+  background: var(--moss-peat);
+  border-color: var(--brass-tarnished);
+  color: var(--bloom-hawthorn);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Obscurity tier selector — carved stone toggle keys */
+.tier-keys { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+
+.tier-key {
+  position: relative;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  background: var(--stone-ashlar);
+  border: 1.5px solid var(--brass-tarnished);
+  border-radius: 10px;
+  box-shadow: 0 3px 0 var(--stone-abyss), inset 0 1px 0 rgba(168, 182, 170, 0.22);
+  transition: transform 0.12s var(--trans-stone), box-shadow 0.12s var(--trans-stone), background 0.2s ease;
+}
+
+.tier-key .t-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--bloom-hawthorn);
+}
+
+.tier-key .t-depth {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  color: var(--stone-pebble);
+  margin-top: 0.15rem;
+}
+
+.tier-key:hover { background: var(--moss-peat); transform: translateY(-1px); }
+.tier-key:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--stone-abyss), inset 0 1px 0 rgba(168, 182, 170, 0.22); }
+
+.tier-key.active {
+  background: var(--moss-emerald);
+  border-color: var(--brass-gleam);
+  box-shadow: 0 3px 0 var(--stone-abyss), inset 0 1.5px 0 rgba(168, 182, 170, 0.22);
+}
+
+.tier-key.active .t-depth { color: var(--moss-dew); }
+
+/* Seed search dropdown */
+.seed-search-wrap { position: relative; }
+
+.seed-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--glass-dew);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--brass-tarnished);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 var(--glass-specular), 0 14px 30px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.seed-result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(120, 102, 58, 0.25);
+  color: var(--vellum-cream);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.seed-result-item:last-child { border-bottom: none; }
+.seed-result-item:hover { background: var(--moss-peat); color: var(--bloom-hawthorn); }
+.seed-result-item .yr { font-family: var(--font-mono); font-size: 0.62rem; color: var(--stone-pebble); flex-shrink: 0; }
+
+/* --------------------------------------------------------------------------
+   HARVEST BUTTON (primary action) + fetch vine progress
+   -------------------------------------------------------------------------- */
+.harvest-row { display: flex; gap: 0.6rem; align-items: stretch; }
+.harvest-row .stone-btn { flex: 1; }
+
+.fetch-vine {
+  height: 8px;
+  margin-top: 1rem;
+  background: var(--stone-abyss);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 0 rgba(15, 20, 18, 0.8);
+  display: none;
+}
+
+.fetch-vine.growing { display: block; }
+
+.fetch-vine .creeper {
+  height: 100%;
+  width: 40%;
+  background: var(--moss-fern);
+  border-radius: 999px;
+  animation: creeperCrawl 1.2s var(--trans-stone) infinite;
+}
+
+@keyframes creeperCrawl {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(280%); }
+}
+
+/* --------------------------------------------------------------------------
+   RESULTS — movie cards
+   -------------------------------------------------------------------------- */
+.results-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(120, 102, 58, 0.35);
+  flex-wrap: wrap;
+}
+
+.results-head h2 { font-size: 1.5rem; }
+.results-head .haul-meta { font-family: var(--font-mono); font-size: 0.66rem; color: var(--moss-lichen); }
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 1.2rem;
+}
+
+.movie-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  color: var(--vellum-cream);
+  transition: transform 0.2s var(--trans-stone), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brass-gleam);
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    0 14px 0 -4px var(--stone-abyss),
+    0 28px 46px rgba(0, 0, 0, 0.6);
+}
+
+.poster-wrap {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background: var(--stone-abyss);
+  border-bottom: 1px solid var(--brass-tarnished);
+  overflow: hidden;
+}
+
+.poster-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s var(--trans-stone);
+}
+
+.movie-card:hover .poster-wrap img { transform: scale(1.04); }
+
+.poster-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--stone-pebble);
+  background: var(--stone-granite);
+  box-shadow: inset 0 2px 0 var(--glass-specular);
+}
+
+/* Score seal — brass coin in the poster corner */
+.score-seal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--moss-velvet);
+  border: 1.5px solid var(--brass-gleam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brass-gleam);
+  box-shadow: 0 3px 0 -1px var(--stone-abyss), inset 0 1.5px 0 rgba(168, 182, 170, 0.22);
+  transform: rotate(-4deg);
+  transition: transform 0.3s var(--trans-spring);
+}
+
+.movie-card:hover .score-seal { transform: rotate(4deg) scale(1.08); }
+
+.movie-meta { padding: 0.9rem 1rem 1.1rem; }
+
+.movie-title {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--bloom-hawthorn);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.movie-sub {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--moss-lichen);
+  margin-top: 0.3rem;
+}
+
+.reason-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.65rem;
+}
+
+.reason-chip {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  color: var(--vellum-aged);
+  background: var(--moss-shadow);
+  border: 1px solid rgba(120, 102, 58, 0.5);
+  border-radius: 999px;
+  padding: 0.18rem 0.5rem;
+}
+
+.reason-chip.gem { color: var(--bloom-sun); border-color: var(--brass-tarnished); }
+.reason-chip.seed { color: var(--moss-dew); border-color: var(--moss-velvet); }
+
+/* --------------------------------------------------------------------------
+   EMPTY / ERROR / SETUP STATES
+   -------------------------------------------------------------------------- */
+.state-slab {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.state-slab .sigil {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--moss-peat);
+  border: 1.5px solid var(--brass-tarnished);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: inset 0 2px 0 var(--glass-specular), 0 5px 0 -1px var(--stone-abyss);
+}
+
+.state-slab h3 { font-size: 1.15rem; }
+.state-slab p { color: var(--vellum-aged); font-size: 0.86rem; max-width: 420px; line-height: 1.65; }
+
+.excavating .sigil { animation: breathePulse 2.4s infinite ease-in-out; }
+
+.error-slab .sigil { background: var(--moss-shadow); border-color: var(--bloom-briar); }
+
+/* --------------------------------------------------------------------------
+   DETAIL MODAL — The Cartographer's View
+   -------------------------------------------------------------------------- */
+.detail-scroll {
+  max-height: 74vh;
+  overflow-y: auto;
+  padding: 1.4rem;
+}
+
+.detail-top {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 520px) {
+  .detail-top { grid-template-columns: 1fr; }
+}
+
+.detail-poster {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--brass-tarnished);
+  box-shadow: 0 6px 0 -2px var(--stone-abyss), inset 0 1px 0 var(--glass-specular);
+  background: var(--stone-granite);
+  aspect-ratio: 2 / 3;
+}
+
+.detail-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.detail-title { font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.4rem; }
+
+.detail-facts {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--moss-lichen);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.detail-tagline {
+  font-style: italic;
+  color: var(--bloom-sun);
+  font-size: 0.82rem;
+  margin-bottom: 0.8rem;
+}
+
+.detail-overview { font-size: 0.86rem; color: var(--vellum-aged); line-height: 1.7; }
+
+.detail-section { margin-top: 1.3rem; }
+
+.detail-section .rail-label { margin-bottom: 0.6rem; }
+
+.cast-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.cast-chip {
+  background: var(--stone-granite);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 9px;
+  padding: 0.45rem 0.7rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+  font-size: 0.72rem;
+}
+
+.cast-chip .actor { color: var(--bloom-hawthorn); font-weight: 700; display: block; }
+.cast-chip .role { color: var(--stone-pebble); font-size: 0.62rem; }
+
+.detail-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(120, 102, 58, 0.35);
+}

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film Discovery Sanctuary — Unscroll It</title>
+  <meta name="description" content="A medieval-botanical movie discovery engine digging through the entire TMDB catalog — hidden gems, cult classics and deep cuts, never the same top-20 list.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bastion.css">
+  <link rel="stylesheet" href="wall-texture.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='28' height='14' rx='2.5' fill='%234A3826'/%3E%3Cpath d='M3 13h26M3 16.5h26M3 20h26' stroke='%2333261A' stroke-width='.9' opacity='.6'/%3E%3Ccircle cx='6.5' cy='12.5' r='1.7' fill='%235a3520'/%3E%3Ccircle cx='25.5' cy='19.5' r='1.7' fill='%235a3520'/%3E%3Cpath d='M11 23 Q13 19.5 15 21.8 Q17 19 19 21.8 Q20.5 20.5 21.5 23 Z' fill='%233B6440'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="cinema.css">
+</head>
+
+<body>
+
+  <!-- LIVING BACKGROUND -->
+  <canvas id="cobbleCanvas" class="layer-cobble" aria-hidden="true"></canvas>
+  <canvas id="sporeCanvas" class="layer-spores" aria-hidden="true"></canvas>
+
+  <!-- FRAMING VINES -->
+  <svg id="vineLeft" class="vine-frame left" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+  <svg id="vineRight" class="vine-frame right" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <!-- Ripple Transition Canvas (WebGL liquid refractive wavefront) -->
+  <canvas id="rippleCanvas" class="ripple-transition-canvas" aria-hidden="true"></canvas>
+
+  <!-- CUSTOM CROSSHAIR -->
+  <div id="cursorCore" class="cursor-core" aria-hidden="true"></div>
+  <div id="cursorRing" class="cursor-ring hidden" aria-hidden="true">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring-stroke" cx="22" cy="22" r="15"/>
+      <line class="ring-tick" x1="22" y1="2.5" x2="22" y2="7"/>
+      <line class="ring-tick" x1="41.5" y1="22" x2="37" y2="22"/>
+      <line class="ring-tick" x1="22" y1="41.5" x2="22" y2="37"/>
+      <line class="ring-tick" x1="2.5" y1="22" x2="7" y2="22"/>
+      <circle class="bud" cx="11.5" cy="11.5" r="2.6"/>
+      <circle class="bud" cx="32.5" cy="11.5" r="2.6"/>
+      <circle class="bud" cx="11.5" cy="32.5" r="2.6"/>
+      <circle class="bud" cx="32.5" cy="32.5" r="2.6"/>
+    </svg>
+  </div>
+
+  <div class="bastion-shell">
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="bastion-nav">
+      <a href="index.html" class="brand">
+        <span class="brand-sigil" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 20 C6 10 12 4 20 3 C18 13 12 19 4 20 Z" fill="#9CE0AC"/>
+            <path d="M7 17 C10 13 14 8 18 6" stroke="#0F1412" stroke-width="1.2" fill="none"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">Unscroll<span class="dot">.</span>It</span><br>
+          <span class="brand-tag">Film Discovery</span>
+        </span>
+      </a>
+
+      <nav id="mainNav" class="nav-links">
+        <a href="#discovery" class="nav-link active" data-tip="Tune the Dig">Taste Profile</a>
+        <a href="#results" class="nav-link" data-tip="The Paydirt">The Haul</a>
+        <a href="index.html" class="nav-link" data-tip="Back to the Bastion">Bastion Home</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="telemetry-badge" id="catalogBadge">1M+ TITLES DIGGED</span>
+        <a href="#discovery" class="btn-brass"><span>Start Digging</span><span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero-section" style="padding-bottom: 1rem;">
+      <h1 style="font-size: clamp(2rem, 4.6vw, 3.4rem);">Dig Beyond the<br />Top-Twenty Lists.</h1>
+    </section>
+
+    <!-- ===================== DISCOVERY LAYOUT ===================== -->
+    <div id="discovery" class="discovery-layout">
+
+      <!-- ---------------- TASTE PROFILE PANEL ---------------- -->
+      <aside class="taste-panel glass-card card-pad settle moss-corners">
+        <div class="rail-label" style="display:flex; align-items:center; gap:0.5rem; color:var(--brass-gleam); margin-bottom:0.5rem;">
+          <span aria-hidden="true">🌿</span> Your Taste Profile
+        </div>
+
+        <!-- Seed films -->
+        <div class="field-block" style="margin-top: 1rem;">
+          <div class="field-label">
+            <span>Seed Films</span>
+            <span class="hint" id="seedCountHint">0 / 5</span>
+          </div>
+          <div class="seed-search-wrap">
+            <input id="seedSearchInput" class="stone-input" type="text" placeholder="Type a film you love…" autocomplete="off">
+            <div id="seedResults" class="seed-results hidden"></div>
+          </div>
+          <div id="seedChipRow" class="chip-row" style="margin-top: 0.6rem;"></div>
+        </div>
+
+        <!-- Obscurity tier -->
+        <div class="field-block">
+          <div class="field-label"><span>Obscurity Depth</span></div>
+          <div id="tierKeys" class="tier-keys">
+            <button class="tier-key" data-tier="mainstream" type="button">
+              <span class="t-name">Mainstream</span>
+              <span class="t-depth">2500+ votes</span>
+            </button>
+            <button class="tier-key" data-tier="cult_classic" type="button">
+              <span class="t-name">Cult Classic</span>
+              <span class="t-depth">400–2500 votes</span>
+            </button>
+            <button class="tier-key active" data-tier="hidden_gem" type="button">
+              <span class="t-name">Hidden Gem</span>
+              <span class="t-depth">50–400 votes</span>
+            </button>
+            <button class="tier-key" data-tier="deep_cut" type="button">
+              <span class="t-name">Deep Cut</span>
+              <span class="t-depth">15–80 votes</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Genres (AND) -->
+        <div class="field-block">
+          <div class="field-label">
+            <span>Genres</span>
+            <span class="hint">click twice to exclude</span>
+          </div>
+          <div id="genreChips" class="chip-row"></div>
+        </div>
+
+        <!-- Interest keywords / tropes -->
+        <div class="field-block">
+          <div class="field-label"><span>Tropes &amp; Interests</span></div>
+          <input id="keywordInput" class="stone-input" type="text" placeholder="e.g. time loop, whodunit…" autocomplete="off">
+          <div id="keywordChipRow" class="chip-row" style="margin-top: 0.6rem;"></div>
+          <div class="chip-row" style="margin-top: 0.6rem;">
+            <button class="chip trope-quick" type="button" data-kw="time loop">time loop</button>
+            <button class="chip trope-quick" type="button" data-kw="cyberpunk">cyberpunk</button>
+            <button class="chip trope-quick" type="button" data-kw="whodunit">whodunit</button>
+            <button class="chip trope-quick" type="button" data-kw="found footage">found footage</button>
+            <button class="chip trope-quick" type="button" data-kw="heist">heist</button>
+            <button class="chip trope-quick" type="button" data-kw="slow burn">slow burn</button>
+            <button class="chip trope-quick" type="button" data-kw="coming of age">coming of age</button>
+            <button class="chip trope-quick" type="button" data-kw="revenge">revenge</button>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="field-block">
+          <div class="field-label">
+            <span>Languages</span>
+            <span class="hint">any if empty</span>
+          </div>
+          <div id="languageChips" class="chip-row"></div>
+        </div>
+
+        <!-- Era -->
+        <div class="field-block">
+          <div class="field-label"><span>Era Window</span></div>
+          <div class="year-row">
+            <input id="minYearInput" class="stone-input num" type="number" min="1900" max="2026" value="1960">
+            <span class="dash">—</span>
+            <input id="maxYearInput" class="stone-input num" type="number" min="1900" max="2026" value="2026">
+          </div>
+        </div>
+
+        <!-- Rating floor -->
+        <div class="field-block">
+          <div class="field-label">
+            <span>Rating Floor</span>
+            <span class="hint slider-val" id="minRatingLabel">6.5</span>
+          </div>
+          <input id="minRatingInput" type="range" min="50" max="85" step="1" value="65">
+        </div>
+
+        <!-- Harvest -->
+        <div class="field-block">
+          <div class="harvest-row">
+            <button id="btnHarvest" class="stone-btn" type="button"><span>Unearth Films</span><span aria-hidden="true">✦</span></button>
+            <button id="btnFreshHaul" class="btn-ghost small" type="button" title="Re-run with novelty jitter">↻</button>
+          </div>
+          <div id="fetchVine" class="fetch-vine"><div class="creeper"></div></div>
+        </div>
+      </aside>
+
+      <!-- ---------------- RESULTS ---------------- -->
+      <main id="results">
+        <div class="results-head settle">
+          <h2>The Haul</h2>
+          <span id="haulMeta" class="haul-meta">Awaiting excavation…</span>
+        </div>
+
+        <div id="resultsState" class="glass-card state-slab settle">
+          <span class="sigil" aria-hidden="true">🗺️</span>
+          <h3>Set your taste profile</h3>
+          <p>Pick an obscurity depth, sprinkle in tropes you love, plant up to five seed films — then unearth the catalog the feeds never show you.</p>
+          <button id="btnSetupKeyFromState" class="stone-btn small" type="button" hidden><span>Enter TMDB Key</span></button>
+        </div>
+
+        <div id="movieGrid" class="movie-grid hidden"></div>
+      </main>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bastion-footer">
+      <div>
+        <span class="f-brand">Unscroll It</span>
+        <span> • Film Discovery powered by TMDB — this product uses the TMDB API but is not endorsed or certified by TMDB.</span>
+      </div>
+      <nav>
+        <a href="index.html">Bastion Home</a>
+        <a href="#discovery">Taste Profile</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <!-- ===================== DETAIL MODAL ===================== -->
+  <div id="detailModal" class="modal hidden">
+    <div class="modal-panel chamfer-frame" style="max-width: 640px;">
+      <div class="chamfer-inner" style="overflow:hidden;">
+        <div class="modal-titlebar">
+          <div style="display:flex; align-items:center;">
+            <span class="rivets">
+              <span class="rivet briar"></span>
+              <span class="rivet sun"></span>
+              <span class="rivet fern"></span>
+            </span>
+            <span class="m-title" id="detailModalTitle">The Cartographer&rsquo;s View</span>
+          </div>
+          <button id="btnCloseDetail" class="modal-close" aria-label="Close details">&times;</button>
+        </div>
+        <div id="detailContent" class="detail-scroll"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Engines -->
+  <script src="ripple-transition.js"></script>
+  <script src="bastion.js"></script>
+  <script src="movie-engine.js"></script>
+  <script src="cinema.js"></script>
+
+</body>
+</html>

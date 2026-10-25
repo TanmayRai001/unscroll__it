@@ -1,0 +1,99 @@
+Total buttons: 188
+Handled: 110
+Unhandled: 78
+
+ID: None | Class: personality-btn active | Text: 🎲
+                Chaos Shuffle (All 335
+ID: None | Class: personality-btn | Text: 🧠
+                Brain Rot & Attention
+
+ID: None | Class: personality-btn | Text: ⏳
+                Wasted Potential
+     
+ID: None | Class: personality-btn | Text: 💻
+                Tech & Dev Life
+      
+ID: None | Class: personality-btn | Text: 📱
+                Addiction & Algorithm
+
+ID: None | Class: personality-btn | Text: 🧟
+                Zombie & Lethargy
+    
+ID: None | Class: personality-btn | Text: 🎓
+                Academic & Career
+    
+ID: None | Class: personality-btn | Text: 🌙
+                Midnight Doomscroll
+  
+ID: None | Class: personality-btn | Text: 🧐
+                Victorian Savage
+     
+ID: None | Class: time-btn | Text: 5 Mins
+ID: None | Class: time-btn | Text: 15 Mins
+ID: None | Class: time-btn | Text: 30 Mins
+ID: None | Class: time-btn active | Text: 1 Hour
+ID: None | Class: time-btn | Text: 2+ Hours
+ID: None | Class: time-btn | Text: Any Time
+ID: None | Class: cat-btn active | Text: All Quests
+ID: None | Class: cat-btn | Text: 🎵 Music & Sound
+ID: None | Class: cat-btn | Text: 🍃 Nature & Outside
+ID: None | Class: cat-btn | Text: 🎨 Craft & Art
+ID: None | Class: cat-btn | Text: 🧘 Mind & Philosophy
+ID: None | Class: chime-key | Text: CEarth
+ID: None | Class: chime-key | Text: DWind
+ID: None | Class: chime-key | Text: EWater
+ID: None | Class: chime-key | Text: GFire
+ID: None | Class: chime-key | Text: ASky
+ID: None | Class: chime-key | Text: C'Spirit
+ID: None | Class: chime-key | Text: D'Forest
+ID: None | Class: chime-key | Text: E'Bloom
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: btn-preset-play | Text: ▶
+ID: None | Class: jump-pill jump-pill-highlight | Text: 🎞️ Review Workstation
+ID: None | Class: jump-pill | Text: 🎨 Taste Studio
+ID: None | Class: jump-pill | Text: ⏱️ Focus Workouts
+ID: None | Class: jump-pill | Text: 🎬 Project Assets (34)
+ID: None | Class: jump-pill | Text: 📖 Socratic Journal
+ID: None | Class: fio-filter-tab active | Text: All
+ID: None | Class: fio-filter-tab | Text: Socratic
+ID: None | Class: fio-filter-tab | Text: Director
+ID: None | Class: fio-filter-tab | Text: Notes
+ID: None | Class: preset-chip | Text: + Sci-Fi
+ID: None | Class: preset-chip | Text: + Psychological Thriller
+ID: None | Class: preset-chip | Text: + Studio Ghibli
+ID: None | Class: preset-chip | Text: + Cyberpunk
+ID: None | Class: preset-chip | Text: + Neo-Noir
+ID: None | Class: preset-chip | Text: + Dark Mystery
+ID: None | Class: preset-chip | Text: + Philosophy
+ID: None | Class: preset-chip | Text: + Historical Epic
+ID: None | Class: preset-chip | Text: + Mind-Bender
+ID: None | Class: preset-chip | Text: + Poetic Slow Burn
+ID: None | Class: preset-chip | Text: + Crime / Heist
+ID: None | Class: preset-chip | Text: + Inception
+ID: None | Class: preset-chip | Text: + Interstellar
+ID: None | Class: preset-chip | Text: + Fight Club
+ID: None | Class: preset-chip | Text: + Spirited Away
+ID: None | Class: preset-chip | Text: + Shutter Island
+ID: None | Class: preset-chip | Text: + Dune
+ID: None | Class: preset-chip | Text: + Whiplash
+ID: None | Class: preset-chip | Text: + The Matrix
+ID: None | Class: preset-chip | Text: + 12 Angry Men
+ID: None | Class: filter-pill active | Text: All Runtimes
+ID: None | Class: filter-pill | Text: ⚡ 15m Micro-Focus (8–20m)
+ID: None | Class: filter-pill | Text: 🎯 30m Short Masterpiece (20–40m)
+ID: None | Class: filter-pill | Text: ⏱️ 45–60m Mid-Length Gem (45–75m)
+ID: None | Class: filter-pill | Text: 🎬 90–120m Feature Film
+ID: None | Class: filter-pill | Text: 🟣 150m+ Zen Monk Epic
+ID: None | Class: filter-pill active | Text: All Difficulties
+ID: None | Class: filter-pill | Text: 🟢 Level 1: Brisk Hooks (8–105m)
+ID: None | Class: filter-pill | Text: 🟡 Level 2: Deep Immersion (110–135m)
+ID: None | Class: filter-pill | Text: 🟣 Level 3: Zen Focus Monk (140–180m+)
+ID: None | Class: filter-pill active | Text: Any Mood
+ID: None | Class: filter-pill | Text: 🌀 Mind-Bending Puzzle
+ID: None | Class: filter-pill | Text: 🍵 Quiet Serenity & Nature
+ID: None | Class: filter-pill | Text: 🔥 Pulse-Pounding Focus
+ID: None | Class: filter-pill | Text: 📖 Deep Philosophical Wonder

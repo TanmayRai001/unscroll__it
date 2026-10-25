@@ -1,0 +1,2459 @@
+/* ==========================================================================
+   THE OVERGROWN BASTION — Medieval Cobblestone, Moss & Living Nature
+   ZERO-GRADIENT DESIGN SYSTEM
+   Depth is built ONLY from solid color layering, hard-edge inset bevels,
+   crisp 1px specular borders, and translucent solid-alpha glass.
+   ========================================================================== */
+
+:root {
+  /* Cobblestone & Slate */
+  --stone-abyss: #0F1412;
+  --stone-basalt: #181E1B;
+  --stone-granite: #242C28;
+  --stone-ashlar: #323C37;
+  --stone-limestone: #46534C;
+  --stone-pebble: #68776E;
+
+  /* Extended masonry ramp (The Living Ruins) — layered surface roles */
+  --stone-obsidian: #171A17;   /* obsidian crevice: deepest mortar joints */
+  --stone-slate: #202420;      /* blackened slate: recessed panels */
+  --stone-charcoal: #292D29;   /* deep charcoal: base masonry */
+  --stone-wet-basalt: #343934; /* wet basalt: damp polished stone */
+  --stone-weathered: #444943;  /* weathered granite: exposed block faces */
+  --stone-ash: #555A52;        /* ancient ash: worn edges */
+  --stone-lichen: #696D61;     /* lichen-grey: secondary borders */
+  --stone-mineral: #858777;    /* pale mineral: specular edges, meta text */
+  --stone-dust: #A2A08A;       /* limestone dust: carved labels */
+
+  /* Moss & Foliage */
+  --moss-shadow: #0B2014;
+  --moss-peat: #143321;
+  --moss-velvet: #1F4E32;
+  --moss-emerald: #2D6E46;
+  --moss-fern: #42935E;
+  --moss-lichen: #68B87E;
+  --moss-dew: #87C896;
+
+  /* Extended living-green distribution (recesses → fresh growth) */
+  --moss-forest-black: #101E16; /* shadowed recesses */
+  --moss-pine: #173522;         /* deep pine: dark foliage fills */
+  --moss-woodland: #21452B;     /* shadowed woodland */
+  --moss-evergreen: #285633;    /* wet evergreen: moss in shade */
+  --moss-canopy: #326A37;       /* forest canopy: mid foliage */
+  --moss-living: #477D38;       /* moss green: rich moss beds */
+  --moss-fern-live: #609B42;    /* living fern: leaf accents */
+  --moss-fresh: #76B747;        /* fresh moss: interactive greens */
+  --moss-spring: #91CC55;       /* bright spring leaf: sparing highlights */
+  --moss-sun-lichen: #B0D96A;   /* sunlit lichen: rare glints */
+  --moss-new-growth: #C9E49A;   /* pale new growth: tiniest highlights */
+
+  /* Botanical Accents — wildflowers are discoveries, not confetti */
+  --botanic-ivy-shadow: #203B2C;
+  --botanic-laurel: #4D7954;
+  --botanic-sage: #849B78;
+  --botanic-silver: #B2BCA3;
+  --botanic-ivory: #F0EBD8;
+  --botanic-blush: #C78F83;
+  --botanic-ochre: #B59A60;
+  --botanic-bark: #514438;
+  --botanic-soil: #302B24;
+
+  /* Botanical Blooms */
+  --bloom-sun: #E6B84D;
+  --bloom-briar: #D46A6A;
+  --bloom-bell: #7A8CE0;
+  --bloom-hawthorn: #F2EFE9;
+
+  /* Natural light & atmosphere */
+  --atmo-mist: #BFC4B5;        /* mist grey: cool secondary text */
+  --atmo-moonlit: #D6DACB;     /* moonlit stone: headings against texture */
+  --atmo-water: #A8B6AA;       /* water-reflection silver: quiet borders */
+  --atmo-candle: #D5BE83;      /* candlelight: warm accent, focus rings */
+
+  /* Medieval Parchment & Metals */
+  --vellum-cream: #EAE3D2;
+  --vellum-aged: #C8BFA8;
+  --brass-tarnished: #6E5F35;
+  --brass-burnished: #8E7A45;
+  --brass-gleam: #BBA468;
+
+  /* Aged Timber & Wrought Iron — antique brown grading */
+  --wood-face: #4A3826;       /* sawn plank face */
+  --wood-deep: #33261A;       /* shadowed grain and seams */
+  --wood-lit: #6B5335;        /* sawn-edge warmth catching light */
+  --rust: #7E4A2B;            /* restrained rust on old iron */
+  --rust-lit: #A06A3E;        /* rust edge catching the candle */
+  --moss-seam: #3B6440;       /* moss creeping into seams */
+
+  /* Alchemical Glass (Solid Alpha Only) */
+  --glass-dew: rgba(24, 30, 27, 0.72);
+  --glass-canopy: rgba(20, 51, 33, 0.65);
+  --glass-specular: rgba(234, 232, 216, 0.09);
+  --glass-shine-strip: rgba(234, 232, 216, 0.035);
+
+  /* Typography — Bodoni Moda carries the whole voice (the Macaron look) */
+  --font-display: 'Bodoni Moda', 'Didot', 'Playfair Display', Georgia, serif;
+  --font-body: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Bodoni Moda', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Motion language — natural, restrained */
+  --trans-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --trans-stone: cubic-bezier(0.22, 1, 0.36, 1);
+  --trans-return: cubic-bezier(0.3, 1.25, 0.55, 1);  /* restrained settle after a press */
+  --ease-organic: cubic-bezier(0.45, 0, 0.15, 1);
+
+  --dur-instant: 120ms;    /* press feedback, toggles */
+  --dur-quick: 200ms;      /* hover shifts, chip states */
+  --dur-panel: 340ms;      /* panels, modals, navigation */
+  --dur-botanical: 5s;     /* base leaf-sway cycle (varied per leaf) */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--stone-basalt);
+  color: var(--vellum-cream);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background: var(--moss-velvet);
+  color: var(--moss-dew);
+}
+
+/* --------------------------------------------------------------------------
+   MINERAL GRAIN — one static, fixed fractal-noise layer gives every stone
+   surface a fine tactile tooth. Pure SVG filter texture (no gradients),
+   composited once and never animated.
+   -------------------------------------------------------------------------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* --------------------------------------------------------------------------
+   CARVED FOCUS — keyboard focus is a candlelit brass ring, never removed
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--atmo-candle);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.stone-btn:focus-visible,
+.btn-ghost:focus-visible,
+.btn-brass:focus-visible,
+.nav-link:focus-visible,
+.tone-pill:focus-visible {
+  outline: 2px solid var(--atmo-candle);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(213, 190, 131, 0.18);
+}
+
+.stone-input:focus-visible {
+  outline: none; /* inputs already signal focus via brass border */
+}
+
+/* Native cursor is replaced by the astrolabe crosshair on fine pointers */
+@media (pointer: fine) {
+  body, a, button, input, select, label, .quest-btn, .tone-pill, .sound-card-item {
+    cursor: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LIVING BACKGROUND LAYERS
+   -------------------------------------------------------------------------- */
+.layer-cobble {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.layer-spores {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Framing vines hugging the viewport edges */
+.vine-frame {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 130px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.vine-frame.left { left: -12px; }
+.vine-frame.right { right: -12px; transform: scaleX(-1); }
+
+@media (max-width: 1100px) {
+  .vine-frame { display: none; }
+}
+
+.vine-path {
+  fill: none;
+  stroke: var(--moss-velvet);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.vine-path-core {
+  fill: none;
+  stroke: var(--moss-emerald);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.vine-leaf { fill: var(--moss-emerald); }
+.vine-leaf-vein { stroke: var(--moss-dew); stroke-width: 1; fill: none; }
+
+/* Leaves are still at rest. They tilt only when the crosshair draws near
+   (proximity tilt driven from bastion.js) — the environment does not move
+   unless you do. */
+.vine-leaf-g {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 0.26s ease-out;
+}
+
+.vine-flower {
+  transform: scale(0);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: transform 0.65s var(--trans-spring);
+}
+
+.vine-flower.bloomed { transform: scale(1); }
+
+/* --------------------------------------------------------------------------
+   ANCHOR VINES — reusable sprigs rooted at believable seams: the ends of
+   the wooden plank, the garden ledge, the footer line. Resting almost
+   still, breathing in a slow barely-there breeze; the leaves lean away
+   when the cursor brushes past (proximity tilt from bastion.js); the
+   buds open only while a page transition sweeps through.
+   -------------------------------------------------------------------------- */
+.anchor-vine {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+  animation: anchorBreeze var(--breeze-dur, 8s) ease-in-out var(--breeze-delay, 0s) infinite;
+}
+.anchor-vine.root-tl { top: -5px; left: 4px; transform-origin: top left; }
+.anchor-vine.root-tr { top: -5px; right: 4px; transform-origin: top right; }
+.anchor-vine.root-bl { bottom: -2px; left: -2px; transform-origin: bottom left; }
+.anchor-vine.root-br { bottom: -2px; right: -2px; transform-origin: bottom right; }
+/* sprigs dangling from the plank's underside corners — rooted in the
+   seam, hanging free over the wall, never crossing the carved links */
+.anchor-vine.root-hang-l { bottom: -62px; left: -3px; transform-origin: top left; }
+.anchor-vine.root-hang-r { bottom: -62px; right: -3px; transform-origin: top right; }
+
+.anchor-vine .vine-path { stroke-width: 3; }
+.anchor-vine .vine-path-core { stroke-width: 1.2; }
+.anchor-vine .vine-flower { transform: scale(0); }
+.anchor-vine.revealing .vine-flower { transform: scale(1); }
+
+@keyframes anchorBreeze {
+  0%, 100% { transform: rotate(-1.1deg); }
+  50% { transform: rotate(1.4deg); }
+}
+
+/* --------------------------------------------------------------------------
+   RIPPLE TRANSITION (WebGL organic liquid refractive wavefront)
+   Replaces the legacy veiny vine curtains with fluid refractive ripples
+   -------------------------------------------------------------------------- */
+.ripple-transition-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 250;
+  pointer-events: none;
+  display: none;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.vine-curtain {
+  display: none !important;
+  pointer-events: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   CUSTOM MEDIEVAL-BOTANICAL CROSSHAIR
+   -------------------------------------------------------------------------- */
+.cursor-core {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--moss-dew);
+  border: 1px solid var(--stone-abyss);
+  transform: rotate(45deg);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  z-index: 9998;
+  pointer-events: none;
+  color: var(--brass-burnished);
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.25s var(--trans-spring), height 0.25s var(--trans-spring), margin 0.25s var(--trans-spring), color 0.25s ease;
+}
+
+.cursor-ring svg { width: 100%; height: 100%; display: block; }
+
+.cursor-ring .ring-stroke { fill: none; stroke: currentColor; stroke-width: 1.6; }
+.cursor-ring .ring-tick { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.cursor-ring .bud { fill: var(--moss-emerald); transform: scale(0); transform-origin: center; transform-box: fill-box; transition: transform 0.3s var(--trans-spring); }
+
+.cursor-visible { opacity: 1; }
+
+.cursor-ring.hovering {
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  color: var(--moss-lichen);
+}
+
+.cursor-ring.hovering .bud { transform: scale(1); }
+.cursor-ring.clicked { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+
+/* --------------------------------------------------------------------------
+   CHAMFERED ALCHEMICAL GLASS & STONE FRAMES
+   Outer brass layer + inner glass layer = crisp chamfered medieval edge
+   -------------------------------------------------------------------------- */
+.chamfer-frame {
+  --chamfer: 18px;
+  background: var(--brass-tarnished);
+  padding: 1.5px;
+  clip-path: polygon(
+    var(--chamfer) 0, calc(100% - var(--chamfer)) 0, 100% var(--chamfer),
+    100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%,
+    var(--chamfer) 100%, 0 calc(100% - var(--chamfer)), 0 var(--chamfer)
+  );
+}
+
+.chamfer-inner {
+  background: var(--glass-dew);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  clip-path: polygon(
+    calc(var(--chamfer) - 1px) 0, calc(100% - var(--chamfer) + 1px) 0, 100% calc(var(--chamfer) - 1px),
+    100% calc(100% - var(--chamfer) + 1px), calc(100% - var(--chamfer) + 1px) 100%,
+    calc(var(--chamfer) - 1px) 100%, 0 calc(100% - var(--chamfer) + 1px), 0 calc(var(--chamfer) - 1px)
+  );
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+/* Glass card with hard-edge specular shine strip (no gradients) —
+   a cut-stone tablet: octagon silhouette, thickness held by drop-shadow,
+   and a hairline that wakes when the cursor's torch comes near
+   (var(--prox) is written by bastion.js §15) */
+.glass-card {
+  position: relative;
+  --card-chamfer: 13px;
+  background: var(--glass-dew);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--brass-tarnished);
+  border-radius: 0;
+  clip-path: polygon(
+    var(--card-chamfer) 0, calc(100% - var(--card-chamfer)) 0, 100% var(--card-chamfer),
+    100% calc(100% - var(--card-chamfer)), calc(100% - var(--card-chamfer)) 100%,
+    var(--card-chamfer) 100%, 0 calc(100% - var(--card-chamfer)), 0 var(--card-chamfer)
+  );
+  filter:
+    drop-shadow(0 8px 0 rgba(15, 20, 18, 0.9))
+    drop-shadow(0 20px 32px rgba(0, 0, 0, 0.5));
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    inset 0 0 0 1px rgba(233, 226, 196, calc(0.12 * var(--prox, 0)));
+  overflow: hidden;
+}
+
+.glass-card.canopy { background: var(--glass-canopy); }
+
+/* Hard-edged diagonal shine gliding across on hover / tilt */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  left: -35%;
+  width: 38%;
+  height: 150%;
+  background: var(--glass-shine-strip);
+  transform: skewX(-25deg) translateX(var(--shine-x, 0px));
+  transition: transform 0.18s ease-out;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Brass corner brackets */
+.brackets::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  border-top: 1px solid var(--brass-tarnished);
+  border-bottom: 1px solid var(--brass-tarnished);
+  border-left: 1px solid var(--brass-tarnished);
+  border-right: 1px solid var(--brass-tarnished);
+  border-radius: 9px;
+  z-index: 3;
+  opacity: 0.7;
+}
+
+/* Corner moss clusters (injected by JS) */
+.moss-cluster {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  pointer-events: none;
+  z-index: 4;
+  transform: scale(0);
+  transition: transform 0.55s var(--trans-spring) 0.12s;
+}
+
+/* Tucked just inside the chamfers — moss finds the cut notches first */
+.moss-cluster.tl { top: 3px; left: 3px; }
+.moss-cluster.br { bottom: 3px; right: 3px; transform: scale(0) rotate(180deg); }
+.settled .moss-cluster.tl, .glass-card:hover .moss-cluster.tl { transform: scale(1); }
+.settled .moss-cluster.br, .glass-card:hover .moss-cluster.br { transform: scale(1) rotate(180deg); }
+
+.moss-blob { fill: var(--moss-velvet); }
+.moss-blob-lit { fill: var(--moss-emerald); }
+.moss-leaf { fill: var(--moss-emerald); }
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--bloom-hawthorn);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--bloom-hawthorn);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  color: var(--moss-lichen);
+}
+
+.muted { color: var(--vellum-aged); }
+.dim { color: var(--stone-pebble); }
+.status-on { color: var(--moss-lichen); font-family: var(--font-mono); }
+.status-off { color: var(--stone-pebble); font-family: var(--font-mono); }
+
+/* --------------------------------------------------------------------------
+   LAYOUT SHELL
+   -------------------------------------------------------------------------- */
+.bastion-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-band {
+  padding: 4.5rem 0;
+  border-top: 1px solid rgba(120, 102, 58, 0.35);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bloom-sun);
+  background: var(--moss-shadow);
+  border: 1px solid var(--brass-tarnished);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+.eyebrow .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bloom-sun);
+  animation: pulseDot 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
+
+/* --------------------------------------------------------------------------
+   NAVBAR — the tab bar hangs on two knotted ropes: a photographed pine
+   plank (photo in wall-texture.css), calmed under a translucent wash,
+   moss along the lower seam, links resting in their channel of stone.
+   -------------------------------------------------------------------------- */
+.bastion-nav {
+  position: sticky;
+  top: 1.5rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.25rem 0 0 0;
+  padding: 0.7rem 1.4rem;
+  background-color: var(--wood-face);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='11' viewBox='0 0 26 11'%3E%3Cpath d='M1 11 Q3 4 6 6 Q8 1 11 5 Q13 2 15 6 Q18 3 20 7 Q22 5 24 8 L25 11 Z' fill='%233b6440' fill-opacity='.85'/%3E%3Ccircle cx='8' cy='5' r='1' fill='%2354873f'/%3E%3Ccircle cx='18' cy='6' r='.8' fill='%2354873f' fill-opacity='.8'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='11' viewBox='0 0 26 11'%3E%3Cpath d='M1 11 Q3 4 6 6 Q8 1 11 5 Q13 2 15 6 Q18 3 20 7 Q22 5 24 8 L25 11 Z' fill='%233b6440' fill-opacity='.85'/%3E%3Ccircle cx='8' cy='5' r='1' fill='%2354873f'/%3E%3Ccircle cx='18' cy='6' r='.8' fill='%2354873f' fill-opacity='.8'/%3E%3C/svg%3E"),
+    var(--plank-photo);
+  background-position: 52px bottom, calc(100% - 52px) bottom, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: 26px 11px, 26px 11px, 100% 100%;
+  border: 1.5px solid var(--wood-deep);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(150, 118, 74, 0.32),
+    inset 0 -4px 0 rgba(20, 14, 9, 0.5),
+    inset 0 0 0 999px rgba(28, 20, 12, 0.22),
+    0 8px 0 -2px var(--stone-abyss),
+    0 22px 36px rgba(0, 0, 0, 0.55);
+}
+
+/* the hang: two hemp ropes drop onto the plank's top edge — an overhand
+   knot at each attachment, the strands running up out of frame */
+.bastion-nav::before,
+.bastion-nav::after {
+  content: '';
+  position: absolute;
+  top: -1.9rem;
+  width: 11px;
+  height: calc(1.9rem + 8px);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='22' viewBox='0 0 26 22'%3E%3Cpath d='M7 3 Q11 0 15 3 Q21 1 23 7 Q24 13 18 15 Q15 19 10 16 Q3 17 3 10 Q3 5 7 3 Z' fill='%23a88d5e' stroke='%2365512f' stroke-width='1.4'/%3E%3Cpath d='M8 6 Q13 9 19 6 M7 10 Q12 14 19 10' fill='none' stroke='%2365512f' stroke-opacity='.65' stroke-width='1.2'/%3E%3C/svg%3E") bottom center / 26px 22px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='24' viewBox='0 0 12 24'%3E%3Crect width='12' height='24' fill='%23ac9163'/%3E%3Cpath d='M-6 0 L6 24 M0 0 L12 24 M6 0 L18 24' stroke='%2377613c' stroke-opacity='.6' stroke-width='4'/%3E%3Cpath d='M-5 0 L7 24 M1 0 L13 24' stroke='%23d9c394' stroke-opacity='.3' stroke-width='1.4'/%3E%3Crect width='2.2' height='24' fill='%237d6640' fill-opacity='.55'/%3E%3Crect x='9.8' width='2.2' height='24' fill='%237d6640' fill-opacity='.55'/%3E%3C/svg%3E") center top / 11px 100% repeat-y;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.38));
+  pointer-events: none;
+}
+
+.bastion-nav::before { left: 15%; transform: translateX(-50%); }
+.bastion-nav::after { right: 15%; transform: translateX(50%); }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-sigil {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--moss-velvet);
+  border: 1px solid var(--brass-burnished);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 1px 0 rgba(168, 182, 170, 0.22),
+    0 4px 0 -1px var(--stone-abyss);
+  transition: transform 0.25s var(--trans-spring);
+}
+
+.brand:hover .brand-sigil { transform: rotate(-6deg) scale(1.05); }
+.brand-sigil svg { width: 20px; height: 20px; }
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bloom-hawthorn);
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+}
+
+.brand-name .dot { color: var(--moss-lichen); }
+
+.brand-tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone-pebble);
+  font-family: var(--font-mono);
+}
+
+/* Links rest in a channel of stone inlaid into the plank — grey mineral
+   face, not black; the dock (bastion.js) gives each item the magnetic pop */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  position: relative;
+  background-color: rgba(70, 76, 69, 0.55);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='34' viewBox='0 0 110 34'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 6 Q28 4 55 7 T110 6' stroke='%23252a23' stroke-opacity='.30' stroke-width='1.1'/%3E%3Cpath d='M0 17 Q35 19 70 16 T110 17' stroke='%234c4636' stroke-opacity='.20' stroke-width='.8'/%3E%3Cpath d='M0 27 Q25 25 60 28 T110 27' stroke='%23252a23' stroke-opacity='.24' stroke-width='1.1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px auto;
+  background-repeat: repeat;
+  padding: 0.32rem;
+  border-radius: 999px;
+  border: 1px solid rgba(150, 158, 145, 0.26);
+  box-shadow: inset 0 2px 4px rgba(12, 14, 12, 0.5), inset 0 -1px 0 rgba(234, 232, 216, 0.05);
+}
+
+.nav-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--vellum-aged);
+  text-decoration: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover { color: var(--bloom-hawthorn); background: var(--moss-peat); }
+
+.nav-link.active {
+  color: var(--brass-gleam);
+  background: var(--moss-peat);
+  border-color: var(--brass-tarnished);
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+/* ========================================================================
+   NATURAL THEME NAV LINK DECORATIONS — wooden slate texture, leaf sprites,
+   vine accents, and organic hover feedback. Keeps the magnetic dock
+   behaviour from bastion.js fully functional.
+   ======================================================================== */
+.nav-link { position: relative; }
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  background: var(--moss-emerald);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s var(--trans-stone);
+}
+.nav-link:hover::before { width: 14px; height: 14px; top: 48%; box-shadow: 0 0 6px var(--moss-emerald); }
+.nav-link .leaf-sprite {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--moss-emerald);
+  border-radius: 50%;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  transition: all 0.3s var(--trans-stone);
+}
+.nav-link:hover .leaf-sprite {
+  transform: translateY(-50%) scale(1.5);
+  opacity: 1;
+  background: var(--bloom-sun);
+  box-shadow: 0 0 6px var(--bloom-sun);
+}
+.nav-links .nav-link:first-child::before { left: -4px; }
+.nav-links .nav-link:last-child::before { left: auto; right: -4px; }
+/* Vine accent at end of nav */ .nav-links::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  background: var(--moss-woodland);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 C8 2 5 5 5 9 C5 14 8 17 12 17 C16 17 19 14 19 9 C19 5 16 2 12 2 Z' fill='%232D6E46'/%3E%3C/svg%3E") no-repeat center / contain;
+  z-index: 1;
+}
+@media (max-width: 1100px) {
+  .nav-links { position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 90%; background: var(--stone-basalt); border-radius: 10px; padding: 0.5rem 0; }
+  .nav-links a { width: 100%; justify-content: center; }
+}
+/* Leaf pop animation */ @keyframes leafPop { to { transform: translateY(-50%) scale(1); opacity: 1; } }
+.nav-link:hover .leaf-sprite { animation: leafPop 0.3s var(--trans-stone) forwards; }
+  transform: translateY(var(--dock-y, 0px)) scale(var(--dock-s, 1));
+  transform-origin: bottom center;
+  transition: transform 0.14s ease-out, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
+}
+
+/* cursor has left: the row settles back with a restrained return */
+.magnetic-row.dock-settle > * {
+  transition: transform 0.3s var(--trans-return), color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   TEXT ROLL — headings cascade letter-by-letter from the centre on hover;
+   each letter's duplicate face rolls up from below while the original
+   rolls out above (vanilla take on the TextRoll navigation effect).
+   JS wraps the letters and radiates the stagger outward from the middle.
+   -------------------------------------------------------------------------- */
+[data-roll] { cursor: default; }
+
+[data-roll] .roll-char {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.16em 0.05em 0.22em;
+  margin: -0.16em -0.05em -0.22em;
+}
+
+[data-roll] .roll-face {
+  display: block;
+  white-space: pre;
+  transition: transform 0.5s ease-in-out;
+}
+
+[data-roll] .roll-face.roll-dup {
+  position: absolute;
+  top: 0.16em;
+  left: 0.05em;
+  right: 0.05em;
+  transform: translateY(100%);
+}
+
+[data-roll]:hover .roll-face { transform: translateY(-100%); }
+[data-roll]:hover .roll-face.roll-dup { transform: translateY(0); }
+
+/* Carved label chip — rises from the plank as an item swells */
+.nav-link[data-tip] { position: relative; }
+
+.nav-link[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 7px);
+  transform: translateX(-50%) translateY(4px) scale(var(--dock-s, 1));
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass-gleam);
+  background-color: var(--wood-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='16' viewBox='0 0 60 16'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 5 Q15 3 30 6 T60 5' stroke='%23231a10' stroke-opacity='.6' stroke-width='1'/%3E%3Cpath d='M0 12 Q18 14 36 11 T60 12' stroke='%235b452b' stroke-opacity='.4' stroke-width='.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px auto;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--brass-tarnished);
+  border-radius: 6px;
+  box-shadow: 0 3px 0 -1px rgba(10, 12, 10, 0.6), inset 0 1px 0 rgba(150, 118, 74, 0.25);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.18s ease, transform 0.14s ease-out;
+}
+
+.nav-link[data-tip]:hover::after,
+.nav-link[data-tip]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(var(--dock-s, 1));
+}
+
+/* real-state badge: a brass rivet on "Sound Sanctuary" while the
+   432Hz soundscape is actually breathing (driven by bastion.js) */
+.nav-link.has-audio::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brass-gleam);
+  border: 1px solid var(--wood-deep);
+  box-shadow: 0 0 0 2px rgba(20, 14, 9, 0.35);
+  pointer-events: none;
+}
+
+.nav-actions { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+
+/* --------------------------------------------------------------------------
+   TACTILE STONE & OVERGROWTH BUTTONS
+   -------------------------------------------------------------------------- */
+.stone-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.05rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--vellum-cream);
+  text-decoration: none;
+  /* the frame metal shows as a 2px band around the inlaid stone face */
+  background-color: var(--brass-burnished);
+  border: none;
+  border-radius: 0;
+  /* thickness lives in drop-shadows so the octagon keeps its slab —
+     box-shadow would be swallowed by the clip */
+  filter:
+    drop-shadow(0 4px 0 var(--stone-abyss))
+    drop-shadow(0 12px 16px rgba(0, 0, 0, 0.5));
+  box-shadow: inset 0 1.5px 0 rgba(168, 182, 170, 0.22);
+  transition: transform 0.22s var(--trans-return), filter 0.18s ease,
+    background-color 0.2s ease, translate 0.18s ease-out;
+  overflow: visible;
+}
+
+/* The inlaid stone face: faint grain + a rusted nail head pinning each
+   end (painted on the layer, clipped by the parent's octagon) */
+.stone-btn::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--stone-ashlar);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 7 7'%3E%3Ccircle cx='3.5' cy='3.5' r='2.6' fill='%2354331f'/%3E%3Cpath d='M1.8 2.5 A2.6 2.6 0 0 1 5.2 2' fill='none' stroke='%23a06a3e' stroke-width='.9' stroke-linecap='round'/%3E%3Cpath d='M2.2 4.8 L4.8 2.2' stroke='%23241108' stroke-width='.9' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 7 7'%3E%3Ccircle cx='3.5' cy='3.5' r='2.6' fill='%2354331f'/%3E%3Cpath d='M1.8 2.5 A2.6 2.6 0 0 1 5.2 2' fill='none' stroke='%23a06a3e' stroke-width='.9' stroke-linecap='round'/%3E%3Cpath d='M2.2 4.8 L4.8 2.2' stroke='%23241108' stroke-width='.9' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='34' viewBox='0 0 110 34'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 6 Q28 4 55 7 T110 6' stroke='%232e332b' stroke-opacity='.30' stroke-width='1.1'/%3E%3Cpath d='M0 16 Q35 18 70 15 T110 16' stroke='%2357503c' stroke-opacity='.22' stroke-width='.8'/%3E%3Cpath d='M0 26 Q25 24 60 27 T110 26' stroke='%232e332b' stroke-opacity='.26' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: 9px center, calc(100% - 9px) center, 0 0;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: 7px 7px, 7px 7px, 110px auto;
+}
+
+/* Solid moss wipe (clip-path, never a gradient) — shadowed woodland green,
+   damp and dark rather than a bright wash */
+.stone-btn::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--moss-woodland);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.4s var(--trans-stone);
+  z-index: 1;
+}
+
+.stone-btn.wipe-r::before { clip-path: inset(0 0 0 100%); }
+.stone-btn:hover::before { clip-path: inset(0 0 0 0); }
+.stone-btn > * { position: relative; z-index: 2; }
+
+.stone-btn:hover {
+  background-color: var(--brass-gleam);
+  filter:
+    drop-shadow(0 6px 0 var(--stone-abyss))
+    drop-shadow(0 15px 19px rgba(0, 0, 0, 0.55));
+}
+
+/* Stone press: the slab compresses, its shadow tightens, the top edge
+   highlight yields to the dark of the seam — then a restrained return */
+.stone-btn:active {
+  transform: translateY(3px) scale(0.985);
+  filter:
+    drop-shadow(0 1px 0 var(--stone-abyss))
+    drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+  box-shadow: inset 0 2px 3px rgba(10, 14, 11, 0.6);
+  transition-duration: 0.06s;
+}
+
+.stone-btn.small { padding: 0.62rem 1.15rem; font-size: 0.8rem; --btn-chamfer: 8px; }
+
+/* Ghost stone button — carved from the same block, lighter cut; the
+   octagon's open diagonal notches read as chisel work */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.98rem 1.85rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--vellum-cream);
+  text-decoration: none;
+  background-color: var(--stone-granite);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='34' viewBox='0 0 110 34'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 6 Q28 4 55 7 T110 6' stroke='%23252a23' stroke-opacity='.30' stroke-width='1.1'/%3E%3Cpath d='M0 17 Q35 19 70 16 T110 17' stroke='%234c4636' stroke-opacity='.20' stroke-width='.8'/%3E%3Cpath d='M0 27 Q25 25 60 28 T110 27' stroke='%23252a23' stroke-opacity='.24' stroke-width='1.1'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 110px auto;
+  border: 1px solid var(--stone-limestone);
+  border-radius: 0;
+  filter:
+    drop-shadow(0 4px 0 var(--stone-abyss))
+    drop-shadow(0 10px 14px rgba(0, 0, 0, 0.4));
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.22s var(--trans-return), filter 0.18s ease, translate 0.18s ease-out;
+}
+
+.btn-ghost:hover {
+  background-color: var(--moss-peat);
+  border-color: var(--moss-fern);
+  transform: translateY(-2px);
+  filter:
+    drop-shadow(0 6px 0 var(--stone-abyss))
+    drop-shadow(0 13px 17px rgba(0, 0, 0, 0.45));
+}
+
+.btn-ghost:active {
+  transform: translateY(2px) scale(0.985);
+  filter:
+    drop-shadow(0 1px 0 var(--stone-abyss))
+    drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+  box-shadow: inset 0 2px 3px rgba(10, 14, 11, 0.55);
+  transition-duration: 0.06s;
+}
+.btn-ghost.small { padding: 0.58rem 1rem; font-size: 0.78rem; --btn-chamfer: 7px; }
+
+/* --------------------------------------------------------------------------
+   BUTTON LIFECYCLE — disabled / loading / success (settled stone)
+   -------------------------------------------------------------------------- */
+.stone-btn:disabled,
+.btn-ghost:disabled {
+  opacity: 0.45;
+  filter: grayscale(0.5) drop-shadow(0 2px 0 var(--stone-abyss));
+  pointer-events: none;
+  transform: none;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+.stone-btn.is-loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* The rising moss dot rides the wipe layer while loading — the face
+   layer stays whole */
+.stone-btn.is-loading::before {
+  clip-path: none;
+  background: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='5'%3E%3Ccircle cx='2.5' cy='2.5' r='2.5' fill='%23609B42'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50% calc(100% - 7px);
+  background-size: 5px 5px;
+  animation: loadingRise 1.2s var(--ease-organic) infinite;
+}
+
+@keyframes loadingRise {
+  0%, 100% { transform: translateY(0); opacity: 0.45; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* Success: the surface itself settles into moss — quiet, no celebration */
+.stone-btn.is-done {
+  background: var(--moss-velvet);
+  color: var(--moss-dew);
+  box-shadow: inset 0 1.5px 0 var(--moss-fern);
+}
+.stone-btn.is-done::after { opacity: 0; }
+
+/* Brass CTA */
+.btn-brass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.15rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--stone-abyss);
+  text-decoration: none;
+  background: var(--brass-burnished);
+  border: 1px solid var(--brass-gleam);
+  border-radius: 0;
+  filter: drop-shadow(0 3px 0 var(--stone-abyss));
+  box-shadow: inset 0 1.5px 0 var(--brass-gleam);
+  transition: transform 0.22s var(--trans-return), filter 0.18s ease,
+    background 0.2s ease, translate 0.18s ease-out;
+}
+
+.btn-brass:hover { background: var(--brass-gleam); }
+.btn-brass:active {
+  transform: translateY(3px) scale(0.985);
+  filter: drop-shadow(0 1px 0 var(--stone-abyss));
+  box-shadow: inset 0 2px 3px rgba(40, 28, 10, 0.5);
+  transition-duration: 0.06s;
+}
+
+/* --------------------------------------------------------------------------
+   CUT-STONE SILHOUETTE — every plaque on the wall is hewn, not moulded.
+   The octagon the chamfer-frames gave the modals, now worn by all three
+   button families. Placed after their blocks so it owns the silhouette.
+   -------------------------------------------------------------------------- */
+.stone-btn,
+.btn-ghost,
+.btn-brass {
+  --btn-chamfer: 11px;
+  clip-path: polygon(
+    var(--btn-chamfer) 0, calc(100% - var(--btn-chamfer)) 0, 100% var(--btn-chamfer),
+    100% calc(100% - var(--btn-chamfer)), calc(100% - var(--btn-chamfer)) 100%,
+    var(--btn-chamfer) 100%, 0 calc(100% - var(--btn-chamfer)), 0 var(--btn-chamfer)
+  );
+}
+
+/* Focus is a candlelit halo hugging the octagon — an outline ring would
+   be clipped away by the cut */
+.stone-btn:focus-visible,
+.btn-ghost:focus-visible,
+.btn-brass:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 5px rgba(213, 190, 131, 0.95))
+    drop-shadow(0 4px 0 var(--stone-abyss));
+}
+
+/* Leaf sprouts (injected by JS) */
+.sprout {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  transform: scale(0);
+  transition: transform 0.45s var(--trans-spring);
+  z-index: 0;
+}
+
+.sprout-tl { top: -12px; left: -12px; transform-origin: bottom right; }
+.sprout-br { bottom: -12px; right: -12px; transform-origin: top left; }
+.stone-btn:hover .sprout-tl { transform: scale(1); }
+.stone-btn:hover .sprout-br { transform: scale(1) rotate(180deg); }
+
+.sprout-leaf { fill: var(--moss-fern); }
+.sprout-leaf-dark { fill: var(--moss-emerald); }
+.sprout-vein { stroke: var(--moss-dew); stroke-width: 1; fill: none; }
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 5.5rem 0 4rem 0;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.12;
+  margin: 1.6rem auto 1.2rem auto;
+  max-width: 900px;
+  text-shadow: 0 4px 0 var(--stone-abyss);
+}
+
+.hero-section .lede {
+  font-size: 1.1rem;
+  color: var(--vellum-aged);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.hero-cta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.2rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   SANCTUARY WORKSTATION WINDOW
+   -------------------------------------------------------------------------- */
+.stone-window {
+  margin-top: 3.5rem;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   TRANSPARENT GLASS BROWSER WINDOW
+   Refined translucent glass surfaces with blurred forest backdrop visibility,
+   understated low-opacity brass borders, crisp typography, and visual depth.
+   -------------------------------------------------------------------------- */
+.stone-window .chamfer-frame,
+.glass-window-frame {
+  clip-path: none;
+  padding: 0;
+  border-radius: 20px;
+  background: rgba(14, 20, 16, 0.52);
+  border: 1px solid rgba(212, 195, 150, 0.16);
+  backdrop-filter: blur(24px) saturate(135%);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  box-shadow:
+    0 32px 72px -16px rgba(0, 0, 0, 0.7),
+    0 12px 28px -6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(240, 235, 216, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stone-window .chamfer-frame:hover,
+.glass-window-frame:hover {
+  border-color: rgba(212, 195, 150, 0.24);
+  box-shadow:
+    0 36px 84px -16px rgba(0, 0, 0, 0.75),
+    0 14px 32px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(240, 235, 216, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.stone-window .chamfer-inner,
+.glass-window-inner {
+  clip-path: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Window titlebar — floating browser bar with rivets */
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.6rem;
+  background: rgba(18, 25, 21, 0.45);
+  border-bottom: 1px solid rgba(212, 195, 150, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.rivets {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rivet {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.rivet:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
+
+.rivet.briar { background: #E06C6C; }
+.rivet.sun   { background: #E6B84D; }
+.rivet.fern  { background: #4FB06D; }
+
+.window-title {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--vellum-aged);
+  margin-left: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.titlebar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.telemetry-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--moss-lichen);
+  background: rgba(45, 110, 70, 0.2);
+  border: 1px solid rgba(104, 184, 126, 0.25);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.04em;
+}
+
+.terminal-clock {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--bloom-sun);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 3-column workstation layout */
+.window-grid {
+  display: grid;
+  grid-template-columns: 270px 1fr 270px;
+  min-height: 480px;
+  background: transparent;
+}
+
+@media (max-width: 1040px) {
+  .window-grid {
+    grid-template-columns: 240px 1fr 240px;
+  }
+}
+
+@media (max-width: 900px) {
+  .window-grid {
+    grid-template-columns: 1fr;
+  }
+  .window-rail {
+    border-right: none;
+    border-bottom: 1px solid rgba(212, 195, 150, 0.08);
+  }
+  .window-telemetry {
+    border-left: none;
+    border-top: 1px solid rgba(212, 195, 150, 0.08);
+  }
+}
+
+/* Left rail — subtle, translucent */
+.window-rail {
+  padding: 1.6rem 1.3rem;
+  background: rgba(12, 18, 14, 0.32);
+  border-right: 1px solid rgba(212, 195, 150, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rail-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone-pebble);
+  margin-bottom: 0.85rem;
+}
+
+.rail-mode-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--vellum-aged);
+  padding: 0.6rem 0.85rem;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  list-style: none;
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+}
+
+.rail-mode-item:hover {
+  background: rgba(45, 110, 70, 0.16);
+  color: var(--bloom-hawthorn);
+  border-color: rgba(104, 184, 126, 0.18);
+}
+
+.rail-mode-item.active {
+  background: rgba(45, 110, 70, 0.32);
+  color: var(--bloom-hawthorn);
+  border-color: rgba(212, 195, 150, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.rail-mode-item .idx {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--stone-pebble);
+}
+
+.voice-card {
+  margin-top: 1.4rem;
+  padding: 0.9rem 1rem;
+  background: rgba(16, 24, 19, 0.42);
+  border: 1px solid rgba(212, 195, 150, 0.12);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.voice-card:hover {
+  border-color: rgba(212, 195, 150, 0.28);
+  background: rgba(20, 30, 24, 0.52);
+}
+
+.voice-card .v-name {
+  color: var(--moss-dew);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.voice-card .v-role {
+  color: var(--stone-pebble);
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  margin-top: 0.2rem;
+}
+
+/* Center main workspace — open, airy, focused */
+.window-main {
+  padding: 2.2rem 2.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.8rem;
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .window-main {
+    padding: 1.5rem 1.2rem;
+  }
+}
+
+.character-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(212, 195, 150, 0.1);
+  flex-wrap: wrap;
+}
+
+.profile-id {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--bloom-hawthorn);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.profile-role {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--vellum-aged);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.profile-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Tone selector pills */
+.tone-row {
+  display: inline-flex;
+  gap: 0.3rem;
+  background: rgba(10, 16, 13, 0.45);
+  border: 1px solid rgba(212, 195, 150, 0.12);
+  border-radius: 999px;
+  padding: 0.25rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.tone-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--vellum-aged);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  transition: all 0.2s ease;
+  user-select: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tone-pill:hover {
+  color: var(--bloom-hawthorn);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tone-pill.active {
+  background: rgba(45, 110, 70, 0.65);
+  color: var(--bloom-hawthorn);
+  border-color: rgba(135, 200, 150, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.severity-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--bloom-sun);
+  background: rgba(230, 184, 77, 0.1);
+  border: 1px solid rgba(230, 184, 77, 0.25);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+/* Translucent quote glass slab */
+.quote-slab {
+  margin: 0;
+  background: rgba(16, 26, 21, 0.46);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 195, 150, 0.14);
+  border-left: 3px solid var(--brass-burnished);
+  border-radius: 14px;
+  padding: 1.8rem 2.2rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--vellum-cream);
+  box-shadow:
+    0 14px 34px -8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.quote-slab.swap {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Window controls row */
+.window-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(212, 195, 150, 0.1);
+  flex-wrap: wrap;
+}
+
+.window-controls .cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-mono {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--stone-pebble);
+  letter-spacing: 0.05em;
+}
+
+/* Right telemetry panel */
+.window-telemetry {
+  padding: 1.6rem 1.3rem;
+  background: rgba(12, 18, 14, 0.32);
+  border-left: 1px solid rgba(212, 195, 150, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meter {
+  margin-bottom: 1.2rem;
+}
+
+.meter-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--vellum-aged);
+  margin-bottom: 0.45rem;
+}
+
+.meter-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(8, 13, 10, 0.55);
+  border: 1px solid rgba(212, 195, 150, 0.12);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s var(--trans-stone);
+}
+
+.meter-fill.fern {
+  background: linear-gradient(90deg, var(--moss-velvet), var(--moss-fern));
+  box-shadow: 0 0 8px rgba(66, 147, 94, 0.35);
+}
+
+.meter-fill.sun {
+  background: linear-gradient(90deg, #A8802E, var(--bloom-sun));
+  box-shadow: 0 0 8px rgba(230, 184, 77, 0.35);
+}
+
+.meter-fill.briar {
+  background: linear-gradient(90deg, #8A3E3E, var(--bloom-briar));
+}
+
+.reclaimed-slab {
+  margin-top: 1.2rem;
+  background: rgba(16, 26, 21, 0.42);
+  border: 1px solid rgba(212, 195, 150, 0.12);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.reclaimed-slab .r-label {
+  font-size: 0.68rem;
+  color: var(--moss-lichen);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.reclaimed-slab .r-value {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--bloom-hawthorn);
+  margin: 0.2rem 0;
+}
+
+.reclaimed-slab .r-unit {
+  font-size: 0.74rem;
+  color: var(--vellum-aged);
+  font-weight: 400;
+}
+
+.reclaimed-slab .r-sub {
+  font-size: 0.68rem;
+  color: var(--stone-pebble);
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION HEADINGS & BENTO GRID
+   -------------------------------------------------------------------------- */
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 3rem auto; }
+
+.section-head h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 0.9rem;
+}
+
+.section-head p { color: var(--vellum-aged); font-size: 1.02rem; }
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.col-12 { grid-column: span 12; }
+.col-8 { grid-column: span 8; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+
+@media (max-width: 900px) {
+  .col-8, .col-6, .col-4 { grid-column: span 12; }
+}
+
+.feature-banner {
+  position: relative;
+  background-color: var(--wood-face);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Ccircle cx='4.5' cy='4.5' r='3.4' fill='%235a3520'/%3E%3Cpath d='M2.3 3.2 A3.4 3.4 0 0 1 6.6 2.6' fill='none' stroke='%23a06a3e' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M2.8 6.2 L6.2 2.8' stroke='%23241108' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Ccircle cx='4.5' cy='4.5' r='3.4' fill='%235a3520'/%3E%3Cpath d='M2.3 3.2 A3.4 3.4 0 0 1 6.6 2.6' fill='none' stroke='%23a06a3e' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M2.8 6.2 L6.2 2.8' stroke='%23241108' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='11' viewBox='0 0 26 11'%3E%3Cpath d='M1 11 Q3 4 6 6 Q8 1 11 5 Q13 2 15 6 Q18 3 20 7 Q22 5 24 8 L25 11 Z' fill='%233b6440' fill-opacity='.85'/%3E%3Ccircle cx='8' cy='5' r='1' fill='%2354873f'/%3E%3Ccircle cx='18' cy='6' r='.8' fill='%2354873f' fill-opacity='.8'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='56' viewBox='0 0 180 56'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 6 Q45 4 90 7 T180 6' stroke='%23332619' stroke-opacity='.55' stroke-width='1.4'/%3E%3Cpath d='M0 16 Q60 19 120 15 T180 16' stroke='%235b452b' stroke-opacity='.4' stroke-width='1'/%3E%3Cpath d='M0 27 Q30 24 80 28 T180 27' stroke='%232e2114' stroke-opacity='.5' stroke-width='1.6'/%3E%3Cpath d='M0 38 Q70 42 130 37 T180 38' stroke='%235b452b' stroke-opacity='.38' stroke-width='1'/%3E%3Cpath d='M0 48 Q50 46 100 49 T180 48' stroke='%23332619' stroke-opacity='.5' stroke-width='1.3'/%3E%3Cellipse cx='132' cy='21' rx='5.2' ry='3.2' stroke='%232e2114' stroke-opacity='.55' stroke-width='1.3'/%3E%3Cellipse cx='132' cy='21' rx='1.8' ry='1' stroke='%232e2114' stroke-opacity='.5' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: 14px 14px, calc(100% - 14px) 14px, 60px bottom, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  border-bottom: 1px solid var(--wood-deep);
+  padding: 2rem 1.8rem 1.5rem 1.8rem;
+  box-shadow: inset 0 1px 0 rgba(150, 118, 74, 0.3), inset 0 -4px 0 rgba(20, 14, 9, 0.45);
+}
+
+.feature-banner .tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass-gleam);
+}
+
+.feature-banner h3 { font-size: 1.5rem; margin-top: 0.4rem; color: var(--vellum-cream); }
+
+.feature-banner .banner-vine {
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  height: 100%;
+  width: 90px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.feature-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.5rem 1.8rem;
+  background: rgba(15, 20, 18, 0.4);
+  flex-wrap: wrap;
+}
+
+.feature-body p { font-size: 0.88rem; color: var(--vellum-aged); max-width: 560px; }
+
+.card-pad { padding: 1.6rem; }
+
+.aa-sigil {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--moss-velvet);
+  border: 1px solid var(--brass-burnished);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--bloom-hawthorn);
+  box-shadow: inset 0 1.5px 0 rgba(168, 182, 170, 0.22), 0 4px 0 -1px var(--stone-abyss);
+  margin-bottom: 1.2rem;
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(120, 102, 58, 0.35);
+  font-size: 0.75rem;
+}
+
+/* Quest grid */
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.quest-btn {
+  position: relative;
+  padding: 0.55rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  color: var(--vellum-aged);
+  background-color: var(--stone-granite);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='26' viewBox='0 0 90 26'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M0 6 Q22 4 45 7 T90 6' stroke='%23252a23' stroke-opacity='.28' stroke-width='1'/%3E%3Cpath d='M0 17 Q28 19 55 16 T90 17' stroke='%234c4636' stroke-opacity='.18' stroke-width='.8'/%3E%3Cpath d='M0 24 Q20 22 48 25 T90 24' stroke='%23252a23' stroke-opacity='.22' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 90px auto;
+  border: 1px solid var(--stone-limestone);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 var(--glass-specular), inset 0 -2px 0 rgba(16, 24, 18, 0.4), 0 2px 0 -1px var(--stone-abyss);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--trans-return), box-shadow 0.16s ease;
+  user-select: none;
+}
+
+.quest-btn:hover { background-color: var(--moss-peat); border-color: var(--moss-fern); color: var(--bloom-hawthorn); }
+.quest-btn:active {
+  transform: translateY(2px) scale(0.985);
+  box-shadow: inset 0 2px 2px rgba(10, 14, 11, 0.5), 0 0 0 -1px var(--stone-abyss);
+  transition-duration: 0.06s;
+}
+
+.quest-btn.quest-done {
+  background: var(--moss-peat);
+  border-color: var(--moss-fern);
+  color: var(--moss-dew);
+  box-shadow: inset 0 1px 0 var(--glass-specular), 0 2px 0 -1px var(--stone-abyss);
+}
+
+
+/* Sliders */
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background: var(--stone-abyss);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 999px;
+  outline: none;
+  accent-color: var(--brass-burnished);
+  cursor: pointer;
+}
+
+.slider-val { font-family: var(--font-mono); color: var(--bloom-sun); font-size: 0.78rem; }
+
+/* --------------------------------------------------------------------------
+   SOUND TILES
+   -------------------------------------------------------------------------- */
+.sound-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+@media (max-width: 640px) { .sound-tiles { grid-template-columns: repeat(2, 1fr); } }
+
+.sound-card-item {
+  padding: 1rem;
+  background: var(--stone-granite);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 var(--glass-specular), 0 3px 0 -1px var(--stone-abyss);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s var(--trans-stone);
+  user-select: none;
+}
+
+.sound-card-item:hover {
+  background: var(--moss-peat);
+  border-color: var(--moss-fern);
+  transform: translateY(calc(var(--dock-y, 0px) - 2px)) scale(var(--dock-s, 1));
+}
+
+.sound-card-item.is-playing {
+  background: var(--glass-canopy);
+  border-color: var(--brass-gleam);
+  box-shadow: inset 0 1.5px 0 rgba(168, 182, 170, 0.22), 0 3px 0 -1px var(--stone-abyss);
+}
+
+.sound-card-item .s-icon { font-size: 1.4rem; display: block; margin-bottom: 0.5rem; }
+.sound-card-item .s-name { font-size: 0.85rem; font-weight: 700; color: var(--bloom-hawthorn); }
+.tile-status { font-family: var(--font-mono); font-size: 0.62rem; color: var(--stone-pebble); margin-top: 0.25rem; }
+.sound-card-item.is-playing .tile-status { color: var(--moss-lichen); }
+
+/* --------------------------------------------------------------------------
+   LIFE TOLL MATRIX
+   -------------------------------------------------------------------------- */
+.toll-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(120, 102, 58, 0.4);
+  transition: border-color 0.2s ease;
+  flex-wrap: wrap;
+}
+
+.toll-banner:hover { border-color: var(--brass-burnished); }
+
+.toll-banner .label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--vellum-aged); }
+.toll-banner .loss { font-family: var(--font-mono); font-size: 0.68rem; color: var(--bloom-briar); }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.2rem; }
+@media (max-width: 640px) { .stat-grid { grid-template-columns: 1fr; } }
+
+.stat-cell {
+  background: var(--stone-granite);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+.stat-cell .val { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--bloom-hawthorn); }
+.stat-cell .lbl { font-size: 0.7rem; color: var(--vellum-aged); margin-top: 0.2rem; }
+
+/* --------------------------------------------------------------------------
+   FOCUS GYM
+   -------------------------------------------------------------------------- */
+.gym-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.focus-dial {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--stone-granite);
+  border: 3px solid var(--stone-limestone);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 0 var(--glass-specular), 0 6px 0 -1px var(--stone-abyss);
+  transition: border-color 0.3s ease;
+  user-select: none;
+}
+
+.focus-dial.running { border-color: var(--moss-fern); }
+.focus-dial:active { transform: translateY(3px); box-shadow: inset 0 2px 0 var(--glass-specular), 0 2px 0 -1px var(--stone-abyss); }
+
+.dial-ring {
+  position: absolute;
+  inset: 4px;
+  animation: spinSlow 16s linear infinite;
+  animation-play-state: paused;
+}
+
+.focus-dial.running .dial-ring { animation-play-state: running; }
+
+.dial-ring circle {
+  fill: none;
+  stroke: var(--brass-tarnished);
+  stroke-width: 2;
+  stroke-dasharray: 10 8;
+  stroke-linecap: round;
+}
+
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+.dial-clock { font-family: var(--font-mono); font-size: 1.9rem; font-weight: 700; color: var(--bloom-hawthorn); }
+.dial-state { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.18em; color: var(--moss-lichen); text-transform: uppercase; }
+
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--bloom-sun);
+  background: var(--moss-shadow);
+  border: 1px solid var(--brass-tarnished);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.bastion-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 2.5rem 0 1rem 0;
+  border-top: 1px solid rgba(120, 102, 58, 0.35);
+  font-size: 0.78rem;
+  color: var(--stone-pebble);
+  flex-wrap: wrap;
+}
+
+.bastion-footer .f-brand { font-family: var(--font-display); color: var(--bloom-hawthorn); font-weight: 700; }
+.bastion-footer nav { display: flex; gap: 1.4rem; }
+.bastion-footer a { color: var(--vellum-aged); text-decoration: none; transition: color 0.2s ease; }
+.bastion-footer a:hover { color: var(--moss-dew); }
+
+/* --------------------------------------------------------------------------
+   SIMULATOR MODAL & FEED SHIELD
+   -------------------------------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 20, 18, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hidden { display: none !important; }
+
+.modal-panel {
+  width: 100%;
+  max-width: 460px;
+}
+
+.modal-panel.ritual-enter { animation: stoneSettle 0.55s var(--trans-spring); }
+
+@keyframes stoneSettle {
+  from { transform: translateY(-26px) scale(0.97); }
+  to { transform: translateY(0) scale(1); }
+}
+
+.modal-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.1rem;
+  background: var(--stone-granite);
+  border-bottom: 1px solid var(--brass-tarnished);
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+.modal-titlebar .m-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--vellum-aged); margin-left: 0.6rem; }
+
+.modal-close {
+  background: var(--stone-ashlar);
+  border: 1px solid var(--brass-tarnished);
+  color: var(--vellum-cream);
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.modal-close:hover { background: var(--bloom-briar); color: var(--stone-abyss); }
+
+/* --------------------------------------------------------------------------
+   BOREDOM ROULETTE — the chamber around the twelve-faced stone
+   -------------------------------------------------------------------------- */
+.roulette-panel { max-width: 640px; }
+
+.roulette-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+/* The stone's well — a dark recess cut into the panel floor, corners
+   notched like everything else on the wall */
+.roulette-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 230px;
+  max-height: 46vh;
+  background: var(--stone-abyss);
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  border-radius: 0;
+  clip-path: polygon(
+    12px 0, calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    12px 100%, 0 calc(100% - 12px), 0 12px
+  );
+  box-shadow:
+    inset 0 3px 14px rgba(0, 0, 0, 0.7),
+    inset 0 -1px 0 rgba(168, 182, 170, 0.14);
+  overflow: hidden;
+}
+
+.roulette-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.roulette-stage-note {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--vellum-aged);
+}
+
+/* Two leaves that crept over the lip of the well — solid shapes, slow sway,
+   the same restraint as the wall's foliage. */
+.stage-leaf {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background: var(--moss-woodland);
+  border-radius: 90% 8% 90% 8%;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  opacity: 0.9;
+  transform-origin: bottom right;
+  animation: stageLeafSway 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.stage-leaf-a { left: 12px; bottom: 9px; transform: rotate(12deg); }
+
+.stage-leaf-b {
+  right: 16px;
+  top: 12px;
+  width: 22px;
+  height: 11px;
+  background: var(--moss-evergreen);
+  transform-origin: bottom left;
+  transform: rotate(-164deg);
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+
+@keyframes stageLeafSway {
+  from { rotate: -1.4deg; }
+  to   { rotate: 1.8deg; }
+}
+
+.roulette-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.roulette-invite {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  transition: opacity 0.4s ease;
+}
+
+.roulette-invite.quiet { opacity: 0.45; }
+
+#btnRollStone { min-width: 15rem; text-align: center; }
+
+#btnRollStone.rolling { pointer-events: none; opacity: 0.72; }
+
+/* The cobblestone reveal: emerges from slightly below, settles, stays */
+.roulette-result {
+  position: relative;
+  padding: 1rem 1.1rem 1.05rem;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.42s var(--trans-spring), opacity 0.42s ease;
+}
+
+.roulette-result.show { transform: translateY(0); opacity: 1; }
+
+.roulette-result-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.roulette-result-head h3 {
+  font-size: 1.15rem;
+  margin: 0;
+  color: var(--atmo-moonlit);
+}
+
+.roulette-number {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--atmo-candle);
+  border: 1px solid var(--brass-tarnished);
+  background: var(--stone-slate);
+  border-radius: 6px;
+  padding: 0.18rem 0.5rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+  flex: none;
+}
+
+.roulette-result p.muted {
+  font-size: 0.8rem;
+  margin: 0.4rem 0 0;
+}
+
+.roulette-result-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+
+.roulette-done-note {
+  margin-top: 0.65rem;
+  font-size: 0.72rem;
+  color: var(--moss-lichen);
+}
+
+/* Screen-reader status line for the roll */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-leaf { animation: none; }
+  .roulette-result { transition-duration: 0.15s; }
+}
+
+@media (max-width: 560px) {
+  .roulette-panel { max-width: 100%; }
+  .roulette-stage { min-height: 200px; }
+  #btnRollStone { min-width: 100%; }
+  .roulette-controls { justify-content: center; text-align: center; }
+}
+
+.feed-scroll {
+  padding: 1rem;
+  max-height: 460px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed-card {
+  background: var(--stone-granite);
+  border: 1px solid var(--stone-limestone);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 var(--glass-specular);
+}
+
+.feed-head { display: flex; align-items: center; gap: 0.55rem; font-size: 0.74rem; color: var(--stone-pebble); }
+
+.feed-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--stone-abyss);
+  border: 1px solid var(--stone-abyss);
+}
+
+.feed-avatar.briar { background: var(--bloom-briar); }
+.feed-avatar.bell { background: var(--bloom-bell); }
+.feed-head .handle { font-weight: 700; color: var(--bloom-hawthorn); }
+.feed-card p { font-size: 0.76rem; color: var(--vellum-aged); margin: 0.6rem 0; }
+
+.feed-clip {
+  height: 108px;
+  border-radius: 8px;
+  background: var(--stone-abyss);
+  border: 1px solid var(--stone-limestone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--bloom-briar);
+  text-align: center;
+  padding: 0 0.8rem;
+}
+
+.feed-stats {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--stone-pebble);
+  padding-top: 0.6rem;
+}
+
+.shield-card {
+  background: var(--moss-shadow);
+  border: 1.5px solid var(--brass-burnished);
+  border-radius: 12px;
+  padding: 1.4rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 var(--glass-specular), 0 10px 0 -3px var(--stone-abyss);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.shield-sigil {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--moss-velvet);
+  border: 1px solid var(--brass-gleam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: inset 0 1.5px 0 rgba(168, 182, 170, 0.22);
+}
+
+.shield-card .s-title { font-family: var(--font-display); font-weight: 700; color: var(--bloom-hawthorn); letter-spacing: 0.05em; font-size: 0.95rem; }
+.shield-card .s-quote { font-style: italic; font-size: 0.8rem; color: var(--vellum-aged); line-height: 1.6; }
+.shield-card .stone-btn { width: 100%; }
+
+/* Breathing halo used by the shield ritual */
+.breath-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px dashed var(--moss-fern);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--moss-dew);
+  animation: breathePulse 4s infinite ease-in-out;
+}
+
+@keyframes breathePulse {
+  0%, 100% { transform: scale(1); border-color: var(--moss-velvet); }
+  50% { transform: scale(1.16); border-color: var(--moss-lichen); }
+}
+
+/* --------------------------------------------------------------------------
+   STAGGERED STONE-SETTLING ENTRANCES
+   -------------------------------------------------------------------------- */
+.settle {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.settle.settled {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s ease var(--d, 0ms),
+    transform 0.6s var(--trans-stone) var(--d, 0ms);
+}
+
+/* --------------------------------------------------------------------------
+   SPLIT SECTIONS & SMALL UTILITIES
+   -------------------------------------------------------------------------- */
+.split-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .split-grid { grid-template-columns: 1fr; }
+}
+
+.split-copy .kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moss-lichen);
+  margin-bottom: 0.7rem;
+}
+
+.split-copy h3 {
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  margin-bottom: 0.9rem;
+}
+
+.split-copy p {
+  color: var(--vellum-aged);
+  line-height: 1.75;
+  margin-bottom: 1.4rem;
+}
+
+.link-brass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brass-gleam);
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.link-brass:hover { color: var(--moss-dew); gap: 0.8rem; }
+
+/* Active state for the header audio toggle */
+.btn-ghost.on {
+  background: var(--moss-peat);
+  border-color: var(--moss-fern);
+  color: var(--moss-dew);
+}
+
+/* Speaking state for the Johnny voice button */
+.stone-btn.is-speaking {
+  background: var(--moss-emerald);
+  border-color: var(--brass-gleam);
+  color: var(--bloom-hawthorn);
+}
+
+/* --------------------------------------------------------------------------
+   SANCTUARY FOCUS STATE — real state (the focus timer is running): the
+   world settles. Spores fade, and everything stays available.
+   -------------------------------------------------------------------------- */
+#sporeCanvas { transition: opacity 0.9s ease; }
+body.focusing #sporeCanvas { opacity: 0.25; }
+body.focusing .vine-leaf-g { opacity: 0.8; transition: opacity 0.9s ease, transform 0.26s ease-out; }
+
+/* --------------------------------------------------------------------------
+   THE GARDEN — a stone ledge that carries real, persisted growth:
+   one moss bed per finished focus session, one fern per completed side
+   quest. Everything here is derived from actual application state
+   (localStorage-backed); nothing plays and disappears.
+   -------------------------------------------------------------------------- */
+.garden-ledge {
+  position: relative;
+  margin-top: 1.1rem;
+  height: 64px;
+  border-radius: 6px 6px 10px 10px;
+  background: var(--stone-charcoal);
+  border: 1px solid var(--stone-weathered);
+  border-top-color: var(--stone-lichen);
+  box-shadow:
+    inset 0 2px 0 rgba(168, 182, 170, 0.12),
+    inset 0 -6px 0 rgba(11, 16, 13, 0.5),
+    0 3px 0 -1px var(--stone-abyss);
+  overflow: hidden;
+}
+
+.garden-label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stone-mineral);
+  z-index: 2;
+}
+
+.garden-caption {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  color: var(--botanic-sage);
+  z-index: 2;
+}
+
+.garden-moss,
+.garden-fern {
+  position: absolute;
+  bottom: 4px;
+  transform-origin: bottom center;
+}
+
+.garden-moss svg,
+.garden-fern svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Meaningful-event motion: only NEW growth unfurls — and then it stays */
+.garden-moss.unfurl,
+.garden-fern.unfurl {
+  animation: gardenUnfurl 0.7s var(--trans-spring) both;
+}
+
+@keyframes gardenUnfurl {
+  0% { transform: scale(0.15) translateY(8px); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Withers only when the underlying state is actually undone */
+.garden-moss.wither,
+.garden-fern.wither {
+  animation: gardenWither 0.45s ease-in both;
+}
+
+@keyframes gardenWither {
+  100% { transform: scale(0.1) translateY(6px); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   THRESHOLD WIND — Retired in favor of WebGL RippleTransition.
+   Legacy styles disabled to prevent old airflow-like white blur bands.
+   -------------------------------------------------------------------------- */
+#windVeil {
+  display: none !important;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .settle { opacity: 1; transform: none; }
+  .dial-ring, .pulse-dot, .breath-ring, .stone-btn.is-loading::before, .anchor-vine { animation: none !important; }
+  .garden-moss.unfurl, .garden-fern.unfurl, .garden-moss.wither, .garden-fern.wither { animation-duration: 0.01s; }
+  .vine-curtain, .ripple-transition-canvas { display: none !important; }
+  .cursor-ring, .cursor-core { display: none; }
+  body, a, button, input, select, label { cursor: auto; }
+}
+

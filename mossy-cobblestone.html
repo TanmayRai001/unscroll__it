@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mossy Cobblestone</title>
+
+  <style>
+  /* Import a clean serif for headings and sans-serif for body */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap');
+
+  :root {
+    --moss-dark: #07190e;
+    --moss-mid: #112a1a;
+    --stone-dark: #1c2224;
+    --gold-border: rgba(212, 185, 114, 0.45);
+    --gold-glow: rgba(255, 223, 138, 0.25);
+    --emerald-glow: rgba(36, 179, 107, 0.4);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #f0f4f1;
+    min-height: 100vh;
+    /* Layered background: radial shiny highlights + dark mossy stone gradient + optional background image */
+    background-color: var(--moss-dark);
+    background-image:
+      radial-gradient(circle at 75% 20%, rgba(76, 145, 85, 0.28) 0%, transparent 45%),
+      radial-gradient(circle at 20% 80%, rgba(20, 55, 35, 0.6) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(7, 25, 14, 0.75) 0%, rgba(22, 28, 30, 0.92) 65%, #121617 100%),
+      url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop'); /* Replace with your own cobblestone image if desired */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* Main Gold-Bordered Container */
+  .site-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    border: 1.5px solid var(--gold-border);
+    border-radius: 16px;
+    background: rgba(10, 24, 15, 0.55);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+  }
+
+  /* Shiny Glassmorphism Navbar */
+  .shiny-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(30, 75, 45, 0.25) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5); /* Top wet-shine highlight */
+  }
+
+  .shiny-navbar .logo {
+    letter-spacing: 2px;
+  }
+
+  .shiny-navbar a:hover {
+    color: #ffe08a;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 5rem 3rem;
+    max-width: 650px;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.4rem;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #c5d1c8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  /* Glossy Emerald Button */
+  .btn-glossy {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    background: linear-gradient(180deg, rgba(55, 130, 90, 0.7) 0%, rgba(15, 55, 35, 0.9) 100%);
+    border: 1px solid rgba(150, 230, 180, 0.5);
+    box-shadow:
+      0 0 20px var(--emerald-glow),
+      inset 0 2px 3px rgba(255, 255, 255, 0.6); /* Shiny top reflection */
+    transition: all 0.3s ease;
+  }
+
+  .btn-glossy:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 28px rgba(45, 210, 125, 0.7),
+      inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Dark Slate Section with Gold-Rim Cards */
+  .stone-section {
+    background: linear-gradient(180deg, rgba(28, 34, 36, 0.9) 0%, rgba(18, 22, 24, 0.98) 100%);
+    border-top: 1px solid var(--gold-border);
+    padding: 3rem;
+  }
+
+  .stone-section h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .shiny-card {
+    position: relative;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid var(--gold-border);
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+  }
+
+  .shiny-card p {
+    color: #b0b8b4;
+    margin-top: 0.5rem;
+  }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+    <nav class="shiny-navbar">
+      <div class="logo"><strong>MOSSY</strong> COBBLESTONE</div>
+      <div style="display: flex; gap: 2rem;">
+        <a href="#" style="color: white; text-decoration: none;">Our Story</a>
+        <a href="#" style="color: white; text-decoration: none;">Landscape Craft</a>
+        <a href="#" style="color: white; text-decoration: none;">Gallery</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>The Natural Art of Moss & Stone</h1>
+      <p>Meticulously crafted, enduring natural stone walkways, walls, and features with a clean, reflective finish.</p>
+      <a href="#" class="btn-glossy">Explore Designs</a>
+    </section>
+
+    <section class="stone-section">
+      <h2>Featured Projects</h2>
+      <div class="card-grid">
+        <div class="shiny-card">
+          <h3>1. Wet Cobblestone Patio</h3>
+          <p>High-gloss natural stone pavers sealed for a permanent rain-kissed sheen.</p>
+        </div>
+        <div class="shiny-card">
+          <h3>2. Moss-Covered Walls</h3>
+          <p>Living green textures blended seamlessly into dark slate retaining walls.</p>
+        </div>
+        <div class="shiny-card">
+          <h3>3. Artisan Craftsmanship</h3>
+          <p>Hand-carved stonework tailored to your landscape's natural lighting.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

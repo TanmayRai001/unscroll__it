@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unscroll It — The Overgrown Bastion</title>
+  <meta name="description" content="A screen-time intervention tool disguised as a medieval fortress. Rebukes, ambient sounds, and boredom cures.">
+  <!-- Google Fonts: Bodoni Moda — the Macaron / Bodoni didone voice, everywhere -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+  <!-- The Overgrown Bastion design system (zero gradients) -->
+  <link rel="stylesheet" href="bastion.css">
+  <link rel="stylesheet" href="wall-texture.css">
+  <link rel="stylesheet" href="deck.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='28' height='14' rx='2.5' fill='%234A3826'/%3E%3Cpath d='M3 13h26M3 16.5h26M3 20h26' stroke='%2333261A' stroke-width='.9' opacity='.6'/%3E%3Ccircle cx='6.5' cy='12.5' r='1.7' fill='%235a3520'/%3E%3Ccircle cx='25.5' cy='19.5' r='1.7' fill='%235a3520'/%3E%3Cpath d='M11 23 Q13 19.5 15 21.8 Q17 19 19 21.8 Q20.5 20.5 21.5 23 Z' fill='%233B6440'/%3E%3C/svg%3E">
+</head>
+
+<body>
+
+  <!-- LIVING BACKGROUND: cobblestone matrix + ambient spore canvas -->
+  <canvas id="cobbleCanvas" class="layer-cobble" aria-hidden="true"></canvas>
+  <canvas id="sporeCanvas" class="layer-spores" aria-hidden="true"></canvas>
+
+  <!-- Framing vines growing along the viewport edges -->
+  <svg id="vineLeft" class="vine-frame left" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+  <svg id="vineRight" class="vine-frame right" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <!-- Ripple Transition Canvas (WebGL liquid refractive wavefront) -->
+  <canvas id="rippleCanvas" class="ripple-transition-canvas" aria-hidden="true"></canvas>
+
+  <!-- Custom medieval-botanical crosshair -->
+  <div id="cursorCore" class="cursor-core" aria-hidden="true"></div>
+  <div id="cursorRing" class="cursor-ring hidden" aria-hidden="true">
+    <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring-stroke" cx="22" cy="22" r="15"/>
+      <line class="ring-tick" x1="22" y1="2.5" x2="22" y2="7"/>
+      <line class="ring-tick" x1="41.5" y1="22" x2="37" y2="22"/>
+      <line class="ring-tick" x1="22" y1="41.5" x2="22" y2="37"/>
+      <line class="ring-tick" x1="2.5" y1="22" x2="7" y2="22"/>
+      <circle class="bud" cx="11.5" cy="11.5" r="2.6"/>
+      <circle class="bud" cx="32.5" cy="11.5" r="2.6"/>
+      <circle class="bud" cx="11.5" cy="32.5" r="2.6"/>
+      <circle class="bud" cx="32.5" cy="32.5" r="2.6"/>
+    </svg>
+  </div>
+
+  <div class="bastion-shell">
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="bastion-nav">
+      <a href="#hero" class="brand">
+        <span class="brand-sigil" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 20 C6 10 12 4 20 3 C18 13 12 19 4 20 Z" fill="#9CE0AC"/>
+            <path d="M7 17 C10 13 14 8 18 6" stroke="#0F1412" stroke-width="1.2" fill="none"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">Unscroll<span class="dot">.</span>It</span><br>
+          <span class="brand-tag">Bastion Focus OS</span>
+        </span>
+      </a>
+
+      <nav id="mainNav" class="nav-links">
+        <a href="#sanctuary" class="nav-link active" data-tip="The Overgrown Bastion">Sanctuary</a>
+        <a href="#simulator" class="nav-link" data-tip="Active Intervention">Doomscroll Simulator</a>
+        <a href="#quests" class="nav-link" data-tip="Let the stones decide">Boredom Roulette</a>
+        <a href="#sounds" class="nav-link" data-tip="Ambient Sounds">Sound Sanctuary</a>
+        <a href="#gym" class="nav-link" data-tip="Focus Training">Attention Span Improver</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="btnAcousticToggle" class="btn-ghost small" title="Toggle 432Hz ambient soundscape">
+          <span id="acousticIcon">🎧</span>
+          <span id="acousticText">Audio: Off</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="hero-section">
+      <h1>Content creation<br />you&rsquo;ll enjoy.</h1>
+      <div class="hero-cta-row">
+        <a href="#sanctuary" id="btnHeroRealityCheck" class="stone-btn">
+          <span>Start Reality Check</span>
+          <span class="mono" style="font-size: 1.1rem;">→</span>
+        </a>
+        <a href="#gym" class="btn-ghost"><span>Explore Sanctuary</span></a>
+      </div>
+
+      <div class="stone-window">
+        <div class="chamfer-frame glass-window-frame">
+          <div class="chamfer-inner glass-window-inner">
+
+            <!-- Window titlebar -->
+            <div class="window-titlebar">
+              <div style="display:flex; align-items:center;">
+                <span class="rivets">
+                  <span class="rivet briar" title="Close"></span>
+                  <span class="rivet sun" title="Minimize"></span>
+                  <span class="rivet fern" title="Expand"></span>
+                </span>
+                <span class="window-title">Unscroll.it — Live Focus Terminal</span>
+              </div>
+              <div class="titlebar-right">
+                <span id="telemetryScrollBadge" class="telemetry-badge">● 2.4M SCROLLS HALTED</span>
+                <span id="terminalClock" class="terminal-clock">00:00:15:00</span>
+              </div>
+            </div>
+
+            <!-- Window workspace -->
+            <div class="window-grid">
+
+              <!-- Left rail -->
+              <div class="window-rail">
+                <div class="rail-label">Sanctuary Modes</div>
+                <ul id="workspaceRail" style="list-style:none;">
+                  <li class="rail-mode-item active" data-target="#sanctuary">
+                    <span>Sanctuary</span><span class="idx">01</span>
+                  </li>
+                  <li class="rail-mode-item" data-target="#simulator">
+                    <span>Doomscroll Simulator</span><span class="idx">02</span>
+                  </li>
+                  <li class="rail-mode-item" data-target="#quests">
+                    <span>Boredom Roulette</span><span class="idx">03</span>
+                  </li>
+                </ul>
+                <div class="rail-label" style="margin-top:1.4rem;">Voice Synthesis</div>
+                <div id="voiceModelCard" class="voice-card">
+                  <div class="v-name">Johnny Dynamite</div>
+                  <div class="v-role">Vintage Radio DJ • Baritone</div>
+                </div>
+              </div>
+
+              <!-- Main workspace -->
+              <div class="window-main">
+                <div class="character-pane">
+                  <div class="profile-head">
+                    <div class="profile-id">
+                      <div>
+                        <div class="profile-name">Mr. No cap</div>
+                        <div class="profile-role">Chief Etiquette Officer</div>
+                      </div>
+                    </div>
+                    <div class="profile-meta">
+                      <div class="tone-row" role="group" aria-label="Roast Tone Presets">
+                        <button type="button" class="tone-pill" data-tone="Gentle">Gentle</button>
+                        <button type="button" class="tone-pill" data-tone="Dry Wit">Dry Wit</button>
+                        <button type="button" class="tone-pill active" data-tone="Savage">Savage</button>
+                      </div>
+                      <span id="rebukeSeverityBadge" class="severity-badge">High Society Savage</span>
+                    </div>
+                  </div>
+
+                  <blockquote id="quoteText" class="quote-slab">
+                    &ldquo;I say, your thumb appears to have far outrun your ambition today. Did you genuinely plan on donating your remaining youth to 15-second dancing teenagers, or did your willpower simply step out for tea?&rdquo;
+                  </blockquote>
+                </div>
+
+                <div class="window-controls">
+                  <div class="cluster">
+                    <button id="btnSpeakJohnny" class="stone-btn small">
+                      <span id="btnSpeakIcon">🎙️</span>
+                      <span id="btnSpeakText">Speak via Johnny</span>
+                    </button>
+                    <button id="btnCycleRebuke" class="btn-ghost small">Request Another Rebuke ↻</button>
+                  </div>
+                  <span id="rebukeStatusText" class="status-mono">Status: Reality Intercepted</span>
+                </div>
+              </div>
+
+              <!-- Right telemetry -->
+              <div class="window-telemetry">
+                <div class="rail-label">Live Telemetry</div>
+
+                <div class="meter">
+                  <div class="meter-head">
+                    <span>Scroll Damage</span>
+                    <span id="teleDeficitVal" class="mono" style="font-size:0.72rem;">14% (Safe)</span>
+                  </div>
+                  <div class="meter-track">
+                    <div id="teleDeficitBar" class="meter-fill fern" style="width:14%;"></div>
+                  </div>
+                </div>
+
+                <div class="meter">
+                  <div class="meter-head">
+                    <span>Doomscroll Velocity</span>
+                    <span id="teleVelocityVal" class="mono" style="font-size:0.72rem; color:var(--bloom-sun);">0.0 km/h</span>
+                  </div>
+                  <div class="meter-track">
+                    <div id="teleVelocityBar" class="meter-fill sun" style="width:0%;"></div>
+                  </div>
+                </div>
+
+                <div class="reclaimed-slab">
+                  <div class="r-label">Offline Time Reclaimed</div>
+                  <div class="r-value"><span id="teleReclaimedVal">4.8</span> <span class="r-unit">Hours</span></div>
+                  <div class="r-sub">That's almost a whole book chapter.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BENTO GRID ===================== -->
+    <section class="section-band">
+      <div class="section-head settle">
+        <h2>Dead simple.<br />Actually useful.</h2>
+        <p>Tools that actually help you stop doom-scrolling and do something with your day.</p>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Featured: Doomscroll Simulator -->
+        <div id="simulator" class="col-12 glass-card settle tilt moss-corners" style="overflow:visible;">
+          <div class="feature-banner" style="overflow:hidden;">
+            <svg class="banner-vine" viewBox="0 0 90 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M45 170 C60 130 30 100 48 60 C62 28 40 12 50 -10" fill="none" stroke="#42935E" stroke-width="3" stroke-linecap="round"/>
+              <ellipse cx="66" cy="120" rx="12" ry="5" fill="#2D6E46" transform="rotate(-30 66 120)"/>
+              <ellipse cx="28" cy="80" rx="11" ry="4.5" fill="#2D6E46" transform="rotate(28 28 80)"/>
+              <ellipse cx="64" cy="38" rx="11" ry="4.5" fill="#2D6E46" transform="rotate(-26 64 38)"/>
+              <circle cx="30" cy="118" r="5" fill="#F2EFE9"/>
+              <circle cx="30" cy="118" r="2.2" fill="#E6B84D"/>
+              <circle cx="62" cy="86" r="4.5" fill="#7A8CE0"/>
+              <circle cx="62" cy="86" r="2" fill="#E6B84D"/>
+            </svg>
+            <span class="tag">Active Intervention</span>
+            <h3>Doomscroll Simulator &amp; Feed Shield</h3>
+          </div>
+          <div class="feature-body">
+            <p>
+              Fake doomscroll feed that hits you with a reality check before you waste another hour. Try not to get sucked in.
+            </p>
+            <button id="btnOpenSimulator" class="stone-btn small"><span>Launch Simulator →</span></button>
+          </div>
+        </div>
+
+        <!-- Boredom Roulette card — the gateway to the stone die -->
+        <div id="quests" class="col-6 glass-card card-pad settle">
+          <span class="rail-label">Let the stones decide</span>
+          <h4 style="margin-top:0.15rem;">Boredom Roulette</h4>
+          <p class="muted" style="font-size:0.78rem; margin-top:0.35rem;">Twelve paths. One unexpected adventure.</p>
+          <button id="btnEnterRoulette" class="stone-btn small" style="margin-top:1rem;"><span>Enter Boredom Roulette →</span></button>
+          <div class="card-foot">
+            <span class="dim">The stone last chose:</span>
+            <strong id="rouletteLastNote" style="color:var(--vellum-aged); font-size:0.72rem;">nothing yet</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== SOUND SANCTUARY ===================== -->
+    <section id="sounds" class="section-band sound-sanctuary-section">
+      <div class="split-grid">
+        <div class="split-copy settle">
+          <span class="kicker">Ambient Sounds</span>
+          <h3>Sound Sanctuary</h3>
+          <p>
+            Seven songs pressed into the old stones. An enchanted physical deck resting in the moss. Turn the cards and let them sing.
+          </p>
+          <div class="deck-meta-info">
+            <div class="deck-count-badge">
+              <span id="deckCurrentIndex">01</span> / 07 Songs
+            </div>
+            <span class="deck-hint">✦ Arrow keys &amp; spacebar navigate</span>
+          </div>
+        </div>
+
+        <div class="sanctuary-deck-stage settle">
+          <div id="sanctuaryDeckScene" class="sanctuary-deck-scene" tabindex="0" role="region" aria-label="Sound Sanctuary 3D Music Flashcard Deck" aria-roledescription="carousel">
+            <div id="sanctuaryDeck" class="sanctuary-deck">
+              <!-- Dynamically populated with 7 3D music cards -->
+            </div>
+          </div>
+
+          <!-- Tactile Deck Controls -->
+          <div class="deck-controls-row">
+            <button id="btnPrevCard" class="btn btn-secondary deck-btn" type="button" aria-label="Previous card in deck">
+              <span class="btn-arrow" aria-hidden="true">‹</span>
+              <span>Previous</span>
+            </button>
+            <div id="deckPips" class="deck-pips" role="tablist" aria-label="Card pagination">
+              <!-- 7 pips dynamically rendered -->
+            </div>
+            <button id="btnNextCard" class="btn btn-secondary deck-btn" type="button" aria-label="Next card in deck">
+              <span>Next</span>
+              <span class="btn-arrow" aria-hidden="true">›</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ATTENTION SPAN GYM ===================== -->
+    <section id="gym" class="section-band">
+      <div class="split-grid">
+        <div class="split-copy settle">
+          <span class="kicker">Focus Training</span>
+          <h3>Attention Span Improver</h3>
+          <p>
+            Practice actually paying attention to something for more than 30 seconds. Timed focus sessions and film recommendations.
+          </p>
+          <div style="display:flex; gap:0.7rem; flex-wrap:wrap; margin-top:0.5rem;">
+            <button id="btnFocusCinematic" class="btn-ghost small"><span>Enter Film Focus Sanctuary →</span></button>
+            <a href="cinema.html" class="stone-btn small"><span>Dig Film Discovery</span><span aria-hidden="true">✦</span></a>
+          </div>
+        </div>
+
+        <div class="glass-card card-pad settle tilt">
+          <div class="gym-row">
+            <div id="focusTimerDial" class="focus-dial" title="Click to start/pause focus session">
+              <svg class="dial-ring" viewBox="0 0 152 152" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="76" cy="76" r="72"/>
+              </svg>
+              <span id="focusTimerClock" class="dial-clock">25:00</span>
+              <span id="focusTimerStateText" class="dial-state">Deep Focus</span>
+            </div>
+            <div style="max-width:280px;">
+              <div class="profile-name" style="margin-bottom:0.4rem;">Cinematic Focus Conditioning</div>
+              <p class="muted" style="font-size:0.8rem; line-height:1.6;">
+                Watch full-length long-form cinematic scenes without opening a single notification or switching tabs.
+              </p>
+              <div style="margin-top:0.9rem;">
+                <span id="streakBadge" class="streak-badge">Current Streak: 7 Days</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- THE GARDEN — real, persistent growth. bastion.js derives every
+               plant from actual application state: one moss bed per focus
+               session the timer really completed, one fern per adventure
+               marked done. Saved, restored, retracted with the state. -->
+          <div id="bastionGarden" class="garden-ledge settle" role="img"
+               aria-label="Garden ledge carrying growth earned by completed focus sessions and finished adventures">
+            <span class="garden-label">The Garden</span>
+            <span id="gardenCaption" class="garden-caption">bare stone — finish a session</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bastion-footer">
+      <div>
+        <span class="f-brand">Unscroll It</span>
+      </div>
+      <nav>
+        <a href="#sanctuary">Sanctuary</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#quests">Boredom Roulette</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <!-- ===================== DOOMSCROLL SIMULATOR MODAL ===================== -->
+  <div id="simulatorModal" class="modal hidden">
+    <div class="modal-panel chamfer-frame">
+      <div class="chamfer-inner" style="overflow:hidden;">
+        <div class="modal-titlebar">
+          <div style="display:flex; align-items:center;">
+            <span class="rivets">
+              <span class="rivet briar"></span>
+              <span class="rivet sun"></span>
+              <span class="rivet fern"></span>
+            </span>
+            <span class="m-title">Doomscroll Simulator — Feed Trap</span>
+          </div>
+          <button id="btnCloseSimulator" class="modal-close" aria-label="Close simulator">&times;</button>
+        </div>
+
+        <div id="simulatedFeed" class="feed-scroll">
+          <div class="feed-card">
+            <div class="feed-head">
+              <span class="feed-avatar briar">h</span>
+              <span class="handle">@hype_crypto_guru</span>
+              <span>• 2m ago</span>
+            </div>
+            <p>"Why 99% of people will stay broke while AI replaces everything (Watch till the end)..."</p>
+            <div class="feed-clip">▶ 15s High-BPM Ragebait Clip</div>
+            <div class="feed-stats"><span>❤️ 142.8K</span><span>💬 8,921</span><span>↗ 45.2K</span></div>
+          </div>
+
+          <div class="feed-card">
+            <div class="feed-head">
+              <span class="feed-avatar bell">👀</span>
+              <span class="handle">@viral_dopamine_loops</span>
+              <span>• Sponsored</span>
+            </div>
+            <p>"You will NOT believe what happens when you pour honey on an old iPhone battery..."</p>
+            <div class="feed-clip">▶ Endless Satisfying Slime Loop</div>
+            <div class="feed-stats"><span>❤️ 894.2K</span><span>💬 14.1K</span><span>↗ 99.8K</span></div>
+          </div>
+
+          <!-- Feed Shield Intercept -->
+          <div id="simShieldOverlay" class="shield-card">
+            <span class="shield-sigil" aria-hidden="true">🌿</span>
+            <div class="s-title">FEED SHIELD INTERCEPT ACTIVATED</div>
+            <p class="s-quote">"Mr. No cap: You were about to spend 42 minutes watching strangers rate frying pans. Reality awaits."</p>
+            <div class="breath-ring">BREATHE</div>
+            <button id="btnShieldEscape" class="stone-btn small"><span>Get Out of Here →</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== BOREDOM ROULETTE CHAMBER ===================== -->
+  <div id="rouletteModal" class="modal hidden">
+    <div class="modal-panel roulette-panel chamfer-frame">
+      <div class="chamfer-inner" style="overflow:hidden;">
+        <div class="modal-titlebar">
+          <div style="display:flex; align-items:center;">
+            <span class="rivets">
+              <span class="rivet briar"></span>
+              <span class="rivet sun"></span>
+              <span class="rivet fern"></span>
+            </span>
+            <span class="m-title">Boredom Roulette — The Stones Decide</span>
+          </div>
+          <button id="btnCloseRoulette" class="modal-close" aria-label="Close boredom roulette">&times;</button>
+        </div>
+
+        <div class="roulette-body">
+          <div class="roulette-stage" id="rouletteStage">
+            <canvas id="rouletteCanvas" aria-hidden="true"></canvas>
+            <div id="rouletteStageNote" class="roulette-stage-note hidden">The stone is asleep — rendering unavailable.<br>The choice below still stands.</div>
+            <span class="stage-leaf stage-leaf-a" aria-hidden="true"></span>
+            <span class="stage-leaf stage-leaf-b" aria-hidden="true"></span>
+          </div>
+
+          <div class="roulette-controls">
+            <p id="rouletteInvite" class="dim roulette-invite">Twelve possibilities. Leave the choice to chance.</p>
+            <button id="btnRollStone" class="stone-btn"><span id="rollStoneLabel">Roll the Stone</span></button>
+          </div>
+
+          <div id="rouletteResult" class="glass-card roulette-result" hidden>
+            <span class="rail-label">Your next adventure</span>
+            <div class="roulette-result-head">
+              <span id="resultNumber" class="roulette-number">01</span>
+              <h3 id="resultTitle">—</h3>
+            </div>
+            <p id="resultDesc" class="muted">—</p>
+            <div class="roulette-result-actions">
+              <button id="btnBeginAdventure" class="stone-btn small"><span>Begin this adventure →</span></button>
+              <button id="btnMarkDone" class="btn-ghost small hidden"><span>Mark as done ✓</span></button>
+              <button id="btnRollAgain" class="btn-ghost small"><span>Roll again ↻</span></button>
+            </div>
+            <p id="rouletteDoneNote" class="dim roulette-done-note hidden">Grown in the garden — well wandered.</p>
+          </div>
+
+          <p id="rouletteStatus" class="sr-only" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element for Johnny Dynamite — one pre-generated clip per dialogue line -->
+  <audio id="audioJohnny" preload="none"></audio>
+
+  <!-- Overgrown Bastion visual engine (cursor, canvases, vines, ripple rituals) -->
+  <script src="ripple-transition.js"></script>
+  <script src="bastion.js"></script>
+  <script src="roulette.js"></script>
+
+  <!-- JAVASCRIPT INTERACTIVE ENGINE (functionality preserved) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // -------------------------------------------------------------
+      // 1. WEB AUDIO API HARMONIC SYNTHESIS
+      // -------------------------------------------------------------
+      let audioCtx = null;
+      function getAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      }
+
+      function playBellChime(freq = 528, duration = 1.2) {
+        try {
+          const ctx = getAudioContext();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + duration);
+        } catch(e) {}
+      }
+      // The roulette rolls to the same bell the bastion already rings.
+      window.playBellChime = playBellChime;
+
+      function startBinaural() {
+        try {
+          const ctx = getAudioContext();
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc1.frequency.value = 432;
+          osc2.frequency.value = 438;
+          gain.gain.value = 0.04;
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
+          osc1.start();
+          osc2.start();
+          return {
+            stop: () => {
+              try { osc1.stop(); osc2.stop(); } catch(e) {}
+            }
+          };
+        } catch(e) { return null; }
+      }
+
+      // -------------------------------------------------------------
+      // 2. HEADER ACOUSTIC AMBIENT TOGGLE
+      // -------------------------------------------------------------
+      let masterAudioActive = false;
+      let masterAudioNode = null;
+      const btnAcoustic = document.getElementById('btnAcousticToggle');
+      const acousticIcon = document.getElementById('acousticIcon');
+      const acousticText = document.getElementById('acousticText');
+
+      if (btnAcoustic) {
+        btnAcoustic.addEventListener('click', () => {
+          masterAudioActive = !masterAudioActive;
+          if (masterAudioActive) {
+            masterAudioNode = startBinaural();
+            playBellChime(528, 1.5);
+            acousticText.textContent = 'Audio: On';
+            acousticIcon.textContent = '🎧';
+            btnAcoustic.classList.add('on');
+          } else {
+            if (masterAudioNode && masterAudioNode.stop) masterAudioNode.stop();
+            acousticText.textContent = 'Audio: Off';
+            acousticIcon.textContent = '🎧';
+            btnAcoustic.classList.remove('on');
+          }
+        });
+      }
+
+      // -------------------------------------------------------------
+      // 3. SOUND SANCTUARY — 3D INTERACTIVE FLASHCARD DECK
+      // -------------------------------------------------------------
+      const sanctuaryTracks = [
+        {
+          id: 'long-whale',
+          name: 'Long whale',
+          artist: 'Symphocat',
+          genre: 'Deep Oceanic Ambient',
+          src: 'assets/audio/long-whale.mp3',
+          motif: '<path d="M6 24 C10 16, 20 12, 32 16 C38 18, 42 16, 44 14 C44 20, 38 28, 28 30 C18 32, 10 30, 6 24 Z M36 17 C39 12, 43 8, 46 6 C44 11, 44 15, 42 18 Z M22 21 C22 22, 21 23, 20 23 C19 23, 18 22, 18 21 C18 20, 19 19, 20 19 C21 19, 22 20, 22 21 Z"/>'
+        },
+        {
+          id: 'green-to-blue',
+          name: 'Green to blue',
+          artist: 'daniel.',
+          genre: 'Forest Canopy Lo-Fi',
+          src: 'assets/audio/green-to-blue.mp3',
+          motif: '<path d="M24 40 C24 30, 24 20, 24 10 M24 28 C18 25, 12 26, 10 22 C12 18, 18 19, 24 24 M24 20 C30 17, 36 18, 38 14 C36 10, 30 11, 24 16 M24 12 C20 8, 18 6, 24 4 C30 6, 28 8, 24 12 Z"/>'
+        },
+        {
+          id: 'the-beach',
+          name: 'The beach',
+          artist: 'Lil Swervo Jr.',
+          genre: 'Misty Shoreline Waves',
+          src: 'assets/audio/the-beach.mp3',
+          motif: '<path d="M6 28 C12 22, 18 22, 24 28 C30 34, 36 34, 42 28 M6 20 C12 14, 18 14, 24 20 C30 26, 36 26, 42 20 M6 12 C12 6, 18 6, 24 12 C30 18, 36 18, 42 12"/>'
+        },
+        {
+          id: 'a-way-out',
+          name: 'a way out',
+          artist: 'my head is empty & Miranda Rain',
+          genre: 'Midnight Bastion Echoes',
+          src: 'assets/audio/a-way-out.mp3',
+          motif: '<path d="M28 8 C18 8, 12 16, 12 25 C12 34, 19 41, 28 41 C24 37, 22 31, 22 25 C22 17, 25 11, 28 8 Z M34 16 L35 19 L38 20 L35 21 L34 24 L33 21 L30 20 L33 19 Z"/>'
+        },
+        {
+          id: 'milk-casette',
+          name: 'Milk casette',
+          artist: 'milk casette',
+          genre: 'Antique Tape Warmth',
+          src: 'assets/audio/milk-casette.mp3',
+          motif: '<rect x="8" y="12" width="32" height="24" rx="3"/><circle cx="16" cy="22" r="4"/><circle cx="32" cy="22" r="4"/><path d="M16 26 L32 26 M18 32 L30 32"/>'
+        },
+        {
+          id: 'c418',
+          name: 'C418',
+          artist: 'Daniel Rosenfeld',
+          genre: 'Mineral Sanctuary Lore',
+          src: 'assets/audio/c418-minecraft.mp3',
+          motif: '<path d="M24 6 L40 15 L40 33 L24 42 L8 33 L8 15 Z M24 6 L24 24 L40 15 M24 24 L8 15 M24 24 L24 42"/>'
+        },
+        {
+          id: 'save-me',
+          name: 'Save me',
+          artist: 'my head is empty & Miranda Rain',
+          genre: 'Resonant Sanctuary Chime',
+          src: 'assets/audio/save-me.mp3',
+          motif: '<path d="M24 8 C16 8, 10 14, 10 20 C10 30, 24 39, 24 39 C24 39, 38 30, 38 20 C38 14, 32 8, 24 8 Z M24 14 L24 28 M17 21 L31 21"/>'
+        }
+      ];
+
+      // Single shared audio player
+      const sanctuaryAudio = new Audio();
+      sanctuaryAudio.preload = 'metadata';
+
+      let currentDeckIndex = 0;   // The card currently in slot 0 (foreground)
+      let isDeckAnimating = false; // Lock flag during 3D flip animation
+      let isPlayingState = false;  // Whether audio is actively playing
+
+      const deckContainer = document.getElementById('sanctuaryDeck');
+      const deckScene = document.getElementById('sanctuaryDeckScene');
+      const btnPrev = document.getElementById('btnPrevCard');
+      const btnNext = document.getElementById('btnNextCard');
+      const pipsContainer = document.getElementById('deckPips');
+      const currentIndexBadge = document.getElementById('deckCurrentIndex');
+
+      // Helper to format mm:ss
+      function formatTime(sec) {
+        if (!sec || isNaN(sec)) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      // Render cards into the deck container
+      if (deckContainer) {
+        deckContainer.innerHTML = '';
+        sanctuaryTracks.forEach((track, index) => {
+          const card = document.createElement('div');
+          card.className = 'music-card';
+          card.setAttribute('data-track', index);
+          card.setAttribute('data-slot', index);
+          card.setAttribute('role', 'article');
+          card.setAttribute('aria-label', `${track.name} by ${track.artist}`);
+
+          card.innerHTML = `
+            <!-- CARD FRONT FACE -->
+            <div class="card-face card-front">
+              <div class="card-inner-frame"></div>
+              <span class="corner-bracket tl"></span>
+              <span class="corner-bracket tr"></span>
+              <span class="corner-bracket bl"></span>
+              <span class="corner-bracket br"></span>
+
+              <!-- Exposed Tab for Rear Cards in Stack -->
+              <div class="card-edge-tab" aria-hidden="true">
+                <span>0${index + 1} • ${track.name}</span>
+              </div>
+
+              <!-- Header row with Sigil & Index -->
+              <div class="card-header-row">
+                <div class="card-sigil-label">
+                  <span class="sigil-icon" aria-hidden="true">♪</span>
+                  <span>Sanctuary Card</span>
+                </div>
+                <div class="card-index-pill">
+                  0${index + 1} / 07
+                </div>
+              </div>
+
+              <!-- Center Medallion with Botanical/Sacred Motif -->
+              <div class="card-center-medallion">
+                <div class="medallion-ring-outer"></div>
+                <div class="medallion-ring-inner"></div>
+                <div class="medallion-stone-disc">
+                  <svg class="medallion-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                    ${track.motif}
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Song Meta -->
+              <div class="card-song-meta">
+                <h4 class="card-song-title">${track.name}</h4>
+                <div class="card-artist-name">${track.artist}</div>
+                <div class="card-genre-tag">${track.genre}</div>
+              </div>
+
+              <!-- Playback & Scrubber Panel -->
+              <div class="card-playback-panel">
+                <div class="playback-controls-row">
+                  <button class="card-play-btn" type="button" aria-label="Play ${track.name}">
+                    <span class="play-icon">▶</span>
+                  </button>
+                  <div class="playback-status-block">
+                    <span class="card-status-label">OFF</span>
+                    <div class="card-soundwaves" aria-hidden="true">
+                      <span class="wave-bar"></span>
+                      <span class="wave-bar"></span>
+                      <span class="wave-bar"></span>
+                      <span class="wave-bar"></span>
+                      <span class="wave-bar"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-scrubber-row">
+                  <div class="card-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Audio progress">
+                    <div class="card-progress-fill"></div>
+                  </div>
+                  <div class="card-time-display">0:00 / 0:00</div>
+                </div>
+                <div class="card-flip-cue" title="Flip to next card">
+                  <span>Turn the card</span>
+                  <span aria-hidden="true">↷</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD BACK FACE (Antique Botanical Rosette) -->
+            <div class="card-face card-back" aria-hidden="true">
+              <div class="card-back-ornament">
+                <svg class="back-rosette-svg" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="44" stroke="currentColor" fill="none" stroke-width="1"/>
+                  <circle cx="50" cy="50" r="38" stroke="currentColor" fill="none" stroke-width="0.8" stroke-dasharray="2 3"/>
+                  <circle cx="50" cy="50" r="26" stroke="currentColor" fill="none" stroke-width="1"/>
+                  <path d="M50 6 L50 94 M6 50 L94 50 M19 19 L81 81 M19 81 L81 19" stroke="currentColor" stroke-width="0.7" opacity="0.6"/>
+                  <circle cx="50" cy="50" r="12" fill="rgba(187,164,104,0.15)" stroke="currentColor" stroke-width="1.2"/>
+                  <polygon points="50,42 52,48 58,50 52,52 50,58 48,52 42,50 48,48" fill="#e6b84d"/>
+                </svg>
+                <div class="back-seal-title">Sound Sanctuary</div>
+                <div class="back-seal-sub">Bastion Archive • Card 0${index + 1}</div>
+              </div>
+            </div>
+          `;
+
+          deckContainer.appendChild(card);
+        });
+      }
+
+      // Render pagination pips
+      if (pipsContainer) {
+        pipsContainer.innerHTML = '';
+        sanctuaryTracks.forEach((_, i) => {
+          const pip = document.createElement('button');
+          pip.className = 'deck-pip' + (i === 0 ? ' active' : '');
+          pip.setAttribute('type', 'button');
+          pip.setAttribute('role', 'tab');
+          pip.setAttribute('aria-label', `Song ${i + 1} of 7`);
+          pip.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          pip.addEventListener('click', () => {
+            if (i === currentDeckIndex || isDeckAnimating) return;
+            navigateToCard(i);
+          });
+          pipsContainer.appendChild(pip);
+        });
+      }
+
+      // Update slot assignments based on currentDeckIndex
+      function updateDeckSlots() {
+        const cards = deckContainer.querySelectorAll('.music-card');
+        cards.forEach(card => {
+          const trackIdx = parseInt(card.getAttribute('data-track'), 10);
+          const slot = (trackIdx - currentDeckIndex + 7) % 7;
+          card.setAttribute('data-slot', slot);
+        });
+
+        // Update pagination pips
+        const pips = pipsContainer ? pipsContainer.querySelectorAll('.deck-pip') : [];
+        pips.forEach((pip, i) => {
+          const isActive = (i === currentDeckIndex);
+          pip.classList.toggle('active', isActive);
+          pip.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        // Update index counter badge
+        if (currentIndexBadge) {
+          currentIndexBadge.textContent = (currentDeckIndex + 1 < 10 ? '0' : '') + (currentDeckIndex + 1);
+        }
+      }
+
+      // Update card visual playback status
+      function updateCardPlaybackUI() {
+        const cards = deckContainer.querySelectorAll('.music-card');
+        cards.forEach(card => {
+          const trackIdx = parseInt(card.getAttribute('data-track'), 10);
+          const isCurrent = (trackIdx === currentDeckIndex);
+          const playBtn = card.querySelector('.card-play-btn .play-icon');
+          const statusLabel = card.querySelector('.card-status-label');
+
+          if (isCurrent && isPlayingState) {
+            card.classList.add('is-playing');
+            if (playBtn) playBtn.textContent = '❚❚';
+            if (statusLabel) statusLabel.textContent = '● PLAYING';
+          } else if (isCurrent && sanctuaryAudio.currentTime > 0 && !sanctuaryAudio.ended) {
+            card.classList.remove('is-playing');
+            if (playBtn) playBtn.textContent = '▶';
+            if (statusLabel) statusLabel.textContent = 'PAUSED';
+          } else {
+            card.classList.remove('is-playing');
+            if (playBtn) playBtn.textContent = '▶';
+            if (statusLabel) statusLabel.textContent = 'OFF';
+          }
+        });
+      }
+
+      // Play / Pause toggle
+      function togglePlayPause() {
+        const track = sanctuaryTracks[currentDeckIndex];
+        if (!track) return;
+
+        if (!sanctuaryAudio.src || !sanctuaryAudio.src.includes(track.src)) {
+          sanctuaryAudio.src = track.src;
+          sanctuaryAudio.currentTime = 0;
+        }
+
+        if (sanctuaryAudio.paused) {
+          const activeCard = deckContainer.querySelector(`.music-card[data-track="${currentDeckIndex}"]`);
+          const statusLabel = activeCard ? activeCard.querySelector('.card-status-label') : null;
+          if (statusLabel) statusLabel.textContent = 'LOADING…';
+
+          sanctuaryAudio.play().then(() => {
+            isPlayingState = true;
+            updateCardPlaybackUI();
+          }).catch(err => {
+            console.warn('Audio playback prevented or failed:', err);
+            isPlayingState = false;
+            if (statusLabel) statusLabel.textContent = 'UNAVAILABLE';
+            updateCardPlaybackUI();
+          });
+        } else {
+          sanctuaryAudio.pause();
+          isPlayingState = false;
+          updateCardPlaybackUI();
+        }
+      }
+
+      // Flip forward to Next card
+      function flipNext() {
+        if (isDeckAnimating) return;
+        isDeckAnimating = true;
+
+        const outgoingCard = deckContainer.querySelector(`.music-card[data-slot="0"]`);
+        const nextIndex = (currentDeckIndex + 1) % 7;
+        const incomingCard = deckContainer.querySelector(`.music-card[data-track="${nextIndex}"]`);
+
+        if (outgoingCard) {
+          outgoingCard.classList.add('is-flipping-out');
+        }
+
+        // Mid-flight audio coordination: if currently playing, switch smoothly to next track
+        const wasPlaying = isPlayingState;
+
+        setTimeout(() => {
+          currentDeckIndex = nextIndex;
+          updateDeckSlots();
+
+          if (outgoingCard) outgoingCard.classList.remove('is-flipping-out');
+          if (incomingCard) {
+            incomingCard.classList.add('is-settling-front');
+            setTimeout(() => incomingCard.classList.remove('is-settling-front'), 450);
+          }
+
+          if (wasPlaying) {
+            sanctuaryAudio.src = sanctuaryTracks[currentDeckIndex].src;
+            sanctuaryAudio.currentTime = 0;
+            sanctuaryAudio.play().then(() => {
+              isPlayingState = true;
+              updateCardPlaybackUI();
+            }).catch(() => {
+              isPlayingState = false;
+              updateCardPlaybackUI();
+            });
+          } else {
+            sanctuaryAudio.src = sanctuaryTracks[currentDeckIndex].src;
+            sanctuaryAudio.currentTime = 0;
+            updateCardPlaybackUI();
+          }
+
+          isDeckAnimating = false;
+        }, 720);
+      }
+
+      // Flip backward to Previous card
+      function flipPrev() {
+        if (isDeckAnimating) return;
+        isDeckAnimating = true;
+
+        const prevIndex = (currentDeckIndex - 1 + 7) % 7;
+        const incomingCard = deckContainer.querySelector(`.music-card[data-track="${prevIndex}"]`);
+
+        if (incomingCard) {
+          incomingCard.classList.add('is-flying-in-prev');
+        }
+
+        const wasPlaying = isPlayingState;
+
+        setTimeout(() => {
+          currentDeckIndex = prevIndex;
+          updateDeckSlots();
+
+          if (incomingCard) incomingCard.classList.remove('is-flying-in-prev');
+
+          if (wasPlaying) {
+            sanctuaryAudio.src = sanctuaryTracks[currentDeckIndex].src;
+            sanctuaryAudio.currentTime = 0;
+            sanctuaryAudio.play().then(() => {
+              isPlayingState = true;
+              updateCardPlaybackUI();
+            }).catch(() => {
+              isPlayingState = false;
+              updateCardPlaybackUI();
+            });
+          } else {
+            sanctuaryAudio.src = sanctuaryTracks[currentDeckIndex].src;
+            sanctuaryAudio.currentTime = 0;
+            updateCardPlaybackUI();
+          }
+
+          isDeckAnimating = false;
+        }, 720);
+      }
+
+      // Direct navigation to specific card
+      function navigateToCard(targetIndex) {
+        if (targetIndex === currentDeckIndex || isDeckAnimating) return;
+        const forwardSteps = (targetIndex - currentDeckIndex + 7) % 7;
+        if (forwardSteps <= 3) {
+          flipNext();
+          if (forwardSteps > 1) {
+            // Sequential advance if multiple steps
+            const interval = setInterval(() => {
+              if (currentDeckIndex === targetIndex || isDeckAnimating) {
+                if (currentDeckIndex === targetIndex) clearInterval(interval);
+                return;
+              }
+              flipNext();
+            }, 750);
+          }
+        } else {
+          flipPrev();
+        }
+      }
+
+      // Audio Event Listeners
+      sanctuaryAudio.addEventListener('timeupdate', () => {
+        const activeCard = deckContainer.querySelector(`.music-card[data-track="${currentDeckIndex}"]`);
+        if (!activeCard) return;
+
+        const progressFill = activeCard.querySelector('.card-progress-fill');
+        const progressBar = activeCard.querySelector('.card-progress-track');
+        const timeDisplay = activeCard.querySelector('.card-time-display');
+
+        const cur = sanctuaryAudio.currentTime || 0;
+        const dur = sanctuaryAudio.duration || 0;
+        const pct = dur > 0 ? (cur / dur) * 100 : 0;
+
+        if (progressFill) progressFill.style.width = pct + '%';
+        if (progressBar) progressBar.setAttribute('aria-valuenow', Math.round(pct));
+        if (timeDisplay) timeDisplay.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+      });
+
+      // When a track completes, auto-advance to next card and continue playback
+      sanctuaryAudio.addEventListener('ended', () => {
+        flipNext();
+      });
+
+      sanctuaryAudio.addEventListener('error', () => {
+        isPlayingState = false;
+        const activeCard = deckContainer.querySelector(`.music-card[data-track="${currentDeckIndex}"]`);
+        const statusLabel = activeCard ? activeCard.querySelector('.card-status-label') : null;
+        if (statusLabel) statusLabel.textContent = 'UNAVAILABLE';
+        updateCardPlaybackUI();
+      });
+
+      // Card Click Delegation
+      if (deckContainer) {
+        deckContainer.addEventListener('click', (e) => {
+          const card = e.target.closest('.music-card');
+          if (!card || isDeckAnimating) return;
+
+          const trackIdx = parseInt(card.getAttribute('data-track'), 10);
+          const slot = parseInt(card.getAttribute('data-slot'), 10);
+
+          // Clicked play button
+          const playBtn = e.target.closest('.card-play-btn');
+          if (playBtn) {
+            e.stopPropagation();
+            if (slot !== 0) {
+              // Clicking play on rear card brings it to front and starts playing
+              navigateToCard(trackIdx);
+            } else {
+              togglePlayPause();
+            }
+            return;
+          }
+
+          // Clicked progress scrubber
+          const scrubber = e.target.closest('.card-progress-track');
+          if (scrubber && slot === 0 && sanctuaryAudio.duration) {
+            e.stopPropagation();
+            const rect = scrubber.getBoundingClientRect();
+            const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            sanctuaryAudio.currentTime = ratio * sanctuaryAudio.duration;
+            return;
+          }
+
+          // Clicked "Turn the card" cue
+          const flipCue = e.target.closest('.card-flip-cue');
+          if (flipCue) {
+            e.stopPropagation();
+            flipNext();
+            return;
+          }
+
+          // Clicking a rear card brings it forward
+          if (slot !== 0) {
+            e.stopPropagation();
+            flipNext();
+            return;
+          }
+
+          // Clicking the foreground card surface outside controls flips to next
+          if (!e.target.closest('.card-playback-panel')) {
+            flipNext();
+          }
+        });
+      }
+
+      // Tactile button controls
+      if (btnPrev) btnPrev.addEventListener('click', flipPrev);
+      if (btnNext) btnNext.addEventListener('click', flipNext);
+
+      // Keyboard navigation when deck scene is focused
+      if (deckScene) {
+        deckScene.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            flipNext();
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            flipPrev();
+          } else if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            togglePlayPause();
+          }
+        });
+      }
+
+      // Initialize initial slots and audio src
+      updateDeckSlots();
+      sanctuaryAudio.src = sanctuaryTracks[0].src;
+
+      // Bento Aa Card Click
+      const cardHarmonic = document.getElementById('cardHarmonicAa');
+      const harmonicAaStatus = document.getElementById('harmonicAaStatus');
+      if (cardHarmonic) {
+        cardHarmonic.addEventListener('click', () => {
+          if (btnAcoustic) btnAcoustic.click();
+          if (harmonicAaStatus) {
+            harmonicAaStatus.textContent = masterAudioActive ? 'Active' : 'Off';
+            harmonicAaStatus.className = masterAudioActive ? 'status-on' : 'status-off';
+          }
+        });
+      }
+
+      // -------------------------------------------------------------
+      // 4. MR. NO CAP REBUKE ENGINE & JOHNNY DYNAMITE VOICE
+      // -------------------------------------------------------------
+      const quotesDatabase = {
+        Gentle: [
+          "Perhaps a brief stroll in the garden, dear friend? The sky is rather magnificent today, and remarkably devoid of algorithms.",
+          "A gentle reminder that whatever you seek in the endless feed was never truly misplaced there to begin with.",
+          "Your mind is an exquisite library; do not allow trivial notifications to clutter its quietest halls."
+        ],
+        "Dry Wit": [
+          "Fascinating specimen. You\u2019ve consumed 400 micro-doses of manufactured outrage before breakfast, yet your unfinished novel remains exactly four words long.",
+          "Pardon the interruption, but you\u2019ve swiped through the equivalent of three encyclopedias without retaining a single concept. Truly a virtuoso of forgetfulness.",
+          "Do enlighten me: will this upcoming 7-second recipe clip finally be the catalyst for your culinary renaissance, or are we merely embalming another precious afternoon?"
+        ],
+        Savage: [
+          "I say, your thumb appears to have far outrun your ambition today. Did you genuinely plan on donating your remaining youth to 15-second dancing teenagers, or did your willpower simply step out for tea?",
+          "One observes that your dopamine receptors are currently begging for mercy like Victorian orphans in a coal mine. Step away from the glowing glass brick.",
+          "Another notification, another Pavlovian twitch. One wonders if your forebears hunted mammoths simply so you could watch a stranger rate microwave popcorn.",
+          "A profound silence awaits beyond that rectangle. I strongly recommend visiting reality\u2014the graphics are astonishing and there are zero ads."
+        ]
+      };
+
+      let currentTone = 'Savage';
+      let quoteIndex = 0;
+      let realityInterceptCount = 1;
+
+      const quoteEl = document.getElementById('quoteText');
+      const severityBadge = document.getElementById('rebukeSeverityBadge');
+      const statusText = document.getElementById('rebukeStatusText');
+      const btnCycle = document.getElementById('btnCycleRebuke');
+      const btnSpeak = document.getElementById('btnSpeakJohnny');
+      const btnSpeakText = document.getElementById('btnSpeakText');
+      const audioJohnny = document.getElementById('audioJohnny');
+
+      function changeQuote(tone = currentTone) {
+        currentTone = tone;
+        const list = quotesDatabase[tone] || quotesDatabase['Savage'];
+        quoteIndex = (quoteIndex + 1) % list.length;
+        realityInterceptCount++;
+
+        if (quoteEl) {
+          quoteEl.classList.add('swap');
+          setTimeout(() => {
+            quoteEl.textContent = `\u201C${list[quoteIndex]}\u201D`;
+            quoteEl.classList.remove('swap');
+          }, 180);
+        }
+
+        if (severityBadge) {
+          severityBadge.textContent = tone === 'Gentle' ? 'Gentle Observer' : (tone === 'Dry Wit' ? 'Dry Wit Critic' : 'High Society Savage');
+        }
+
+        if (typeof highlightTonePill === 'function') {
+          highlightTonePill(tone);
+        }
+
+        if (statusText) {
+          statusText.textContent = `Status: Reality Intercepted #${realtySafeCount()}`;
+        }
+      }
+
+      function realtySafeCount() { return realityInterceptCount; }
+
+      if (btnCycle) {
+        btnCycle.addEventListener('click', () => changeQuote(currentTone));
+      }
+
+      // -----------------------------------------------------------------
+      // VOICE — Mr. No cap speaks EVERY line in the Johnny Dynamite
+      // reference voice. Each line has its own pre-generated clip in
+      // assets/voice/ (see assets/voice/README.txt). There is intentionally
+      // NO browser text-to-speech fallback: a missing clip is reported
+      // rather than faked with a generic system voice.
+      // -----------------------------------------------------------------
+      function voiceClipId(tone, idx) {
+        const slug = tone.toLowerCase().replace(/\s+/g, '');
+        return slug + '-' + (idx + 1) + '.mp3';
+      }
+
+      function setSpeakIdle() {
+        btnSpeakText.textContent = 'Speak via Johnny';
+        btnSpeak.classList.remove('is-speaking');
+      }
+
+      // Stop whatever is playing so two lines never overlap.
+      function stopJohnnyVoice() {
+        if (audioJohnny) {
+          try { audioJohnny.pause(); } catch (e) {}
+        }
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+      }
+
+      function speakCurrentText() {
+        const clipFile = voiceClipId(currentTone, quoteIndex);
+
+        // Start clean: cut the previous line before the new one begins.
+        stopJohnnyVoice();
+        if (audioJohnny) {
+          audioJohnny.onended = null;
+          audioJohnny.onerror = null;
+        }
+
+        btnSpeakText.textContent = 'Speaking...';
+        btnSpeak.classList.add('is-speaking');
+
+        if (!audioJohnny) {
+          setSpeakIdle();
+          return;
+        }
+
+        audioJohnny.src = 'assets/voice/' + clipFile;
+
+        audioJohnny.onended = () => {
+          setSpeakIdle();
+        };
+
+        audioJohnny.onerror = () => {
+          // Graceful missing-clip state — never substitute a browser voice.
+          setSpeakIdle();
+          if (statusText) {
+            statusText.textContent = 'Status: voice clip "' + clipFile + '" not generated yet';
+          }
+        };
+
+        audioJohnny.play().catch(() => {
+          setSpeakIdle();
+          if (statusText) {
+            statusText.textContent = 'Status: voice clip "' + clipFile + '" not generated yet';
+          }
+        });
+      }
+
+      if (btnSpeak) {
+        btnSpeak.addEventListener('click', speakCurrentText);
+      }
+
+      // Hero Start Reality Check
+      const btnHeroCheck = document.getElementById('btnHeroRealityCheck');
+      if (btnHeroCheck) {
+        btnHeroCheck.addEventListener('click', () => {
+          changeQuote(currentTone);
+          setTimeout(speakCurrentText, 500);
+        });
+      }
+
+      // -------------------------------------------------------------
+      // 5. BOREDOM ROULETTE — the twelve-faced stone lives in
+      //    roulette.js (data, die, roll, result, garden notes).
+      // -------------------------------------------------------------
+
+      // -------------------------------------------------------------
+      // 6. MR. NO CAP ROAST TONE PRESETS
+      // -------------------------------------------------------------
+      const tonePills = document.querySelectorAll('.tone-pill');
+
+      function highlightTonePill(toneName) {
+        tonePills.forEach(pill => {
+          pill.classList.toggle('active', pill.getAttribute('data-tone') === toneName);
+        });
+      }
+
+      tonePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const tone = pill.getAttribute('data-tone');
+          highlightTonePill(tone);
+          changeQuote(tone);
+        });
+      });
+
+      // -------------------------------------------------------------
+      // 7. ATTENTION SPAN FOCUS TIMER (25:00)
+      // -------------------------------------------------------------
+      let timerSeconds = 25 * 60;
+      let timerInterval = null;
+      let isTimerRunning = false;
+
+      const timerDial = document.getElementById('focusTimerDial');
+      const timerClock = document.getElementById('focusTimerClock');
+      const timerStateText = document.getElementById('focusTimerStateText');
+      const btnFocusCinematic = document.getElementById('btnFocusCinematic');
+
+      function formatTime(s) {
+        const m = Math.floor(s / 60).toString().padStart(2, '0');
+        const sec = (s % 60).toString().padStart(2, '0');
+        return `${m}:${sec}`;
+      }
+
+      function toggleFocusTimer() {
+        isTimerRunning = !isTimerRunning;
+        if (isTimerRunning) {
+          playBellChime(528, 0.8);
+          if (timerStateText) timerStateText.textContent = 'FOCUSING...';
+          if (timerDial) timerDial.classList.add('running');
+          timerInterval = setInterval(() => {
+            if (timerSeconds > 0) {
+              timerSeconds--;
+              if (timerClock) timerClock.textContent = formatTime(timerSeconds);
+            } else {
+              clearInterval(timerInterval);
+              isTimerRunning = false;
+              playBellChime(880, 2.5);
+              if (timerStateText) timerStateText.textContent = 'COMPLETED!';
+              if (timerDial) timerDial.classList.remove('running');
+            }
+          }, 1000);
+        } else {
+          clearInterval(timerInterval);
+          if (timerStateText) timerStateText.textContent = 'PAUSED';
+          if (timerDial) timerDial.classList.remove('running');
+        }
+      }
+
+      if (timerDial) timerDial.addEventListener('click', toggleFocusTimer);
+      if (btnFocusCinematic) btnFocusCinematic.addEventListener('click', toggleFocusTimer);
+
+      // -------------------------------------------------------------
+      // 9. DOOMSCROLL SIMULATOR MODAL & INTERCEPT (Ripple transition ritual)
+      // -------------------------------------------------------------
+      const btnOpenSim = document.getElementById('btnOpenSimulator');
+      const modalSim = document.getElementById('simulatorModal');
+      const btnCloseSim = document.getElementById('btnCloseSimulator');
+      const btnShieldEscape = document.getElementById('btnShieldEscape');
+
+      function openSimulator(e) {
+        const ritual = window.BastionRitual;
+        const panel = modalSim ? modalSim.querySelector('.modal-panel') : null;
+        if (ritual) {
+          ritual.sweep(() => {
+            if (!modalSim) return;
+            modalSim.classList.remove('hidden');
+            if (panel) {
+              panel.classList.remove('ritual-enter');
+              void panel.offsetWidth; // restart the stone-settle animation
+              panel.classList.add('ritual-enter');
+            }
+          }, null, e);
+        } else if (modalSim) {
+          modalSim.classList.remove('hidden');
+        }
+        playBellChime(440, 0.5);
+      }
+
+      function closeSimulator(e) {
+        const ritual = window.BastionRitual;
+        if (ritual) {
+          ritual.sweep(() => { if (modalSim) modalSim.classList.add('hidden'); }, null, e);
+        } else if (modalSim) {
+          modalSim.classList.add('hidden');
+        }
+      }
+
+      if (btnOpenSim && modalSim) btnOpenSim.addEventListener('click', openSimulator);
+      if (btnCloseSim && modalSim) btnCloseSim.addEventListener('click', closeSimulator);
+
+      if (btnShieldEscape && modalSim) {
+        btnShieldEscape.addEventListener('click', () => {
+          closeSimulator();
+          playBellChime(660, 1.2);
+          const sanct = document.getElementById('sanctuary');
+          if (sanct) sanct.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      // Close modal on background click
+      if (modalSim) {
+        modalSim.addEventListener('click', (e) => {
+          if (e.target === modalSim) closeSimulator();
+        });
+      }
+
+      // -------------------------------------------------------------
+      // 10. WORKSPACE RAIL MODE SWITCHER
+      // -------------------------------------------------------------
+      const railItems = document.querySelectorAll('.rail-mode-item');
+      railItems.forEach(item => {
+        item.addEventListener('click', () => {
+          railItems.forEach(r => r.classList.remove('active'));
+          item.classList.add('active');
+
+          const targetId = item.getAttribute('data-target');
+          if (targetId) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // -------------------------------------------------------------
+      // 11. NAV LINK ACTIVE STATE
+      // -------------------------------------------------------------
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+
+      // -------------------------------------------------------------
+      // 12. TERMINAL CLOCK TICKER
+      // -------------------------------------------------------------
+      const terminalClock = document.getElementById('terminalClock');
+      if (terminalClock) {
+        setInterval(() => {
+          const now = new Date();
+          const h = String(now.getHours()).padStart(2, '0');
+          const m = String(now.getMinutes()).padStart(2, '0');
+          const s = String(now.getSeconds()).padStart(2, '0');
+          const ms = String(Math.floor(now.getMilliseconds() / 10)).padStart(2, '0');
+          terminalClock.textContent = `${h}:${m}:${s}:${ms}`;
+        }, 100);
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
