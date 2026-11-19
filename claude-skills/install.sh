@@ -31,6 +31,9 @@ COMMUNITY=(
   "freshtechbro/claudedesignskills|1da73febff0c3e1dfefc07f8a5ef8f7d1dfdb6cd|.factory/skills/react-three-fiber|react-three-fiber"
   "alirezarezvani/claude-skills|f8593c4941210a621a6629ce1da9e07897976d5f|engineering-team/a11y-audit/skills/a11y-audit|a11y-audit"
   "wshobson/agents|42203085cfc5736204bf0f6d436dff7e1da0bf3f|plugins/frontend-mobile-development/skills/tailwind-design-system|tailwind-design-system"
+  "JuliusBrussee/caveman|a192894723a8f47e7f504c7b5041967ff1f18e55|skills/caveman|caveman"
+  "DietrichGebert/ponytail|96608e078b2d5ea607c5c3b8b5a54d1c1fba6846|skills/ponytail|ponytail"
+  "murphyaidanbusiness-ux/condom|e98a9f87f6945c58f18610efcec84e7fd2533f54|.|condom"
 )
 
 TMP="$(mktemp -d)"
@@ -48,6 +51,7 @@ for entry in "${COMMUNITY[@]}"; do
   git -C "$src" checkout -q FETCH_HEAD -- "$path"
   rm -rf "${DEST:?}/$name"
   cp -R "$src/$path" "$DEST/$name"
+  rm -rf "${DEST:?}/$name/.git"   # repo-root skills (path ".") would otherwise copy git metadata
   echo "  ✓ $name  ($repo@${sha:0:7})"
 done
 
