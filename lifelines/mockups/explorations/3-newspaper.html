@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;height:900px;background:#2A2724 radial-gradient(ellipse at 50% 40%,#3a3632,#1e1c1a);font-family:'Source Serif 4',serif;overflow:hidden;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;color:#d9d2c4;font-family:'IBM Plex Mono';font-size:13px;letter-spacing:.1em}
+.top b{font-family:'Playfair Display';font-style:italic;font-size:22px;letter-spacing:0;color:#fff;font-weight:700}
+.paper{position:absolute;top:70px;width:630px;height:770px;background:#F4EEDF;color:#1a1714;padding:26px 30px;box-shadow:0 30px 60px rgba(0,0,0,.55),0 2px 0 rgba(255,255,255,.3) inset}
+.paper:before{content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8'/><feColorMatrix values='0 0 0 0 .6  0 0 0 0 .55  0 0 0 0 .45  0 0 0 .35 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>")}
+.l{left:70px;transform:rotate(-1.4deg)} .r{right:70px;transform:rotate(1.1deg)}
+.ed{display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.08em;border-bottom:1px solid #1a1714;padding-bottom:6px}
+.mast{font-family:UnifrakturMaguntia;font-size:58px;text-align:center;line-height:1.1;margin:6px 0 2px}
+.sub{display:flex;justify-content:space-between;font-size:12px;border-top:3px double #1a1714;border-bottom:3px double #1a1714;padding:5px 0;font-style:italic}
+.tag{display:inline-block;font-family:'IBM Plex Mono';font-size:11px;font-weight:600;color:#fff;padding:3px 8px;margin:14px 0 6px;letter-spacing:.1em}
+h1{font-family:'Playfair Display';font-weight:900;font-size:40px;line-height:1.02;letter-spacing:-.01em}
+.deck{font-family:'Playfair Display';font-style:italic;font-size:17px;line-height:1.3;margin:10px 0 12px;color:#3a332c}
+.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;border-top:1px solid #1a1714;padding-top:12px}
+.photo{height:190px;border:1px solid #1a1714;position:relative;overflow:hidden}
+.cap{font-size:11px;font-style:italic;margin-top:5px;color:#4a423a}
+p{font-size:13px;line-height:1.5;text-align:justify;hyphens:auto}
+p:first-letter{font-family:'Playfair Display';font-weight:900;font-size:40px;float:left;line-height:.85;margin:3px 6px 0 0}
+.box{border:1.5px solid #1a1714;padding:10px 12px}
+.box h3{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.12em;border-bottom:1px solid #1a1714;padding-bottom:5px;margin-bottom:6px}
+.row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px dotted #8a8070}
+.row b{font-family:'IBM Plex Mono';font-weight:600}
+.up{color:#1e6b3a}.dn{color:#a3241c}
+.arch{margin-top:10px}
+.arch .row{font-size:12px}
+.scrub{white-space:nowrap;position:absolute;left:50%;transform:translateX(-50%);bottom:18px;display:flex;align-items:center;gap:14px;color:#d9d2c4;font-family:'IBM Plex Mono';font-size:12px}
+.scrub .t{width:520px;height:4px;background:#5a544c;position:relative;border-radius:2px}
+.scrub .t i{position:absolute;left:0;width:52%;top:0;bottom:0;background:#F4EEDF;border-radius:2px}
+.scrub .t s{position:absolute;left:52%;top:-7px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:#F4EEDF;border:3px solid #2a2724;outline:2px solid #F4EEDF}
+.scrub .t u{position:absolute;left:12%;top:-10px;height:24px;width:2px;background:#e3b04b}
+</style></head><body>
+<div class="top"><b>The Other Edition</b><span>ONE LIFE · TWO FRONT PAGES · MAYA OKAFOR, 1 OF 1,000 RUNS</span><span>PRINT ⎙ &nbsp; SHARE ↗</span></div>
+
+<div class="paper l">
+ <div class="ed"><span>EDITION A — SHE WENT TO TOKYO</span><span>VOL. XLV</span></div>
+ <div class="mast">The Maya Chronicle</div>
+ <div class="sub"><span>Tokyo · Sunday, 14 March 2046</span><span>Age 45</span><span>Price: one decision</span></div>
+ <span class="tag" style="background:#a3241c">BUSINESS</span>
+ <h1>Okafor Studio Sold in Landmark Deal</h1>
+ <div class="deck">Twenty-one years after a one-way flight, the designer cashes out — but admits, "I missed a lot of birthdays."</div>
+ <div class="grid">
+  <div><div class="photo"><svg width="100%" height="100%" viewBox="0 0 330 190" preserveAspectRatio="none"><defs><pattern id="h1" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#1a1714" stroke-width="1.6"/></pattern></defs><rect width="330" height="190" fill="#d8cfbb"/><g fill="url(#h1)"><rect x="10" y="70" width="40" height="120"/><rect x="58" y="30" width="34" height="160"/><rect x="100" y="90" width="50" height="100"/><rect x="160" y="10" width="30" height="180"/><rect x="198" y="60" width="46" height="130"/><rect x="252" y="100" width="30" height="90"/><rect x="288" y="45" width="36" height="145"/></g><circle cx="270" cy="34" r="16" fill="#F4EEDF" stroke="#1a1714"/></svg></div><div class="cap">The Shibuya skyline from the studio's 31st-floor office.</div></div>
+  <div class="box"><h3>LIFE INDEX · VS. EDITION B</h3>
+   <div class="row"><span>Wealth</span><b class="up">82 ▲35</b></div>
+   <div class="row"><span>Happiness</span><b class="dn">58 ▼21</b></div>
+   <div class="row"><span>Health</span><b class="dn">61 ▼11</b></div>
+   <div class="row"><span>Relationships</span><b class="dn">40 ▼48</b></div>
+   <div class="arch"><h3 style="margin-top:8px">FROM THE ARCHIVES</h3>
+    <div class="row"><span>'27 Promoted to lead</span></div><div class="row"><span>'30 Engagement called off</span></div><div class="row"><span>'39 Burnout sabbatical</span></div></div>
+  </div>
+ </div>
+ <p style="margin-top:12px">When Maya Okafor boarded a flight to Narita at 24, she carried one suitcase and her grandmother's sourdough starter, which died within a month. The studio she founded at 33 now employs ninety people, and last week it changed hands.</p>
+</div>
+
+<div class="paper r">
+ <div class="ed"><span>EDITION B — SHE STAYED HOME</span><span>VOL. XLV</span></div>
+ <div class="mast">The Maya Chronicle</div>
+ <div class="sub"><span>Hometown · Sunday, 14 March 2046</span><span>Age 45</span><span>Price: one decision</span></div>
+ <span class="tag" style="background:#1e6b3a">LOCAL</span>
+ <h1>Crumb &amp; Co. Opens Second Bakery on Main Street</h1>
+ <div class="deck">The baker who turned down Tokyo says she has "no regrets, just flour everywhere."</div>
+ <div class="grid">
+  <div><div class="photo"><svg width="100%" height="100%" viewBox="0 0 330 190" preserveAspectRatio="none"><defs><pattern id="h2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#1a1714" stroke-width="1.4"/></pattern></defs><rect width="330" height="190" fill="#d8cfbb"/><rect x="60" y="60" width="210" height="130" fill="url(#h2)"/><path d="M50 60h230l-10 26H60z" fill="#F4EEDF" stroke="#1a1714"/><g fill="#1a1714"><rect x="70" y="60" width="18" height="26"/><rect x="106" y="60" width="18" height="26"/><rect x="142" y="60" width="18" height="26"/><rect x="178" y="60" width="18" height="26"/><rect x="214" y="60" width="18" height="26"/><rect x="250" y="60" width="18" height="26"/></g><rect x="95" y="105" width="70" height="55" fill="#F4EEDF" stroke="#1a1714"/><rect x="185" y="105" width="45" height="85" fill="#F4EEDF" stroke="#1a1714"/><path d="M120 40c-6-10 6-14 0-26M140 40c-6-10 6-14 0-26" stroke="#1a1714" fill="none"/></svg></div><div class="cap">Opening morning. The queue went round the corner.</div></div>
+  <div class="box"><h3>LIFE INDEX · VS. EDITION A</h3>
+   <div class="row"><span>Wealth</span><b class="dn">47 ▼35</b></div>
+   <div class="row"><span>Happiness</span><b class="up">79 ▲21</b></div>
+   <div class="row"><span>Health</span><b class="up">72 ▲11</b></div>
+   <div class="row"><span>Relationships</span><b class="up">88 ▲48</b></div>
+   <div class="arch"><h3 style="margin-top:8px">FROM THE ARCHIVES</h3>
+    <div class="row"><span>'28 Marries Sam</span></div><div class="row"><span>'31 Daughter Ada born</span></div><div class="row"><span>'35 Town saves the bakery</span></div></div>
+  </div>
+ </div>
+ <p style="margin-top:12px">Maya Okafor still keeps the Tokyo offer letter in a drawer under the till. "I read it when the ovens break," she said, laughing. The second shop, run with husband Sam, opened Saturday to a line of neighbours.</p>
+</div>
+
+<div class="scrub"><span>AGE 18</span><div class="t"><i></i><u title="fork"></u><s></s></div><span>45 / 70</span><span style="color:#e3b04b">▍fork at 24</span></div>
+</body></html>

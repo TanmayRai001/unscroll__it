@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800;900&family=Overpass+Mono:wght@400;600&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;height:900px;background:#F7F5EF;font-family:Overpass,sans-serif;color:#1B1B1F;overflow:hidden}
+header{display:flex;align-items:center;justify-content:space-between;padding:28px 56px;border-bottom:3px solid #1B1B1F}
+.logo{display:flex;align-items:center;gap:14px;font-weight:900;font-size:26px;letter-spacing:.04em}
+.roundel{width:38px;height:38px;border-radius:50%;border:7px solid #E8542F;position:relative}
+.roundel:after{content:"";position:absolute;left:-12px;right:-12px;top:5px;height:9px;background:#1E9E6A}
+.who{font-family:'Overpass Mono';font-size:14px;color:#55555c}
+.who b{color:#1B1B1F}
+nav{display:flex;gap:10px}
+nav span{font-weight:700;font-size:14px;padding:8px 16px;border:2px solid #1B1B1F;border-radius:30px}
+nav span.on{background:#1B1B1F;color:#F7F5EF}
+svg text{font-family:Overpass}
+.mono{font-family:'Overpass Mono'}
+.bottom{position:absolute;left:56px;right:56px;top:730px;display:grid;grid-template-columns:240px 1fr 1fr 1fr 1fr;gap:28px;align-items:end;border-top:3px solid #1B1B1F;padding-top:22px}
+.bottom h3{font-weight:900;font-size:22px;line-height:1.1}
+.bottom h3 small{display:block;font-family:'Overpass Mono';font-weight:400;font-size:12px;color:#66666d;margin-top:6px;letter-spacing:.05em}
+.stat .lbl{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between}
+.bar{height:14px;border-radius:7px;background:#E4E1D8;margin-bottom:7px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:7px}
+.bar em{position:absolute;right:-34px;top:-3px;font-style:normal;font-family:'Overpass Mono';font-size:13px;font-weight:600}
+.a i{background:#E8542F}.b i{background:#1E9E6A}
+.stat{padding-right:40px}
+</style></head><body>
+<header>
+ <div class="logo"><div class="roundel"></div>LIFELINES</div>
+ <div class="who">Passenger: <b>Maya Okafor</b> · born 2001 · curious, cautious, loyal</div>
+ <nav><span class="on">Map</span><span>Timeline</span><span>Run 1,000×</span></nav>
+</header>
+<svg width="1440" height="600" viewBox="0 0 1440 600" style="position:absolute;top:96px;left:0">
+ <!-- grid -->
+ <defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ECE9E0" stroke-width="1"/></pattern></defs>
+ <rect width="1440" height="600" fill="url(#g)"/>
+ <!-- shared -->
+ <path d="M80 300H470" stroke="#1B1B1F" stroke-width="14" stroke-linecap="round" fill="none"/>
+ <!-- A -->
+ <path d="M470 292H540L670 162H1340" stroke="#E8542F" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+ <!-- B -->
+ <path d="M470 308H540L670 438H1340" stroke="#1E9E6A" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+ <!-- shared stations -->
+ <g font-size="15" font-weight="700">
+  <circle cx="110" cy="300" r="11" fill="#fff" stroke="#1B1B1F" stroke-width="5"/>
+  <text x="110" y="345" text-anchor="middle" class="mono" font-size="12" fill="#66666d">AGE 0</text><text x="110" y="364" text-anchor="middle">Born</text>
+  <circle cx="230" cy="300" r="11" fill="#fff" stroke="#1B1B1F" stroke-width="5"/>
+  <text x="230" y="345" text-anchor="middle" class="mono" font-size="12" fill="#66666d">AGE 18</text><text x="230" y="364" text-anchor="middle">Leaves school</text>
+  <circle cx="350" cy="300" r="11" fill="#fff" stroke="#1B1B1F" stroke-width="5"/>
+  <text x="350" y="345" text-anchor="middle" class="mono" font-size="12" fill="#66666d">AGE 22</text><text x="350" y="364" text-anchor="middle">Design degree</text>
+ </g>
+ <!-- interchange -->
+ <rect x="446" y="270" width="72" height="60" rx="30" fill="#fff" stroke="#1B1B1F" stroke-width="6"/>
+ <rect x="372" y="186" width="220" height="62" rx="8" fill="#1B1B1F"/>
+ <text x="482" y="210" text-anchor="middle" fill="#F7F5EF" class="mono" font-size="12" letter-spacing="1.5">INTERCHANGE · AGE 24</text>
+ <text x="482" y="234" text-anchor="middle" fill="#fff" font-size="17" font-weight="900">The Tokyo offer</text>
+ <!-- line tags -->
+ <rect x="400" y="96" width="190" height="34" rx="17" fill="#E8542F"/><text x="495" y="119" text-anchor="middle" fill="#fff" font-weight="800" font-size="15">A · Tokyo Line</text>
+ <rect x="380" y="470" width="220" height="34" rx="17" fill="#1E9E6A"/><text x="490" y="493" text-anchor="middle" fill="#fff" font-weight="800" font-size="15">B · Hometown Line</text>
+ <!-- A stations -->
+ <g font-size="15" font-weight="700">
+  <circle cx="750" cy="162" r="11" fill="#fff" stroke="#E8542F" stroke-width="5"/><text x="750" y="120" text-anchor="middle" class="mono" font-size="12" fill="#B9401F">26</text><text x="750" y="139" text-anchor="middle">Lead designer</text>
+  <circle cx="880" cy="162" r="11" fill="#fff" stroke="#E8542F" stroke-width="5"/><text x="880" y="120" text-anchor="middle" class="mono" font-size="12" fill="#B9401F">29</text><text x="880" y="139" text-anchor="middle">Breakup</text>
+  <circle cx="1010" cy="162" r="11" fill="#fff" stroke="#E8542F" stroke-width="5"/><text x="1010" y="120" text-anchor="middle" class="mono" font-size="12" fill="#B9401F">33</text><text x="1010" y="139" text-anchor="middle">Own studio</text>
+  <circle cx="1140" cy="162" r="11" fill="#fff" stroke="#E8542F" stroke-width="5"/>
+  <path d="M1140 186l14 24h-28z" fill="#F2B705" stroke="#1B1B1F" stroke-width="2"/><text x="1140" y="206" text-anchor="middle" font-size="12" font-weight="900">!</text>
+  <text x="1140" y="120" text-anchor="middle" class="mono" font-size="12" fill="#B9401F">38</text><text x="1140" y="139" text-anchor="middle">Burnout</text>
+  <rect x="1322" y="144" width="36" height="36" rx="6" fill="#fff" stroke="#E8542F" stroke-width="6"/><text x="1358" y="120" text-anchor="end" class="mono" font-size="12" fill="#B9401F">45 · NOW</text><text x="1358" y="139" text-anchor="end">Studio sold</text>
+ </g>
+ <!-- B stations -->
+ <g font-size="15" font-weight="700">
+  <circle cx="750" cy="438" r="11" fill="#fff" stroke="#1E9E6A" stroke-width="5"/><text x="750" y="478" text-anchor="middle" class="mono" font-size="12" fill="#14724C">25</text><text x="750" y="497" text-anchor="middle">Opens a bakery</text>
+  <circle cx="880" cy="438" r="11" fill="#fff" stroke="#1E9E6A" stroke-width="5"/><text x="880" y="478" text-anchor="middle" class="mono" font-size="12" fill="#14724C">27</text><text x="880" y="497" text-anchor="middle">Marries Sam</text>
+  <circle cx="1010" cy="438" r="11" fill="#fff" stroke="#1E9E6A" stroke-width="5"/><text x="1010" y="478" text-anchor="middle" class="mono" font-size="12" fill="#14724C">30</text><text x="1010" y="497" text-anchor="middle">First child</text>
+  <circle cx="1140" cy="438" r="11" fill="#fff" stroke="#1E9E6A" stroke-width="5"/>
+  <path d="M1140 386l14 24h-28z" fill="#F2B705" stroke="#1B1B1F" stroke-width="2"/><text x="1140" y="406" text-anchor="middle" font-size="12" font-weight="900">!</text>
+  <text x="1140" y="478" text-anchor="middle" class="mono" font-size="12" fill="#14724C">34</text><text x="1140" y="497" text-anchor="middle">Near-closure</text>
+  <rect x="1322" y="420" width="36" height="36" rx="6" fill="#fff" stroke="#1E9E6A" stroke-width="6"/><text x="1358" y="478" text-anchor="end" class="mono" font-size="12" fill="#14724C">45 · NOW</text><text x="1358" y="497" text-anchor="end">2nd shop</text>
+ </g>
+</svg>
+<div class="bottom">
+ <h3>Terminus report<small>BOTH LINES AT AGE 45 · SAME LUCK SEED #4127</small></h3>
+ <div class="stat"><div class="lbl">Wealth</div><div class="bar a"><i style="width:82%"></i><em>82</em></div><div class="bar b"><i style="width:47%"></i><em>47</em></div></div>
+ <div class="stat"><div class="lbl">Happiness</div><div class="bar a"><i style="width:58%"></i><em>58</em></div><div class="bar b"><i style="width:79%"></i><em>79</em></div></div>
+ <div class="stat"><div class="lbl">Health</div><div class="bar a"><i style="width:61%"></i><em>61</em></div><div class="bar b"><i style="width:72%"></i><em>72</em></div></div>
+ <div class="stat"><div class="lbl">Relationships</div><div class="bar a"><i style="width:40%"></i><em>40</em></div><div class="bar b"><i style="width:88%"></i><em>88</em></div></div>
+</div>
+</body></html>
