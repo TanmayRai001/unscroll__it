@@ -1,18 +1,79 @@
 {
-  "style": "35mm cinematic film still, Kodak Vision3 500T, warm tungsten and amber practical light, deep crushed blacks, warm highlights, soft halation, fine natural grain, shallow depth of field, quiet contemplative moment, subject not looking at camera, muted palette with no purple or magenta, no text, no logos, no watermark",
+  "style": "Places, no people. Unretouched 35mm documentary photograph, natural colour as shot on Kodak Portra 400/800, honest exposure, natural grain, no heavy colour grade. Photographed through wet glass: droplets and rivulets in the near foreground, slightly soft, refracting the scene.",
   "negative": "purple, violet, magenta, neon glow, oversaturated, plastic skin, illustration, 3d render, text, watermark, frame border",
   "portraits": [
-    {"file": "01-maya.jpg",  "aspect": "3:4", "prompt": "Japanese-British woman, 24, standing on a narrow Tokyo side street at night, rain-wet asphalt, warm shop signs out of focus behind her, coat collar up, looking down the street"},
-    {"file": "02-arjun.jpg", "aspect": "3:4", "prompt": "Indian young man, 18, on a small club stage holding an electric guitar, single warm spotlight from above, dark room, dust in the beam, eyes half closed"},
-    {"file": "03-lena.jpg",  "aspect": "3:4", "prompt": "German woman, 31, at a desk in a small home office, laptop open, late-afternoon window light falling across her face, mug of tea, thinking"},
-    {"file": "04-sam.jpg",   "aspect": "3:2", "prompt": "man, 40, in a garage woodshop at dusk, sawdust in the air, half-built wooden chair on the bench, single hanging work lamp, rolled shirt sleeves"},
-    {"file": "05-zara.jpg",  "aspect": "3:4", "prompt": "young woman, 22, sitting by a large airport terminal window at dawn, backpack at her feet, planes blurred outside, warm low sun on her face"},
-    {"file": "06-kenji.jpg", "aspect": "3:4", "prompt": "Japanese man, 55, grey stubble, sitting alone at a kitchen table early morning, quiet soft light from a side window, reading glasses in hand, rolled engineering drawings beside him"},
-    {"file": "07-priya.jpg", "aspect": "3:4", "prompt": "Indian woman, 27, standing at a window during a monsoon evening, rain streaking the glass, warm lamp light inside, phone held loosely in her hand"},
-    {"file": "08-omar.jpg",  "aspect": "3:2", "prompt": "Egyptian man, 35, alone in an empty open-plan office at night, city lights out of focus through the glass, desk lamp lighting his face, sleeves rolled"},
-    {"file": "09-elena.jpg", "aspect": "3:2", "prompt": "Greek young woman, 19, walking between rows of old olive trees at sunset, golden backlight through the leaves, linen shirt, hand brushing a branch"},
-    {"file": "10-theo.jpg",  "aspect": "3:4", "prompt": "man, 29, sitting on a city rooftop at blue hour beside his best friend (seen from behind, out of focus), warm string lights, glancing sideways at the friend"},
-    {"file": "11-ama.jpg",   "aspect": "3:4", "prompt": "Ghanaian woman, 45, seated at a train window, countryside passing in a warm blur, reflection faint on the glass, calm and resolved expression"},
-    {"file": "12-ravi.jpg",  "aspect": "3:4", "prompt": "Indian man, 33, chef whites, in a small restaurant kitchen at night, steam and flame from the stove, warm overhead light, wiping his hands on a towel"}
-  ]
+    {
+      "file": "01-maya.jpg",
+      "aspect": "3:4",
+      "prompt": "narrow Tokyo side street at night, wet asphalt, shopfronts, vending machine, through a cafe window",
+      "status": "done"
+    },
+    {
+      "file": "02-arjun.jpg",
+      "aspect": "3:4",
+      "prompt": "empty club stage, mic stand, guitar on amp, single spotlight, through a wet glass door",
+      "status": "done"
+    },
+    {
+      "file": "03-lena.jpg",
+      "aspect": "3:4",
+      "prompt": "home office, laptop, tea, window light, seen through a rain-wet window",
+      "status": "done"
+    },
+    {
+      "file": "04-sam.jpg",
+      "aspect": "3:2",
+      "prompt": "garage woodshop at dusk, half-built chair, work lamp, through a dusty wet window",
+      "status": "done"
+    },
+    {
+      "file": "05-zara.jpg",
+      "aspect": "3:4",
+      "prompt": "empty airport gate at dawn, backpack on a seat, through terminal glass in rain",
+      "status": "done"
+    },
+    {
+      "file": "06-kenji.jpg",
+      "aspect": "3:4",
+      "prompt": "quiet kitchen table, tea, reading glasses on engineering drawings, through a wet window",
+      "status": "done"
+    },
+    {
+      "file": "07-priya.jpg",
+      "aspect": "3:4",
+      "prompt": "monsoon evening, rain on the glass, wet rooftops and palms, phone on the sill",
+      "status": "done"
+    },
+    {
+      "file": "08-omar.jpg",
+      "aspect": "3:2",
+      "prompt": "empty open-plan office at night, one desk lamp, city towers through rainy glass",
+      "status": "done"
+    },
+    {
+      "file": "09-elena.jpg",
+      "aspect": "3:2",
+      "prompt": "olive grove at sunset, ladder against a tree, through a farm truck window after rain",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "10-theo.jpg",
+      "aspect": "3:4",
+      "prompt": "rooftop at blue hour, two chairs, two bottles, string lights, through a wet door",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "11-ama.jpg",
+      "aspect": "3:4",
+      "prompt": "train window, countryside in motion blur, coffee cup and jacket, rain streaks",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "12-ravi.jpg",
+      "aspect": "3:4",
+      "prompt": "restaurant kitchen after service, pan on low flame, steam, through a fogged door porthole",
+      "status": "pending (needs credits)"
+    }
+  ],
+  "model": "image/nano-banana-2, 2K, jpeg"
 }
