@@ -1,0 +1,79 @@
+{
+  "style": "Places, no people. Unretouched 35mm documentary photograph, natural colour as shot on Kodak Portra 400/800, honest exposure, natural grain, no heavy colour grade. Photographed through wet glass: droplets and rivulets in the near foreground, slightly soft, refracting the scene.",
+  "negative": "purple, violet, magenta, neon glow, oversaturated, plastic skin, illustration, 3d render, text, watermark, frame border",
+  "portraits": [
+    {
+      "file": "01-maya.jpg",
+      "aspect": "3:4",
+      "prompt": "narrow Tokyo side street at night, wet asphalt, shopfronts, vending machine, through a cafe window",
+      "status": "done"
+    },
+    {
+      "file": "02-arjun.jpg",
+      "aspect": "3:4",
+      "prompt": "empty club stage, mic stand, guitar on amp, single spotlight, through a wet glass door",
+      "status": "done"
+    },
+    {
+      "file": "03-lena.jpg",
+      "aspect": "3:4",
+      "prompt": "home office, laptop, tea, window light, seen through a rain-wet window",
+      "status": "done"
+    },
+    {
+      "file": "04-sam.jpg",
+      "aspect": "3:2",
+      "prompt": "garage woodshop at dusk, half-built chair, work lamp, through a dusty wet window",
+      "status": "done"
+    },
+    {
+      "file": "05-zara.jpg",
+      "aspect": "3:4",
+      "prompt": "empty airport gate at dawn, backpack on a seat, through terminal glass in rain",
+      "status": "done"
+    },
+    {
+      "file": "06-kenji.jpg",
+      "aspect": "3:4",
+      "prompt": "quiet kitchen table, tea, reading glasses on engineering drawings, through a wet window",
+      "status": "done"
+    },
+    {
+      "file": "07-priya.jpg",
+      "aspect": "3:4",
+      "prompt": "monsoon evening, rain on the glass, wet rooftops and palms, phone on the sill",
+      "status": "done"
+    },
+    {
+      "file": "08-omar.jpg",
+      "aspect": "3:2",
+      "prompt": "empty open-plan office at night, one desk lamp, city towers through rainy glass",
+      "status": "done"
+    },
+    {
+      "file": "09-elena.jpg",
+      "aspect": "3:2",
+      "prompt": "olive grove at sunset, ladder against a tree, through a farm truck window after rain",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "10-theo.jpg",
+      "aspect": "3:4",
+      "prompt": "rooftop at blue hour, two chairs, two bottles, string lights, through a wet door",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "11-ama.jpg",
+      "aspect": "3:4",
+      "prompt": "train window, countryside in motion blur, coffee cup and jacket, rain streaks",
+      "status": "pending (needs credits)"
+    },
+    {
+      "file": "12-ravi.jpg",
+      "aspect": "3:4",
+      "prompt": "restaurant kitchen after service, pan on low flame, steam, through a fogged door porthole",
+      "status": "pending (needs credits)"
+    }
+  ],
+  "model": "image/nano-banana-2, 2K, jpeg"
+}
