@@ -1,5 +1,7 @@
 # Lifelines: design handoff
 
+> Full background and every decision so far: see `PROJECT_CONTEXT.md`. Read that first.
+
 A life-choice simulator: one person, one dilemma, two lives played out side by side with the same luck.
 
 ## Chosen direction
